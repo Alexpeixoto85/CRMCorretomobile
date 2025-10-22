@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CRM Mobile v2 (Wrap Corrigido)</title>
+    <title>CRM Mobile v2 (Agenda Corrigida)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -389,31 +389,26 @@
             display: flex; justify-content: center; align-items: center;
         }
         
-        /* --- INÍCIO DA CORREÇÃO DE QUEBRA DE TEXTO --- */
+        /* --- INÍCIO DA CORREÇÃO DE QUEBRA DE TEXTO (Substituído) --- */
         .events-container { 
-            margin-top: 5px; 
+            margin-top: 10px;
             flex-grow: 1; 
-            /* Removido: overflow-y: auto; */
-            /* Removido: max-height: 40px; */
+            text-align: center;
         }
-        .event-pill {
-            font-size: 0.7rem;
-            padding: 2px 4px;
-            margin: 2px 1px; /* Mais espaço vertical */
-            border-radius: 3px;
+        .event-count-badge {
+            display: inline-block;
             background-color: var(--secondary-color);
-            color: white;
-            
-            white-space: normal;      /* Permite a quebra de linha */
-            overflow: visible;      /* Garante que o conteúdo não seja cortado */
-            text-overflow: clip;      /* Remove o comportamento "..." */
-            word-break: break-word;   /* Força a quebra de palavras longas */
-            line-height: 1.4;       /* Melhora a leitura */
+            color: var(--text-light-color);
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            line-height: 24px; /* Verticamente centra o número */
+            text-align: center;
         }
         /* --- FIM DA CORREÇÃO DE QUEBRA DE TEXTO --- */
 
-        .event-pill.completed { background-color: #6c757d; text-decoration: line-through; }
-        .event-pill.overdue { background-color: var(--warning-color); }
         .day-events-list .event-item {
             background-color: #fff; border-left: 5px solid var(--secondary-color);
             padding: 1rem; margin-bottom: 1rem; border-radius: 5px;
@@ -1175,13 +1170,15 @@
                 const eventsOnThisDay = getEventsForDate(date);
                 const eventsContainer = dayDiv.querySelector('.events-container');
 
-                eventsOnThisDay.forEach(event => {
-                    const eventPill = document.createElement('div');
-                    eventPill.className = 'event-pill';
-                    eventPill.textContent = event.title;
-                    if(event.completed) eventPill.classList.add('completed');
-                    eventsContainer.appendChild(eventPill);
-                });
+                // --- INÍCIO DA LÓGICA DE CONTAGEM DE EVENTOS ---
+                if (eventsOnThisDay.length > 0) {
+                    const eventBadge = document.createElement('div');
+                    eventBadge.className = 'event-count-badge';
+                    eventBadge.textContent = eventsOnThisDay.length;
+                    eventsContainer.appendChild(eventBadge);
+                }
+                // --- FIM DA LÓGICA DE CONTAGEM DE EVENTOS ---
+
                 grid.appendChild(dayDiv);
             }
         };
