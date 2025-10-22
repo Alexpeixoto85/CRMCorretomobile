@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CRM Mobile v2</title>
+    <title>CRM Mobile v2 (Corrigido)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -330,6 +330,7 @@
         }
         .record-details p {
             margin-bottom: 0.5rem;
+            word-break: break-word; /* Quebra palavras longas */
         }
         .record-details strong {
             color: #333;
@@ -1331,7 +1332,6 @@
 
         // ==========================================
         // MÓDULO: CONFIGURAÇÕES (IMPORT/EXPORT)
-        // (IDÊNTICO AO SISTEMA ORIGINAL)
         // ==========================================
         document.getElementById('clear-system-btn').addEventListener('click', () => {
             if (confirm('ATENÇÃO! Isso apagará TODOS os dados do sistema permanentemente. Deseja continuar?')) {
@@ -1360,16 +1360,23 @@
              document.getElementById('import-backup').click();
         });
         
+        // ########## INÍCIO DA CORREÇÃO DE IMPORTAÇÃO ##########
         document.getElementById('import-backup').addEventListener('change', e => {
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = (event) => {
+            
+            // 1. A função "onload" agora é "async"
+            reader.onload = async (event) => {
                 try {
                     const importedDb = JSON.parse(event.target.result);
                     if (confirm('Isso substituirá todos os dados atuais. Deseja continuar?')) {
                         db = { ...defaultDb, ...importedDb };
-                        saveData();
+                        
+                        // 2. "await" é adicionado para esperar o salvamento
+                        await saveData(); 
+                        
+                        // Estas linhas agora só executam APÓS o salvamento
                         alert('Backup importado com sucesso! O aplicativo será recarregado.');
                         location.reload();
                     }
@@ -1377,8 +1384,10 @@
                     alert('Erro ao ler o arquivo de backup. Verifique se o arquivo é válido.');
                 }
             };
+            
             reader.readAsText(file);
         });
+        // ########## FIM DA CORREÇÃO DE IMPORTAÇÃO ##########
         
         // ==========================================
         // LÓGICA DE SALVAMENTO DO MODAL (V2)
