@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CRM Mobile v2 (Zoom/Concluir)</title>
+    <title>CRM Mobile v2 (Double Tap Zoom)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -441,66 +441,100 @@
         }
         /* ===== FIM: ESTILOS DA AGENDA-CALENDÁRIO COM SCROLL ===== */
 
-        /* ===== INÍCIO: ESTILOS GALERIA DE IMAGENS COM ZOOM ===== */
+        /* ===== INÍCIO: ESTILOS GALERIA DE IMAGENS COM ZOOM TELA CHEIA ===== */
         #image-gallery-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 3000;
-            display: none; flex-direction: column; justify-content: center; align-items: center;
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); 
+            z-index: 3000;
+            display: none; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            /* Transição suave para tela cheia */
+            transition: background-color 0.3s ease; 
         }
         #image-gallery-modal.active { display: flex; }
+        
+        /* Estilos do Modal em Tela Cheia */
+        #image-gallery-modal.gallery-fullscreen-active {
+            background: rgba(0,0,0,0.98); /* Fundo mais escuro */
+            padding: 0; /* Remove padding */
+            z-index: 3050; /* Fica acima de tudo */
+        }
+        
         #gallery-image-container { 
             position: relative; 
             width: 100%; 
-            height: 80%; 
-            overflow: hidden; /* Esconde partes da imagem zoomada */
+            height: 80%; /* Altura padrão */
+            overflow: hidden; /* Padrão: sem scroll */
+            transition: height 0.3s ease; /* Transição de altura */
         }
+         /* Container em tela cheia permite scroll */
+        #image-gallery-modal.gallery-fullscreen-active #gallery-image-container {
+             height: 100%; /* Ocupa toda a altura */
+             overflow: auto; /* Permite scroll da imagem zoomada */
+             -webkit-overflow-scrolling: touch;
+        }
+
         #gallery-image-container img { 
+            display: block; /* Remove espaço extra abaixo */
             width: 100%; 
             height: 100%; 
             object-fit: contain; /* Padrão */
-            cursor: zoom-in; /* Indica que pode dar zoom */
+            cursor: pointer; /* Indica que pode clicar/tocar */
             transition: transform 0.3s ease; /* Suaviza o zoom */
+            transform-origin: center center; /* Zoom a partir do centro */
         }
         /* Estilo da imagem zoomada */
         #gallery-image-container img.zoomed {
             transform: scale(2.5);
             cursor: grab; /* Indica que pode arrastar */
-             object-fit: contain; /* Mantém proporção ao dar zoom */
         }
+        /* Estilo ao arrastar */
         #gallery-image-container.dragging img.zoomed {
             cursor: grabbing; /* Indica que está arrastando */
         }
         
-        .gallery-nav {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.5); color: white; border: none;
-            font-size: 2.5rem; cursor: pointer; padding: 0 1rem;
+        /* Controles da Galeria */
+        .gallery-nav, .gallery-tool, #gallery-counter {
+            position: absolute; 
+            background: rgba(0,0,0,0.5); 
+            color: white; 
+            border: none;
+            border-radius: 5px;
             z-index: 3010; /* Fica sobre a imagem */
+            transition: opacity 0.3s ease; /* Animação ao esconder/mostrar */
+        }
+         /* Esconde controles em tela cheia */
+        #image-gallery-modal.gallery-fullscreen-active .gallery-nav,
+        #image-gallery-modal.gallery-fullscreen-active .gallery-tool,
+        #image-gallery-modal.gallery-fullscreen-active #gallery-counter {
+            opacity: 0;
+            pointer-events: none; /* Impede interação quando escondido */
+        }
+
+        .gallery-nav {
+            top: 50%; transform: translateY(-50%);
+            font-size: 2.5rem; cursor: pointer; padding: 0 1rem;
         }
         #gallery-prev { left: 10px; }
         #gallery-next { right: 10px; }
         .gallery-tool {
-            position: absolute; top: 15px;
-            background: rgba(0,0,0,0.5); color: white; border: none;
-            font-size: 1.5rem; cursor: pointer; padding: 0.5rem; border-radius: 5px;
-            z-index: 3010; /* Fica sobre a imagem */
+            top: 15px;
+            font-size: 1.5rem; cursor: pointer; padding: 0.5rem;
         }
         #gallery-close { right: 15px; }
-        /* Botão de Zoom */
-        #gallery-zoom { right: 70px; } 
-
+        /* Botão Zoom Removido */
+        
         #gallery-counter { 
-            position: absolute; 
             bottom: 10px; 
             left: 50%; 
             transform: translateX(-50%); 
-            color: white; 
-            background: rgba(0,0,0,0.5); 
             padding: 5px 10px; 
-            border-radius: 5px;
-            z-index: 3010; /* Fica sobre a imagem */
         }
-        /* ===== FIM: ESTILOS GALERIA DE IMAGENS COM ZOOM ===== */
+        /* ===== FIM: ESTILOS GALERIA DE IMAGENS COM ZOOM TELA CHEIA ===== */
 
 
     </style>
@@ -633,7 +667,6 @@
             <button id="gallery-prev" class="gallery-nav"><i class="fas fa-chevron-left"></i></button>
             <button id="gallery-next" class="gallery-nav"><i class="fas fa-chevron-right"></i></button>
             <button id="gallery-close" class="gallery-tool" title="Fechar"><i class="fas fa-times"></i></button>
-            <button id="gallery-zoom" class="gallery-tool" title="Zoom"><i class="fas fa-search-plus"></i></button> 
             <div id="gallery-counter"></div>
         </div>
     </div>
@@ -645,7 +678,6 @@
 
         // ==========================================
         // BANCO DE DADOS (INDEXEDDB COM DEXIE.JS)
-        // (IDÊNTICO AO SISTEMA ORIGINAL PARA COMPATIBILIDADE)
         // ==========================================
         const dexieDb = new Dexie('CRMLuxoDatabase');
         dexieDb.version(1).stores({
@@ -671,11 +703,10 @@
 
         let currentEditingId = null; 
         let currentEntityType = ''; 
-        let currentCalendarDate = new Date(); // (V2) Para o Calendário
+        let currentCalendarDate = new Date(); // Para o Calendário
     
         // ==========================================
         // ESTADO INICIAL E MANIPULAÇÃO DE DADOS
-        // (IDÊNTICO AO SISTEMA ORIGINAL)
         // ==========================================
         let db = {};
     
@@ -737,11 +768,17 @@
             if (!db.dutyReports) db.dutyReports = [];
             
             // Garante que eventos tenham a propriedade 'completed'
+            let needsSave = false; // Flag para salvar apenas se necessário
             db.events.forEach(event => {
                 if (event.completed === undefined) {
                     event.completed = false;
+                    needsSave = true; // Marca que precisa salvar
                 }
             });
+             if (needsSave) {
+                 await saveData(); // Salva se alguma alteração foi feita
+                 console.log("Dados de eventos migrados para incluir 'completed'.");
+             }
         };
     
         // ==========================================
@@ -758,7 +795,6 @@
             }
         };
         
-        // (V2) Adicionado para visualização de vídeos nas fichas
         const getEmbedUrl = (url) => {
             if (!url) return null;
             let videoId;
@@ -852,7 +888,7 @@
                 .filter(e => {
                     if (!e.date) return false;
                     const eventDate = new Date(e.date + 'T00:00:00');
-                    // Pega eventos de hoje OU futuros não concluídos
+                    // Pega eventos de hoje OU futuros
                     return eventDate >= today;
                 })
                 .sort((a,b) => new Date(a.date) - new Date(b.date))
@@ -1171,52 +1207,43 @@
             openModal('Novo Compromisso', getEventFormHtml(), 'event');
         });
         
-        // (V2) Função copiada do Desktop e SIMPLIFICADA (removeu finanças)
         const getEventsForDate = (targetDate) => {
             const eventsOnDay = [];
-            // Normaliza a data de entrada para meia-noite
             const targetDateObj = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
 
             db.events.forEach(event => {
                 if (!event.date) return;
-                 // Normaliza a data do evento para meia-noite
                 const startDate = new Date(event.date + 'T00:00:00'); 
                 const endDate = event.endDate ? new Date(event.endDate + 'T00:00:00') : null;
 
-                // Checagem de intervalo
                 if (targetDateObj < startDate || (endDate && targetDateObj > endDate)) return;
 
                 let isMatch = false;
                 switch (event.recurrence) {
                     case 'none':
-                    case undefined: // Trata eventos antigos sem recorrência
+                    case undefined: 
                         if (startDate.getTime() === targetDateObj.getTime()) isMatch = true;
                         break;
                     case 'daily':
-                        isMatch = true; // Se está dentro do intervalo startDate/endDate, é diário
+                        isMatch = true; 
                         break;
                     case 'weekly':
-                         // Verifica se o dia da semana bate E se está dentro do intervalo
                         if (startDate.getDay() === targetDateObj.getDay()) isMatch = true;
                         break;
                     case 'monthly':
-                         // Verifica se o dia do mês bate E se está dentro do intervalo
                         if (startDate.getDate() === targetDateObj.getDate()) isMatch = true;
                         break;
-                    default: // Fallback para tratar 'none' ou recorrência desconhecida
+                    default: 
                         if (startDate.getTime() === targetDateObj.getTime()) isMatch = true;
                 }
                 
                 if (isMatch) {
-                    // Garante que a propriedade 'completed' exista
                     eventsOnDay.push({ ...event, completed: event.completed || false, type: 'event' });
                 }
             });
             return eventsOnDay;
         };
 
-
-        // (V2) Função copiada do Desktop e adaptada (COM SCROLL)
         const renderAgendaCalendar = () => {
             const grid = document.getElementById('calendar-grid');
             const monthYearEl = document.getElementById('month-year');
@@ -1267,7 +1294,6 @@
             }
         };
 
-        // (V2) Listeners dos botões do calendário
         document.getElementById('prev-month-btn').addEventListener('click', () => {
             currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
             renderAgendaCalendar();
@@ -1277,7 +1303,6 @@
             renderAgendaCalendar();
         });
 
-        // (V2) Listener de clique no dia do calendário
         document.getElementById('calendar-grid').addEventListener('click', e => {
             const dayElement = e.target.closest('.calendar-day');
             if (!dayElement || dayElement.classList.contains('other-month')) return;
@@ -1292,7 +1317,7 @@
             }
         });
         
-        // (V2) Função adaptada para incluir botão de Concluir
+        // Modal de eventos do dia com botão Concluir
         const openDayEventsModal = (date, events) => {
             let content = '<div class="day-events-list">';
             content += '<h3>Compromissos</h3>';
@@ -1300,9 +1325,7 @@
 
             events.forEach(event => {
                 const client = db.clients.find(c => c.id == event.clientId);
-                // Adiciona classe 'completed' ao item se necessário
                 const completedClass = event.completed ? 'completed' : ''; 
-                // Define o título e ícone do botão de concluir
                 const completeButtonTitle = event.completed ? 'Marcar como Pendente' : 'Marcar como Concluído';
                 const completeButtonIcon = event.completed ? 'fa-undo-alt' : 'fa-check-circle';
 
@@ -1323,7 +1346,7 @@
             openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false);
         };
         
-        // (V2) Listener do modal de eventos do dia (COM BOTÃO CONCLUIR)
+        // Listener do modal de eventos do dia (COM BOTÃO CONCLUIR)
         modalBody.addEventListener('click', async (e) => { // Adicionado async
             if(currentEntityType !== 'day-view') return;
             const button = e.target.closest('button');
@@ -1353,9 +1376,8 @@
                     icon.className = 'fas fa-check-circle';
                 }
                 
-                // Salva e atualiza calendário/dashboard ao fechar
                 await saveData(); 
-                // Não fecha o modal, atualiza calendário/dashboard em background
+                // Atualiza calendário e dashboard em background
                 renderAgendaCalendar(); 
                 renderDashboard();
 
@@ -1612,16 +1634,16 @@
         });
         
         // =========================================================
-        // GALERIA DE IMAGENS COM ZOOM E DRAG
+        // GALERIA DE IMAGENS COM ZOOM TELA CHEIA E DRAG (Double Tap)
         // =========================================================
         const galleryModal = document.getElementById('image-gallery-modal');
         const galleryImage = document.getElementById('gallery-current-image');
         const galleryContainer = document.getElementById('gallery-image-container');
         const galleryCounter = document.getElementById('gallery-counter');
-        const galleryZoomBtn = document.getElementById('gallery-zoom'); // Botão Zoom
         let currentImageIndex = 0;
         let currentImages = [];
         let isZoomed = false; // Estado do zoom
+        let lastTap = 0; // Para detectar double tap
 
         // Variáveis para o drag
         let isDragging = false;
@@ -1643,10 +1665,10 @@
             currentImages = imagesToShow;
             currentImageIndex = startIndex;
             isZoomed = false; // Reseta zoom ao abrir
-            updateGalleryView();
-            galleryImage.classList.remove('zoomed'); // Garante que não comece zoomado
-            galleryZoomBtn.innerHTML = '<i class="fas fa-search-plus"></i>'; // Reseta ícone do botão
-             galleryContainer.scrollTop = 0; // Reseta scroll
+            updateGalleryView(); // Chama antes de resetar classes/scroll
+            galleryImage.classList.remove('zoomed'); 
+            galleryModal.classList.remove('gallery-fullscreen-active');
+            galleryContainer.scrollTop = 0; 
             galleryContainer.scrollLeft = 0;
             galleryModal.classList.add('active');
         };
@@ -1654,9 +1676,9 @@
         const updateGalleryView = () => {
             galleryImage.src = currentImages[currentImageIndex];
             galleryCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
-            // Reseta zoom e scroll ao mudar de imagem
+            // Reseta zoom e scroll ao mudar de imagem, SE estiver zoomado
             if(isZoomed) toggleZoom(); 
-             galleryContainer.scrollTop = 0; 
+            galleryContainer.scrollTop = 0; 
             galleryContainer.scrollLeft = 0;
         };
 
@@ -1667,14 +1689,15 @@
             updateGalleryView();
         };
 
-        // Função para alternar o zoom
+        // Função para alternar o zoom TELA CHEIA
         const toggleZoom = () => {
             isZoomed = !isZoomed;
             galleryImage.classList.toggle('zoomed', isZoomed);
-            galleryZoomBtn.innerHTML = isZoomed ? '<i class="fas fa-search-minus"></i>' : '<i class="fas fa-search-plus"></i>';
+            galleryModal.classList.toggle('gallery-fullscreen-active', isZoomed); // Aplica no modal
+            
             // Habilita/desabilita scroll no container da imagem
-             galleryContainer.style.overflow = isZoomed ? 'auto' : 'hidden'; 
-             if (!isZoomed) { // Reseta scroll ao tirar zoom
+            galleryContainer.style.overflow = isZoomed ? 'auto' : 'hidden'; 
+            if (!isZoomed) { // Reseta scroll ao tirar zoom
                 galleryContainer.scrollTop = 0;
                 galleryContainer.scrollLeft = 0;
             }
@@ -1684,7 +1707,17 @@
         document.getElementById('gallery-next').addEventListener('click', () => changeImage(1));
         document.getElementById('gallery-prev').addEventListener('click', () => changeImage(-1));
         document.getElementById('gallery-close').addEventListener('click', () => galleryModal.classList.remove('active'));
-        galleryZoomBtn.addEventListener('click', toggleZoom); // Listener do botão zoom
+        
+        // Listener de Duplo Toque/Clique na IMAGEM
+        galleryImage.addEventListener('click', (e) => {
+            const now = new Date().getTime();
+            const timeSinceLastTap = now - lastTap;
+            if (timeSinceLastTap < 300 && timeSinceLastTap > 0) { // Double tap/click detectado
+                toggleZoom();
+                e.preventDefault(); // Previne zoom nativo do browser se houver
+            }
+            lastTap = now;
+        });
 
          // --- Lógica de Drag para imagem zoomada ---
         galleryContainer.addEventListener('mousedown', (e) => {
@@ -1725,14 +1758,12 @@
         galleryContainer.addEventListener('touchstart', (e) => {
              if (!isZoomed) return;
              isDragging = true;
-             // Usa o primeiro toque
              const touch = e.touches[0];
              startX = touch.pageX - galleryContainer.offsetLeft;
              startY = touch.pageY - galleryContainer.offsetTop;
              initialScrollLeft = galleryContainer.scrollLeft;
              initialScrollTop = galleryContainer.scrollTop;
-             // Não previne default para permitir scroll nativo se necessário
-        }, { passive: true }); // passive: true melhora performance
+        }, { passive: true }); 
 
         galleryContainer.addEventListener('touchend', () => {
              if (!isZoomed || !isDragging) return;
@@ -1741,7 +1772,6 @@
 
         galleryContainer.addEventListener('touchmove', (e) => {
             if (!isZoomed || !isDragging) return;
-             // Usa o primeiro toque
              const touch = e.touches[0];
              const x = touch.pageX - galleryContainer.offsetLeft;
              const y = touch.pageY - galleryContainer.offsetTop;
@@ -1749,7 +1779,6 @@
              const walkY = (y - startY);
              galleryContainer.scrollLeft = initialScrollLeft - walkX;
              galleryContainer.scrollTop = initialScrollTop - walkY;
-             // Previne o scroll da PÁGINA enquanto arrasta a imagem
              e.preventDefault(); 
         });
 
