@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CRM Mobile v2 (Agenda Corrigida)</title>
+    <title>CRM Mobile v2 (Agenda Scroll)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -389,25 +389,34 @@
             display: flex; justify-content: center; align-items: center;
         }
         
-        /* --- INÍCIO DA CORREÇÃO DE QUEBRA DE TEXTO (Substituído) --- */
+        /* --- INÍCIO DA CORREÇÃO DE SCROLL --- */
         .events-container { 
-            margin-top: 10px;
+            margin-top: 5px; 
             flex-grow: 1; 
-            text-align: center;
+            overflow-y: auto;       /* Habilita scroll vertical */
+            max-height: 45px;       /* Limita a altura antes do scroll */
+            -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
         }
-        .event-count-badge {
-            display: inline-block;
+        .event-pill {
+            font-size: 0.7rem;
+            padding: 2px 4px;
+            margin: 1px 1px 2px 1px; /* Espaço vertical */
+            border-radius: 3px;
             background-color: var(--secondary-color);
-            color: var(--text-light-color);
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            line-height: 24px; /* Verticamente centra o número */
-            text-align: center;
+            color: white;
+            
+            white-space: normal;      /* Permite a quebra de linha */
+            overflow: visible;      /* Garante que o conteúdo não seja cortado */
+            text-overflow: clip;      /* Remove o comportamento "..." */
+            word-break: break-word;   /* Força a quebra de palavras longas */
+            line-height: 1.3;       /* Melhora a leitura */
+            display: block;         /* Garante que o pill ocupe a largura */
+            text-align: left;       /* Alinha texto à esquerda */
         }
-        /* --- FIM DA CORREÇÃO DE QUEBRA DE TEXTO --- */
+         /* --- FIM DA CORREÇÃO DE SCROLL --- */
+
+        .event-pill.completed { background-color: #6c757d; text-decoration: line-through; }
+        .event-pill.overdue { background-color: var(--warning-color); } /* Pode não ser visível com a rolagem */
 
         .day-events-list .event-item {
             background-color: #fff; border-left: 5px solid var(--secondary-color);
@@ -1170,14 +1179,15 @@
                 const eventsOnThisDay = getEventsForDate(date);
                 const eventsContainer = dayDiv.querySelector('.events-container');
 
-                // --- INÍCIO DA LÓGICA DE CONTAGEM DE EVENTOS ---
-                if (eventsOnThisDay.length > 0) {
-                    const eventBadge = document.createElement('div');
-                    eventBadge.className = 'event-count-badge';
-                    eventBadge.textContent = eventsOnThisDay.length;
-                    eventsContainer.appendChild(eventBadge);
-                }
-                // --- FIM DA LÓGICA DE CONTAGEM DE EVENTOS ---
+                // --- INÍCIO DA LÓGICA DE EXIBIR PILLS COM SCROLL ---
+                eventsOnThisDay.forEach(event => {
+                    const eventPill = document.createElement('div');
+                    eventPill.className = 'event-pill';
+                    eventPill.textContent = event.title;
+                    if(event.completed) eventPill.classList.add('completed');
+                    eventsContainer.appendChild(eventPill);
+                });
+                // --- FIM DA LÓGICA DE EXIBIR PILLS COM SCROLL ---
 
                 grid.appendChild(dayDiv);
             }
