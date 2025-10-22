@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CRM Mobile v2 (Double Tap Zoom)</title>
+    <title>CRM Mobile v2 (Fullscreen Zoom)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -441,7 +441,7 @@
         }
         /* ===== FIM: ESTILOS DA AGENDA-CALENDÁRIO COM SCROLL ===== */
 
-        /* ===== INÍCIO: ESTILOS GALERIA DE IMAGENS COM ZOOM TELA CHEIA ===== */
+        /* ===== INÍCIO: ESTILOS GALERIA DE IMAGENS COM ZOOM NATIVO ===== */
         #image-gallery-modal {
             position: fixed; 
             top: 0; left: 0; 
@@ -452,27 +452,23 @@
             flex-direction: column; 
             justify-content: center; 
             align-items: center;
-            /* Transição suave para tela cheia */
-            transition: background-color 0.3s ease; 
         }
         #image-gallery-modal.active { display: flex; }
         
-        /* Estilos do Modal em Tela Cheia */
-        #image-gallery-modal.gallery-fullscreen-active {
-            background: rgba(0,0,0,0.98); /* Fundo mais escuro */
-            padding: 0; /* Remove padding */
-            z-index: 3050; /* Fica acima de tudo */
-        }
+        /* Estilos do Modal em Fullscreen (ativado via JS) */
+        #image-gallery-modal:-webkit-full-screen { background: rgba(0,0,0,0.98); }
+        #image-gallery-modal:-moz-full-screen { background: rgba(0,0,0,0.98); }
+        #image-gallery-modal:-ms-fullscreen { background: rgba(0,0,0,0.98); }
+        #image-gallery-modal:fullscreen { background: rgba(0,0,0,0.98); }
         
         #gallery-image-container { 
             position: relative; 
             width: 100%; 
             height: 80%; /* Altura padrão */
             overflow: hidden; /* Padrão: sem scroll */
-            transition: height 0.3s ease; /* Transição de altura */
         }
          /* Container em tela cheia permite scroll */
-        #image-gallery-modal.gallery-fullscreen-active #gallery-image-container {
+        #image-gallery-modal:fullscreen #gallery-image-container {
              height: 100%; /* Ocupa toda a altura */
              overflow: auto; /* Permite scroll da imagem zoomada */
              -webkit-overflow-scrolling: touch;
@@ -508,9 +504,9 @@
             transition: opacity 0.3s ease; /* Animação ao esconder/mostrar */
         }
          /* Esconde controles em tela cheia */
-        #image-gallery-modal.gallery-fullscreen-active .gallery-nav,
-        #image-gallery-modal.gallery-fullscreen-active .gallery-tool,
-        #image-gallery-modal.gallery-fullscreen-active #gallery-counter {
+        #image-gallery-modal:fullscreen .gallery-nav,
+        #image-gallery-modal:fullscreen .gallery-tool,
+        #image-gallery-modal:fullscreen #gallery-counter {
             opacity: 0;
             pointer-events: none; /* Impede interação quando escondido */
         }
@@ -526,7 +522,6 @@
             font-size: 1.5rem; cursor: pointer; padding: 0.5rem;
         }
         #gallery-close { right: 15px; }
-        /* Botão Zoom Removido */
         
         #gallery-counter { 
             bottom: 10px; 
@@ -534,8 +529,7 @@
             transform: translateX(-50%); 
             padding: 5px 10px; 
         }
-        /* ===== FIM: ESTILOS GALERIA DE IMAGENS COM ZOOM TELA CHEIA ===== */
-
+        /* ===== FIM: ESTILOS GALERIA DE IMAGENS COM ZOOM NATIVO ===== */
 
     </style>
 </head>
@@ -861,6 +855,10 @@
         };
     
         const closeModal = () => {
+            // Se estivermos saindo do modo fullscreen da galeria, saia dele primeiro
+            if (document.fullscreenElement && isZoomed) {
+                document.exitFullscreen();
+            }
             modalContainer.classList.remove('active');
             modalTitle.textContent = '';
             modalBody.innerHTML = '';
@@ -1634,7 +1632,7 @@
         });
         
         // =========================================================
-        // GALERIA DE IMAGENS COM ZOOM TELA CHEIA E DRAG (Double Tap)
+        // GALERIA DE IMAGENS COM ZOOM TELA CHEIA (Fullscreen API) E DRAG
         // =========================================================
         const galleryModal = document.getElementById('image-gallery-modal');
         const galleryImage = document.getElementById('gallery-current-image');
@@ -1642,7 +1640,7 @@
         const galleryCounter = document.getElementById('gallery-counter');
         let currentImageIndex = 0;
         let currentImages = [];
-        let isZoomed = false; // Estado do zoom
+        let isZoomed = false; // Estado do zoom (se a classe .zoomed está aplicada)
         let lastTap = 0; // Para detectar double tap
 
         // Variáveis para o drag
@@ -1667,7 +1665,6 @@
             isZoomed = false; // Reseta zoom ao abrir
             updateGalleryView(); // Chama antes de resetar classes/scroll
             galleryImage.classList.remove('zoomed'); 
-            galleryModal.classList.remove('gallery-fullscreen-active');
             galleryContainer.scrollTop = 0; 
             galleryContainer.scrollLeft = 0;
             galleryModal.classList.add('active');
@@ -1677,7 +1674,14 @@
             galleryImage.src = currentImages[currentImageIndex];
             galleryCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
             // Reseta zoom e scroll ao mudar de imagem, SE estiver zoomado
-            if(isZoomed) toggleZoom(); 
+            if(isZoomed) {
+                // Se estiver em fullscreen, saia primeiro
+                if (document.fullscreenElement) {
+                     document.exitFullscreen().catch(err => console.error("Erro ao sair do fullscreen:", err));
+                }
+                isZoomed = false;
+                galleryImage.classList.remove('zoomed');
+            }
             galleryContainer.scrollTop = 0; 
             galleryContainer.scrollLeft = 0;
         };
@@ -1689,35 +1693,73 @@
             updateGalleryView();
         };
 
-        // Função para alternar o zoom TELA CHEIA
-        const toggleZoom = () => {
-            isZoomed = !isZoomed;
-            galleryImage.classList.toggle('zoomed', isZoomed);
-            galleryModal.classList.toggle('gallery-fullscreen-active', isZoomed); // Aplica no modal
-            
-            // Habilita/desabilita scroll no container da imagem
-            galleryContainer.style.overflow = isZoomed ? 'auto' : 'hidden'; 
-            if (!isZoomed) { // Reseta scroll ao tirar zoom
-                galleryContainer.scrollTop = 0;
-                galleryContainer.scrollLeft = 0;
+        // Função para alternar o zoom TELA CHEIA usando Fullscreen API
+        const toggleFullscreenZoom = async () => {
+             // Se já está em fullscreen, saia
+            if (document.fullscreenElement) {
+                 try {
+                     await document.exitFullscreen();
+                     // Ao sair do fullscreen, remove o zoom da imagem
+                     galleryImage.classList.remove('zoomed');
+                     galleryContainer.style.overflow = 'hidden'; // Desabilita scroll
+                     isZoomed = false;
+                 } catch (err) {
+                     console.error("Erro ao sair do fullscreen:", err);
+                 }
+            } 
+            // Se NÃO está em fullscreen, entre
+            else {
+                try {
+                     // Pede fullscreen para o MODAL INTEIRO
+                     await galleryModal.requestFullscreen(); 
+                     // Após entrar em fullscreen, aplica o zoom na imagem
+                     galleryImage.classList.add('zoomed');
+                     galleryContainer.style.overflow = 'auto'; // Habilita scroll
+                     isZoomed = true;
+                } catch (err) {
+                    console.error("Erro ao entrar em fullscreen:", err);
+                    // Se falhar (ex: não suportado), volte ao estado normal
+                    galleryImage.classList.remove('zoomed');
+                    galleryContainer.style.overflow = 'hidden';
+                    isZoomed = false;
+                }
             }
         };
 
         // Event Listeners da Galeria
         document.getElementById('gallery-next').addEventListener('click', () => changeImage(1));
         document.getElementById('gallery-prev').addEventListener('click', () => changeImage(-1));
-        document.getElementById('gallery-close').addEventListener('click', () => galleryModal.classList.remove('active'));
+        document.getElementById('gallery-close').addEventListener('click', () => {
+            // Garante sair do fullscreen ao fechar
+             if (document.fullscreenElement) {
+                document.exitFullscreen().catch(err => console.error("Erro ao sair do fullscreen no fechamento:", err));
+             }
+             isZoomed = false; // Reseta estado do zoom
+             galleryModal.classList.remove('active');
+        });
         
-        // Listener de Duplo Toque/Clique na IMAGEM
+        // Listener de Duplo Toque/Clique na IMAGEM para ativar/desativar fullscreen
         galleryImage.addEventListener('click', (e) => {
             const now = new Date().getTime();
             const timeSinceLastTap = now - lastTap;
             if (timeSinceLastTap < 300 && timeSinceLastTap > 0) { // Double tap/click detectado
-                toggleZoom();
+                toggleFullscreenZoom(); // Chama a função de fullscreen
                 e.preventDefault(); // Previne zoom nativo do browser se houver
             }
             lastTap = now;
         });
+        
+         // Listener para resetar o estado 'isZoomed' se o usuário sair do fullscreen pelo ESC
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && isZoomed) {
+                // Usuário saiu do fullscreen (provavelmente com ESC)
+                galleryImage.classList.remove('zoomed');
+                galleryContainer.style.overflow = 'hidden';
+                isZoomed = false;
+                console.log("Saiu do Fullscreen via ESC, estado resetado.");
+            }
+        });
+
 
          // --- Lógica de Drag para imagem zoomada ---
         galleryContainer.addEventListener('mousedown', (e) => {
@@ -1779,7 +1821,10 @@
              const walkY = (y - startY);
              galleryContainer.scrollLeft = initialScrollLeft - walkX;
              galleryContainer.scrollTop = initialScrollTop - walkY;
-             e.preventDefault(); 
+             // Previne o scroll da PÁGINA apenas se estiver arrastando a imagem zoomada
+             if (isDragging) {
+                 e.preventDefault(); 
+             }
         });
 
         // =========================================================
