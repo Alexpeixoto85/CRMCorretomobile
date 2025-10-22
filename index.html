@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CRM Mobile v2 (Agenda Scroll)</title>
+    <title>CRM Mobile v2 (Zoom/Concluir)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -20,6 +20,7 @@
             --danger-color: #E74C3C;        /* Vermelho Suave */
             --success-color: #2ECC71;      /* Verde Suave */
             --font-family: 'Montserrat', sans-serif;
+            --completed-color: #6c757d;    /* Cinza para concluído */
         }
 
         * {
@@ -210,6 +211,11 @@
         .list-card ul { list-style: none; padding-left: 0; }
         .list-card li { padding: 0.5rem 0; border-bottom: 1px solid #eee; }
         .list-card li:last-child { border-bottom: none; }
+        /* Estilo para eventos concluídos no dashboard */
+        .list-card li.completed-event { 
+            text-decoration: line-through; 
+            opacity: 0.7; 
+        }
         .event-time {
             font-weight: 600;
             color: var(--primary-color);
@@ -361,7 +367,7 @@
             border-radius: 5px;
         }
         
-        /* ===== INÍCIO: NOVOS ESTILOS DA AGENDA-CALENDÁRIO V2 ===== */
+        /* ===== INÍCIO: ESTILOS DA AGENDA-CALENDÁRIO COM SCROLL ===== */
         #calendar-container {
             background-color: var(--surface-color);
             padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -389,7 +395,6 @@
             display: flex; justify-content: center; align-items: center;
         }
         
-        /* --- INÍCIO DA CORREÇÃO DE SCROLL --- */
         .events-container { 
             margin-top: 5px; 
             flex-grow: 1; 
@@ -406,38 +411,71 @@
             color: white;
             
             white-space: normal;      /* Permite a quebra de linha */
-            overflow: visible;      /* Garante que o conteúdo não seja cortado */
+            overflow: visible;        /* Garante que o conteúdo não seja cortado */
             text-overflow: clip;      /* Remove o comportamento "..." */
             word-break: break-word;   /* Força a quebra de palavras longas */
-            line-height: 1.3;       /* Melhora a leitura */
-            display: block;         /* Garante que o pill ocupe a largura */
-            text-align: left;       /* Alinha texto à esquerda */
+            line-height: 1.3;         /* Melhora a leitura */
+            display: block;           /* Garante que o pill ocupe a largura */
+            text-align: left;         /* Alinha texto à esquerda */
         }
-         /* --- FIM DA CORREÇÃO DE SCROLL --- */
-
-        .event-pill.completed { background-color: #6c757d; text-decoration: line-through; }
-        .event-pill.overdue { background-color: var(--warning-color); } /* Pode não ser visível com a rolagem */
+        /* Estilo para pill concluído */
+        .event-pill.completed { 
+            background-color: var(--completed-color); 
+            text-decoration: line-through; 
+            opacity: 0.8;
+        }
 
         .day-events-list .event-item {
             background-color: #fff; border-left: 5px solid var(--secondary-color);
             padding: 1rem; margin-bottom: 1rem; border-radius: 5px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        /* ===== FIM: NOVOS ESTILOS DA AGENDA-CALENDÁRIO V2 ===== */
+        /* Estilo para item concluído no modal */
+        .day-events-list .event-item.completed { 
+            border-left-color: var(--completed-color);
+            opacity: 0.7; 
+        }
+        .day-events-list .event-item.completed h4, 
+        .day-events-list .event-item.completed p {
+            text-decoration: line-through;
+        }
+        /* ===== FIM: ESTILOS DA AGENDA-CALENDÁRIO COM SCROLL ===== */
 
-        /* ===== INÍCIO: NOVOS ESTILOS GALERIA DE IMAGENS V2 ===== */
+        /* ===== INÍCIO: ESTILOS GALERIA DE IMAGENS COM ZOOM ===== */
         #image-gallery-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); z-index: 3000;
             display: none; flex-direction: column; justify-content: center; align-items: center;
         }
         #image-gallery-modal.active { display: flex; }
-        #gallery-image-container { position: relative; width: 100%; height: 80%; }
-        #gallery-image-container img { width: 100%; height: 100%; object-fit: contain; }
+        #gallery-image-container { 
+            position: relative; 
+            width: 100%; 
+            height: 80%; 
+            overflow: hidden; /* Esconde partes da imagem zoomada */
+        }
+        #gallery-image-container img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; /* Padrão */
+            cursor: zoom-in; /* Indica que pode dar zoom */
+            transition: transform 0.3s ease; /* Suaviza o zoom */
+        }
+        /* Estilo da imagem zoomada */
+        #gallery-image-container img.zoomed {
+            transform: scale(2.5);
+            cursor: grab; /* Indica que pode arrastar */
+             object-fit: contain; /* Mantém proporção ao dar zoom */
+        }
+        #gallery-image-container.dragging img.zoomed {
+            cursor: grabbing; /* Indica que está arrastando */
+        }
+        
         .gallery-nav {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(0,0,0,0.5); color: white; border: none;
             font-size: 2.5rem; cursor: pointer; padding: 0 1rem;
+            z-index: 3010; /* Fica sobre a imagem */
         }
         #gallery-prev { left: 10px; }
         #gallery-next { right: 10px; }
@@ -445,10 +483,24 @@
             position: absolute; top: 15px;
             background: rgba(0,0,0,0.5); color: white; border: none;
             font-size: 1.5rem; cursor: pointer; padding: 0.5rem; border-radius: 5px;
+            z-index: 3010; /* Fica sobre a imagem */
         }
         #gallery-close { right: 15px; }
-        #gallery-counter { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px;}
-        /* ===== FIM: NOVOS ESTILOS GALERIA DE IMAGENS V2 ===== */
+        /* Botão de Zoom */
+        #gallery-zoom { right: 70px; } 
+
+        #gallery-counter { 
+            position: absolute; 
+            bottom: 10px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            color: white; 
+            background: rgba(0,0,0,0.5); 
+            padding: 5px 10px; 
+            border-radius: 5px;
+            z-index: 3010; /* Fica sobre a imagem */
+        }
+        /* ===== FIM: ESTILOS GALERIA DE IMAGENS COM ZOOM ===== */
 
 
     </style>
@@ -581,6 +633,7 @@
             <button id="gallery-prev" class="gallery-nav"><i class="fas fa-chevron-left"></i></button>
             <button id="gallery-next" class="gallery-nav"><i class="fas fa-chevron-right"></i></button>
             <button id="gallery-close" class="gallery-tool" title="Fechar"><i class="fas fa-times"></i></button>
+            <button id="gallery-zoom" class="gallery-tool" title="Zoom"><i class="fas fa-search-plus"></i></button> 
             <div id="gallery-counter"></div>
         </div>
     </div>
@@ -682,6 +735,13 @@
             if (!db.financialRecords) db.financialRecords = [];
             if (!db.performanceSnapshots) db.performanceSnapshots = [];
             if (!db.dutyReports) db.dutyReports = [];
+            
+            // Garante que eventos tenham a propriedade 'completed'
+            db.events.forEach(event => {
+                if (event.completed === undefined) {
+                    event.completed = false;
+                }
+            });
         };
     
         // ==========================================
@@ -741,7 +801,7 @@
                 case 'dashboard': renderDashboard(); break;
                 case 'clients': renderClientsList(); break;
                 case 'properties': renderPropertiesList(); break;
-                case 'agenda': renderAgendaCalendar(); break; // (V2) Alterado
+                case 'agenda': renderAgendaCalendar(); break; 
                 case 'informacoes': renderKnowledgeBaseList(); break;
             }
         };
@@ -776,7 +836,7 @@
         document.getElementById('modal-cancel-btn').addEventListener('click', closeModal);
         
         // ==========================================
-        // MÓDULO: DASHBOARD (V2)
+        // MÓDULO: DASHBOARD (V2 - Mostra Concluídos)
         // ==========================================
         const renderDashboard = () => {
             document.getElementById('stat-total-clients').textContent = db.clients.length;
@@ -792,7 +852,8 @@
                 .filter(e => {
                     if (!e.date) return false;
                     const eventDate = new Date(e.date + 'T00:00:00');
-                    return eventDate >= today && !e.completed;
+                    // Pega eventos de hoje OU futuros não concluídos
+                    return eventDate >= today;
                 })
                 .sort((a,b) => new Date(a.date) - new Date(b.date))
                 .slice(0, 5); // Limita aos 5 próximos
@@ -803,8 +864,10 @@
             }
 
             upcomingEvents.forEach(event => {
+                // Adiciona classe 'completed-event' se concluído
+                const completedClass = event.completed ? ' class="completed-event"' : '';
                 eventsList.innerHTML += `
-                    <li>
+                    <li${completedClass}>
                         ${formatDate(event.date)} 
                         ${event.time ? `<span class="event-time">${event.time}</span>` : ''}
                         - ${event.title}
@@ -1072,7 +1135,7 @@
         // (V2) Gatilho da galeria de dentro do modal de visualização
         modalBody.addEventListener('click', e => {
             const link = e.target.closest('.view-gallery-link');
-            if (link) {
+            if (link && currentEntityType === 'view') { // Garante que só funcione no modal de view
                 e.preventDefault();
                 const id = link.dataset.id;
                 openImageGallery({ entity: 'property', id: id });
@@ -1080,7 +1143,7 @@
         });
 
         // ==========================================
-        // MÓDULO: GESTÃO DA AGENDA (V2 - CALENDÁRIO)
+        // MÓDULO: GESTÃO DA AGENDA (V2 - CALENDÁRIO COM SCROLL E COMPLETAR)
         // ==========================================
         const getEventFormHtml = (event = {}, date = '') => {
             const today = new Date().toISOString().slice(0, 10);
@@ -1111,38 +1174,49 @@
         // (V2) Função copiada do Desktop e SIMPLIFICADA (removeu finanças)
         const getEventsForDate = (targetDate) => {
             const eventsOnDay = [];
+            // Normaliza a data de entrada para meia-noite
             const targetDateObj = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
 
             db.events.forEach(event => {
                 if (!event.date) return;
-                const startDate = new Date(event.date + 'T00:00:00');
+                 // Normaliza a data do evento para meia-noite
+                const startDate = new Date(event.date + 'T00:00:00'); 
                 const endDate = event.endDate ? new Date(event.endDate + 'T00:00:00') : null;
 
+                // Checagem de intervalo
                 if (targetDateObj < startDate || (endDate && targetDateObj > endDate)) return;
 
                 let isMatch = false;
                 switch (event.recurrence) {
                     case 'none':
+                    case undefined: // Trata eventos antigos sem recorrência
                         if (startDate.getTime() === targetDateObj.getTime()) isMatch = true;
                         break;
                     case 'daily':
-                        isMatch = true;
+                        isMatch = true; // Se está dentro do intervalo startDate/endDate, é diário
                         break;
                     case 'weekly':
+                         // Verifica se o dia da semana bate E se está dentro do intervalo
                         if (startDate.getDay() === targetDateObj.getDay()) isMatch = true;
                         break;
                     case 'monthly':
+                         // Verifica se o dia do mês bate E se está dentro do intervalo
                         if (startDate.getDate() === targetDateObj.getDate()) isMatch = true;
                         break;
-                    default:
+                    default: // Fallback para tratar 'none' ou recorrência desconhecida
                         if (startDate.getTime() === targetDateObj.getTime()) isMatch = true;
                 }
-                if (isMatch) eventsOnDay.push({ ...event, type: 'event' });
+                
+                if (isMatch) {
+                    // Garante que a propriedade 'completed' exista
+                    eventsOnDay.push({ ...event, completed: event.completed || false, type: 'event' });
+                }
             });
             return eventsOnDay;
         };
 
-        // (V2) Função copiada do Desktop e adaptada
+
+        // (V2) Função copiada do Desktop e adaptada (COM SCROLL)
         const renderAgendaCalendar = () => {
             const grid = document.getElementById('calendar-grid');
             const monthYearEl = document.getElementById('month-year');
@@ -1179,15 +1253,15 @@
                 const eventsOnThisDay = getEventsForDate(date);
                 const eventsContainer = dayDiv.querySelector('.events-container');
 
-                // --- INÍCIO DA LÓGICA DE EXIBIR PILLS COM SCROLL ---
+                // --- LÓGICA DE EXIBIR PILLS COM SCROLL ---
                 eventsOnThisDay.forEach(event => {
                     const eventPill = document.createElement('div');
                     eventPill.className = 'event-pill';
+                    if(event.completed) eventPill.classList.add('completed'); // Adiciona classe se concluído
                     eventPill.textContent = event.title;
-                    if(event.completed) eventPill.classList.add('completed');
                     eventsContainer.appendChild(eventPill);
                 });
-                // --- FIM DA LÓGICA DE EXIBIR PILLS COM SCROLL ---
+                // --- FIM DA LÓGICA ---
 
                 grid.appendChild(dayDiv);
             }
@@ -1218,7 +1292,7 @@
             }
         });
         
-        // (V2) Função copiada do Desktop e SIMPLIFICADA (removeu aniversários e 'toggle')
+        // (V2) Função adaptada para incluir botão de Concluir
         const openDayEventsModal = (date, events) => {
             let content = '<div class="day-events-list">';
             content += '<h3>Compromissos</h3>';
@@ -1226,12 +1300,19 @@
 
             events.forEach(event => {
                 const client = db.clients.find(c => c.id == event.clientId);
+                // Adiciona classe 'completed' ao item se necessário
+                const completedClass = event.completed ? 'completed' : ''; 
+                // Define o título e ícone do botão de concluir
+                const completeButtonTitle = event.completed ? 'Marcar como Pendente' : 'Marcar como Concluído';
+                const completeButtonIcon = event.completed ? 'fa-undo-alt' : 'fa-check-circle';
+
                 content += `
-                    <div class="event-item ${event.completed ? 'completed' : ''}" data-id="${event.id}">
+                    <div class="event-item ${completedClass}" data-id="${event.id}">
                         <h4>${event.title} - ${event.time || 'horário não definido'}</h4>
-                        <p>${event.description}</p>
+                        <p>${event.description || 'Sem descrição.'}</p>
                         ${client ? `<p><strong>Cliente:</strong> ${client.name}</p>` : ''}
                         <div class="list-item-actions" style="justify-content: flex-end; margin-top: 10px;">
+                            <button title="${completeButtonTitle}" class="complete-btn"><i class="fas ${completeButtonIcon}"></i></button>
                             <button title="Editar" class="edit-btn"><i class="fas fa-edit"></i></button>
                             <button title="Excluir" class="delete-btn"><i class="fas fa-trash"></i></button>
                         </div>
@@ -1242,8 +1323,8 @@
             openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false);
         };
         
-        // (V2) Listener do modal de eventos do dia (SIMPLIFICADO)
-        modalBody.addEventListener('click', e => {
+        // (V2) Listener do modal de eventos do dia (COM BOTÃO CONCLUIR)
+        modalBody.addEventListener('click', async (e) => { // Adicionado async
             if(currentEntityType !== 'day-view') return;
             const button = e.target.closest('button');
             if (!button) return;
@@ -1251,19 +1332,43 @@
             const eventItem = button.closest('.event-item');
             if(!eventItem) return;
             const id = eventItem.dataset.id;
+            const isComplete = button.classList.contains('complete-btn');
             const isEdit = button.classList.contains('edit-btn');
             const isDelete = button.classList.contains('delete-btn');
             const event = db.events.find(ev => ev.id == id);
-            
-            if (isEdit) {
-                closeModal();
+            if(!event) return; // Segurança extra
+
+            if (isComplete) {
+                event.completed = !event.completed; // Alterna o status
+
+                // Atualiza visual do item no modal na hora
+                eventItem.classList.toggle('completed', event.completed);
+                const completeButton = eventItem.querySelector('.complete-btn');
+                const icon = completeButton.querySelector('i');
+                if (event.completed) {
+                    completeButton.title = 'Marcar como Pendente';
+                    icon.className = 'fas fa-undo-alt';
+                } else {
+                    completeButton.title = 'Marcar como Concluído';
+                    icon.className = 'fas fa-check-circle';
+                }
+                
+                // Salva e atualiza calendário/dashboard ao fechar
+                await saveData(); 
+                // Não fecha o modal, atualiza calendário/dashboard em background
+                renderAgendaCalendar(); 
+                renderDashboard();
+
+            } else if (isEdit) {
+                closeModal(); // Fecha o modal atual antes de abrir o de edição
                 openModal('Editar Compromisso', getEventFormHtml(event), 'event', id);
             } else if (isDelete) {
                 if (confirm('Deseja excluir este compromisso?')) {
                     db.events = db.events.filter(ev => ev.id != id);
-                    saveData();
+                    await saveData(); // Espera salvar antes de recarregar
                     closeModal();
                     renderAgendaCalendar();
+                    renderDashboard(); // Atualiza dashboard também
                 }
             }
         });
@@ -1384,23 +1489,17 @@
              document.getElementById('import-backup').click();
         });
         
-        // ########## INÍCIO DA CORREÇÃO DE IMPORTAÇÃO (APLICADA AQUI) ##########
         document.getElementById('import-backup').addEventListener('change', e => {
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
             
-            // 1. A função "onload" agora é "async"
             reader.onload = async (event) => {
                 try {
                     const importedDb = JSON.parse(event.target.result);
                     if (confirm('Isso substituirá todos os dados atuais. Deseja continuar?')) {
                         db = { ...defaultDb, ...importedDb };
-                        
-                        // 2. "await" é adicionado para esperar o salvamento
                         await saveData(); 
-                        
-                        // Estas linhas agora só executam APÓS o salvamento
                         alert('Backup importado com sucesso! O aplicativo será recarregado.');
                         location.reload();
                     }
@@ -1411,7 +1510,6 @@
             
             reader.readAsText(file);
         });
-        // ########## FIM DA CORREÇÃO DE IMPORTAÇÃO ##########
         
         // ==========================================
         // LÓGICA DE SALVAMENTO DO MODAL (V2)
@@ -1481,6 +1579,8 @@
                     date: document.getElementById('event-date').value, 
                     time: document.getElementById('event-time').value,
                     description: document.getElementById('event-description').value,
+                     // Garante que 'completed' seja preservado ou iniciado como false
+                    completed: currentData.completed || false 
                 };
                  if(index > -1) db.events[index] = eventData;
                 else db.events.push(eventData);
@@ -1512,14 +1612,20 @@
         });
         
         // =========================================================
-        // (V2) NOVA SEÇÃO: GALERIA DE IMAGENS (Copiada do Desktop)
+        // GALERIA DE IMAGENS COM ZOOM E DRAG
         // =========================================================
         const galleryModal = document.getElementById('image-gallery-modal');
         const galleryImage = document.getElementById('gallery-current-image');
         const galleryContainer = document.getElementById('gallery-image-container');
         const galleryCounter = document.getElementById('gallery-counter');
+        const galleryZoomBtn = document.getElementById('gallery-zoom'); // Botão Zoom
         let currentImageIndex = 0;
         let currentImages = [];
+        let isZoomed = false; // Estado do zoom
+
+        // Variáveis para o drag
+        let isDragging = false;
+        let startX, startY, initialScrollLeft, initialScrollTop;
 
         const openImageGallery = (options) => {
             let imagesToShow = [];
@@ -1531,19 +1637,27 @@
                     imagesToShow = property.images;
                 }
             }
-            // Pode ser expandido para 'note' se necessário
 
             if (imagesToShow.length === 0) return;
             
             currentImages = imagesToShow;
             currentImageIndex = startIndex;
+            isZoomed = false; // Reseta zoom ao abrir
             updateGalleryView();
+            galleryImage.classList.remove('zoomed'); // Garante que não comece zoomado
+            galleryZoomBtn.innerHTML = '<i class="fas fa-search-plus"></i>'; // Reseta ícone do botão
+             galleryContainer.scrollTop = 0; // Reseta scroll
+            galleryContainer.scrollLeft = 0;
             galleryModal.classList.add('active');
         };
 
         const updateGalleryView = () => {
             galleryImage.src = currentImages[currentImageIndex];
             galleryCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            // Reseta zoom e scroll ao mudar de imagem
+            if(isZoomed) toggleZoom(); 
+             galleryContainer.scrollTop = 0; 
+            galleryContainer.scrollLeft = 0;
         };
 
         const changeImage = (direction) => {
@@ -1552,10 +1666,93 @@
             if (currentImageIndex < 0) { currentImageIndex = currentImages.length - 1; }
             updateGalleryView();
         };
-        
+
+        // Função para alternar o zoom
+        const toggleZoom = () => {
+            isZoomed = !isZoomed;
+            galleryImage.classList.toggle('zoomed', isZoomed);
+            galleryZoomBtn.innerHTML = isZoomed ? '<i class="fas fa-search-minus"></i>' : '<i class="fas fa-search-plus"></i>';
+            // Habilita/desabilita scroll no container da imagem
+             galleryContainer.style.overflow = isZoomed ? 'auto' : 'hidden'; 
+             if (!isZoomed) { // Reseta scroll ao tirar zoom
+                galleryContainer.scrollTop = 0;
+                galleryContainer.scrollLeft = 0;
+            }
+        };
+
+        // Event Listeners da Galeria
         document.getElementById('gallery-next').addEventListener('click', () => changeImage(1));
         document.getElementById('gallery-prev').addEventListener('click', () => changeImage(-1));
         document.getElementById('gallery-close').addEventListener('click', () => galleryModal.classList.remove('active'));
+        galleryZoomBtn.addEventListener('click', toggleZoom); // Listener do botão zoom
+
+         // --- Lógica de Drag para imagem zoomada ---
+        galleryContainer.addEventListener('mousedown', (e) => {
+            if (!isZoomed) return;
+            isDragging = true;
+            galleryContainer.classList.add('dragging');
+            startX = e.pageX - galleryContainer.offsetLeft;
+            startY = e.pageY - galleryContainer.offsetTop;
+            initialScrollLeft = galleryContainer.scrollLeft;
+            initialScrollTop = galleryContainer.scrollTop;
+            e.preventDefault(); // Previne seleção de imagem
+        });
+
+        galleryContainer.addEventListener('mouseleave', () => {
+            if (!isZoomed || !isDragging) return;
+            isDragging = false;
+            galleryContainer.classList.remove('dragging');
+        });
+
+        galleryContainer.addEventListener('mouseup', () => {
+            if (!isZoomed || !isDragging) return;
+            isDragging = false;
+            galleryContainer.classList.remove('dragging');
+        });
+
+        galleryContainer.addEventListener('mousemove', (e) => {
+            if (!isZoomed || !isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - galleryContainer.offsetLeft;
+            const y = e.pageY - galleryContainer.offsetTop;
+            const walkX = (x - startX); 
+            const walkY = (y - startY);
+            galleryContainer.scrollLeft = initialScrollLeft - walkX;
+            galleryContainer.scrollTop = initialScrollTop - walkY;
+        });
+
+        // --- Lógica de Drag para Touch (Celular) ---
+        galleryContainer.addEventListener('touchstart', (e) => {
+             if (!isZoomed) return;
+             isDragging = true;
+             // Usa o primeiro toque
+             const touch = e.touches[0];
+             startX = touch.pageX - galleryContainer.offsetLeft;
+             startY = touch.pageY - galleryContainer.offsetTop;
+             initialScrollLeft = galleryContainer.scrollLeft;
+             initialScrollTop = galleryContainer.scrollTop;
+             // Não previne default para permitir scroll nativo se necessário
+        }, { passive: true }); // passive: true melhora performance
+
+        galleryContainer.addEventListener('touchend', () => {
+             if (!isZoomed || !isDragging) return;
+             isDragging = false;
+        });
+
+        galleryContainer.addEventListener('touchmove', (e) => {
+            if (!isZoomed || !isDragging) return;
+             // Usa o primeiro toque
+             const touch = e.touches[0];
+             const x = touch.pageX - galleryContainer.offsetLeft;
+             const y = touch.pageY - galleryContainer.offsetTop;
+             const walkX = (x - startX);
+             const walkY = (y - startY);
+             galleryContainer.scrollLeft = initialScrollLeft - walkX;
+             galleryContainer.scrollTop = initialScrollTop - walkY;
+             // Previne o scroll da PÁGINA enquanto arrasta a imagem
+             e.preventDefault(); 
+        });
+
         // =========================================================
         // FIM DA SEÇÃO DE GALERIA
         // =========================================================
