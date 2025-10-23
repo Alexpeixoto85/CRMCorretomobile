@@ -272,6 +272,7 @@
         .modal-header h2 { margin-bottom: 0; }
         .modal-close-btn { font-size: 2rem; background: none; border: none; }
         
+        /* *** CORREÇÃO DE ROLAGEM APLICADA AQUI *** */
         .modal-body {
             overflow-y: auto; /* Permite rolagem no corpo */
             flex-grow: 1; /* Ocupa o espaço restante */
@@ -573,7 +574,6 @@
 
         // ==========================================
         // BANCO DE DADOS (INDEXEDDB COM DEXIE.JS)
-        // (IDÊNTICO AO SISTEMA ORIGINAL PARA COMPATIBILIDADE)
         // ==========================================
         const dexieDb = new Dexie('CRMLuxoDatabase');
         dexieDb.version(1).stores({
@@ -599,11 +599,10 @@
 
         let currentEditingId = null; 
         let currentEntityType = ''; 
-        let currentCalendarDate = new Date(); // (V2) Para o Calendário
+        let currentCalendarDate = new Date(); 
     
         // ==========================================
         // ESTADO INICIAL E MANIPULAÇÃO DE DADOS
-        // (IDÊNTICO AO SISTEMA ORIGINAL)
         // ==========================================
         let db = {};
     
@@ -664,7 +663,7 @@
             if (!db.performanceSnapshots) db.performanceSnapshots = [];
             if (!db.dutyReports) db.dutyReports = [];
             
-            // *** MELHORIA ***: Garante compatibilidade com lastContact
+            // Garante compatibilidade com lastContact
             db.clients.forEach(c => { if (c.lastContact === undefined) c.lastContact = null; });
         };
     
@@ -675,14 +674,12 @@
         const formatDate = (dateString) => {
             if (!dateString) return '';
             try {
-                // Adiciona T00:00:00 para evitar problemas de fuso horário
                 return new Date(dateString + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
             } catch (e) {
                 return 'Data inválida';
             }
         };
         
-        // (V2) Adicionado para visualização de vídeos nas fichas
         const getEmbedUrl = (url) => {
             if (!url) return null;
             let videoId;
@@ -714,18 +711,16 @@
             document.querySelector(`.nav-btn[data-panel="${panelId}"]`)?.classList.add('active');
             headerTitle.textContent = title;
             
-             // (V2) Gerencia a visibilidade do FAB
             Object.values(fabButtons).forEach(fab => fab.classList.add('fab-hidden'));
             if(fabButtons[panelId]) {
                 fabButtons[panelId].classList.remove('fab-hidden');
             }
             
-            // Renderiza o conteúdo do painel ao trocar
             switch(panelId) {
                 case 'dashboard': renderDashboard(); break;
                 case 'clients': renderClientsList(); break;
                 case 'properties': renderPropertiesList(); break;
-                case 'agenda': renderAgendaCalendar(); break; // (V2) Alterado
+                case 'agenda': renderAgendaCalendar(); break;
                 case 'informacoes': renderKnowledgeBaseList(); break;
             }
         };
@@ -744,7 +739,7 @@
             modalBody.innerHTML = bodyHtml;
             currentEditingId = id;
             currentEntityType = entityType;
-            modalFooter.style.display = showFooter ? 'flex' : 'none'; // (V2) Controla o footer
+            modalFooter.style.display = showFooter ? 'flex' : 'none';
             modalContainer.classList.add('active');
         };
     
@@ -779,7 +774,7 @@
                     return eventDate >= today && !e.completed;
                 })
                 .sort((a,b) => new Date(a.date) - new Date(b.date))
-                .slice(0, 5); // Limita aos 5 próximos
+                .slice(0, 5); 
 
             if (upcomingEvents.length === 0) {
                 eventsList.innerHTML = '<li>Nenhum compromisso futuro.</li>';
@@ -801,9 +796,7 @@
         // MÓDULO: GESTÃO DE CLIENTES (V2 - COM VISUALIZAÇÃO)
         // ==========================================
         
-        // (V2) Formulário de Edição
         const getClientFormHtml = (client = {}) => {
-            // Pega o funil do DB para o select
             const funnelOptions = db.funnelStages.map(stage => 
                 `<option value="${stage.id}" ${client.stageId == stage.id ? 'selected' : ''}>${stage.name}</option>`
             ).join('');
@@ -836,11 +829,10 @@
             `;
         };
         
-        // (V2) Nova função para Ficha de Visualização
         const getClientDetailsHtml = (client) => {
             const stage = db.funnelStages.find(s => s.id === client.stageId);
             const property = db.properties.find(p => p.id == client.propertyId);
-            // *** MELHORIA ***: Adicionado lastContactStr
+            // *** MELHORIA APLICADA AQUI ***
             const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum contato registrado';
 
             return `
@@ -881,7 +873,6 @@
             }
     
             filteredClients.forEach(client => {
-                // *** MELHORIA (da solicitação anterior) ***: Adicionado lastContact
                 const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum';
                 container.innerHTML += `
                     <div class="list-item">
@@ -906,14 +897,14 @@
             if (!button) return;
             
             const id = button.dataset.id;
-            const isView = button.classList.contains('view-btn'); // (V2)
+            const isView = button.classList.contains('view-btn');
             const isEdit = button.classList.contains('edit-btn');
             const isDelete = button.classList.contains('delete-btn');
             
             const client = db.clients.find(c => c.id == id);
             if (!client) return;
 
-            if (isView) { // (V2)
+            if (isView) {
                 openModal(`Ficha: ${client.name.split(' ')[0]}`, getClientDetailsHtml(client), 'view', null, false);
             } else if (isEdit) {
                 openModal('Editar Cliente', getClientFormHtml(client), 'client', id);
@@ -958,12 +949,10 @@
             `;
         };
         
-        // (V2) Nova função para Ficha de Visualização
         const getPropertyDetailsHtml = (prop) => {
             const hasImages = prop.images && prop.images.length > 0;
             const videoEmbedUrl = getEmbedUrl(prop.videoLink);
             
-            // Pega os nomes dos diferenciais
             const amenitiesHtml = (prop.amenities && prop.amenities.length > 0)
                 ? `<ul>${prop.amenities.map(name => `<li>${name}</li>`).join('')}</ul>`
                 : '<p>Nenhum diferencial cadastrado.</p>';
@@ -1014,7 +1003,6 @@
             
             filtered.forEach(prop => {
                 const hasImages = prop.images && prop.images.length > 0;
-                // *** MELHORIA (da solicitação anterior) ***: Adicionado localização e preço
                 container.innerHTML += `
                     <div class="list-item">
                         <div class="list-item-content">
@@ -1039,7 +1027,7 @@
             if (!button) return;
             
             const id = button.dataset.id;
-            const isGallery = button.classList.contains('gallery-btn'); // (V2)
+            const isGallery = button.classList.contains('gallery-btn');
             const isView = button.classList.contains('view-btn');
             const isEdit = button.classList.contains('edit-btn');
             const isDelete = button.classList.contains('delete-btn');
@@ -1047,7 +1035,7 @@
             const prop = db.properties.find(p => p.id == id);
             if (!prop) return;
 
-            if (isGallery) { // (V2)
+            if (isGallery) {
                 openImageGallery({ entity: 'property', id: id });
             } else if (isView) {
                 openModal(`Ficha: ${prop.name}`, getPropertyDetailsHtml(prop), 'view', null, false);
@@ -1062,7 +1050,6 @@
             }
         });
         
-        // (V2) Gatilho da galeria de dentro do modal de visualização
         modalBody.addEventListener('click', e => {
             const link = e.target.closest('.view-gallery-link');
             if (link) {
@@ -1101,7 +1088,6 @@
             openModal('Novo Compromisso', getEventFormHtml(), 'event');
         });
         
-        // (V2) Função copiada do Desktop e SIMPLIFICADA (removeu finanças)
         const getEventsForDate = (targetDate) => {
             const eventsOnDay = [];
             const targetDateObj = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
@@ -1135,7 +1121,6 @@
             return eventsOnDay;
         };
 
-        // (V2) Função copiada do Desktop e adaptada
         const renderAgendaCalendar = () => {
             const grid = document.getElementById('calendar-grid');
             const monthYearEl = document.getElementById('month-year');
@@ -1148,7 +1133,7 @@
             const year = currentCalendarDate.getFullYear();
             
             monthYearEl.textContent = new Date(year, month).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
-            ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].forEach(day => weekdaysEl.innerHTML += `<div>${day}</div>`); // Nomes curtos
+            ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].forEach(day => weekdaysEl.innerHTML += `<div>${day}</div>`); 
 
             const firstDayOfMonth = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -1183,7 +1168,6 @@
             }
         };
 
-        // (V2) Listeners dos botões do calendário
         document.getElementById('prev-month-btn').addEventListener('click', () => {
             currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
             renderAgendaCalendar();
@@ -1193,7 +1177,6 @@
             renderAgendaCalendar();
         });
 
-        // (V2) Listener de clique no dia do calendário
         document.getElementById('calendar-grid').addEventListener('click', e => {
             const dayElement = e.target.closest('.calendar-day');
             if (!dayElement || dayElement.classList.contains('other-month')) return;
@@ -1208,7 +1191,6 @@
             }
         });
         
-        // (V2) Função copiada do Desktop e SIMPLIFICADA (removeu aniversários e 'toggle')
         const openDayEventsModal = (date, events) => {
             let content = '<div class="day-events-list">';
             content += '<h3>Compromissos</h3>';
@@ -1232,7 +1214,6 @@
             openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false);
         };
         
-        // (V2) Listener do modal de eventos do dia (SIMPLIFICADO)
         modalBody.addEventListener('click', e => {
             if(currentEntityType !== 'day-view') return;
             const button = e.target.closest('button');
@@ -1262,7 +1243,6 @@
         // MÓDULO: GESTÃO DE NOTAS (KnowledgeBase)
         // ==========================================
         
-        // *** MELHORIA (da solicitação anterior) ***: Nova função de compartilhamento
         const handleShareNote = (info) => {
             if (navigator.share) {
                 navigator.share({
@@ -1272,10 +1252,8 @@
                     console.log('Nota compartilhada com sucesso.');
                 }).catch((error) => {
                     console.error('Erro ao compartilhar:', error);
-                    // O usuário pode ter cancelado, não precisa de um alerta
                 });
             } else {
-                // Fallback for browsers without Web Share API
                 navigator.clipboard.writeText(`*${info.title}*\n\n${info.content}`).then(() => {
                      alert('API de compartilhamento não disponível. A nota foi copiada para a área de transferência.');
                 }).catch(err => {
@@ -1317,7 +1295,6 @@
             }
 
             filteredInfo.forEach(info => {
-                // *** MELHORIA (da solicitação anterior) ***: Adicionado botão de compartilhar
                 container.innerHTML += `
                     <div class="list-item">
                         <div class="list-item-content">
@@ -1344,7 +1321,7 @@
             if (!button) return;
             
             const id = button.dataset.id;
-            const isShare = button.classList.contains('share-btn'); // *** MELHORIA (da solicitação anterior) ***
+            const isShare = button.classList.contains('share-btn'); 
             const isView = button.classList.contains('view-btn'); 
             const isEdit = button.classList.contains('edit-btn');
             const isDelete = button.classList.contains('delete-btn');
@@ -1352,7 +1329,7 @@
             const info = db.knowledgeBase.find(i => i.id == id);
             if (!info) return;
             
-            if (isShare) { // *** MELHORIA (da solicitação anterior) ***
+            if (isShare) { 
                 handleShareNote(info);
             } else if (isView) { 
                 const viewHtml = `
@@ -1374,7 +1351,6 @@
 
         // ==========================================
         // MÓDULO: CONFIGURAÇÕES (IMPORT/EXPORT)
-        // (IDÊNTICO AO SISTEMA ORIGINAL)
         // ==========================================
         document.getElementById('clear-system-btn').addEventListener('click', () => {
             if (confirm('ATENÇÃO! Isso apagará TODOS os dados do sistema permanentemente. Deseja continuar?')) {
@@ -1454,13 +1430,13 @@
             
             if (currentEntityType === 'client') {
                 const clientData = {
-                    ...currentData, // Preserva dados não editáveis (fotos, etc.)
+                    ...currentData, 
                     id: currentEditingId || Date.now() + Math.random(), 
                     name: document.getElementById('client-name').value, 
                     phone: document.getElementById('client-phone').value,
                     email: document.getElementById('client-email').value, 
-                    income: parseFloat(document.getElementById('client-income').value) || 0, // (V2)
-                    stageId: parseInt(document.getElementById('client-stageId').value), // (V2)
+                    income: parseFloat(document.getElementById('client-income').value) || 0, 
+                    stageId: parseInt(document.getElementById('client-stageId').value), 
                     notes: document.getElementById('client-notes').value,
                 };
                 if(index > -1) db.clients[index] = clientData;
@@ -1470,13 +1446,13 @@
             
             if (currentEntityType === 'property') {
                 const propData = {
-                    ...currentData, // Preserva dados não editáveis (FOTOS, videos, etc.)
+                    ...currentData, 
                     id: currentEditingId || Date.now() + Math.random(), 
                     name: document.getElementById('prop-name').value, 
                     location: document.getElementById('prop-location').value,
                     listPrice: parseFloat(document.getElementById('prop-list-price').value) || 0, 
-                    deliveryDate: document.getElementById('prop-delivery-date').value, // (V2)
-                    locationLink: document.getElementById('prop-location-link').value, // *** MELHORIA ***
+                    deliveryDate: document.getElementById('prop-delivery-date').value, 
+                    locationLink: document.getElementById('prop-location-link').value, // *** MELHORIA APLICADA ***
                     description: document.getElementById('prop-description').value,
                 };
                  if(index > -1) db.properties[index] = propData;
@@ -1486,7 +1462,7 @@
             
             if (currentEntityType === 'event') {
                 const eventData = {
-                    ...currentData, // Preserva dados não editáveis
+                    ...currentData, 
                     id: currentEditingId || Date.now() + Math.random(), 
                     title: document.getElementById('event-title').value,
                     date: document.getElementById('event-date').value, 
@@ -1500,7 +1476,7 @@
             
             if (currentEntityType === 'knowledgeBase') {
                 const infoData = {
-                    ...currentData, // Preserva dados não editáveis
+                    ...currentData, 
                     id: currentEditingId || Date.now() + Math.random(),
                     title: document.getElementById('info-title').value.trim(),
                     content: document.getElementById('info-content').value.trim(),
@@ -1515,7 +1491,6 @@
             await saveData();
             closeModal();
             
-            // Atualiza a visualização do painel ativo
             if (listToUpdate) {
                 const activeNav = document.querySelector(`.nav-btn[data-panel="${listToUpdate}"]`);
                 switchPanel(listToUpdate, activeNav.dataset.title);
@@ -1523,7 +1498,7 @@
         });
         
         // =========================================================
-        // (V2) NOVA SEÇÃO: GALERIA DE IMAGENS (Copiada do Desktop)
+        // (V2) NOVA SEÇÃO: GALERIA DE IMAGENS
         // =========================================================
         const galleryModal = document.getElementById('image-gallery-modal');
         const galleryImage = document.getElementById('gallery-current-image');
@@ -1542,7 +1517,6 @@
                     imagesToShow = property.images;
                 }
             }
-            // Pode ser expandido para 'note' se necessário
 
             if (imagesToShow.length === 0) return;
             
@@ -1567,10 +1541,7 @@
         document.getElementById('gallery-next').addEventListener('click', () => changeImage(1));
         document.getElementById('gallery-prev').addEventListener('click', () => changeImage(-1));
         document.getElementById('gallery-close').addEventListener('click', () => galleryModal.classList.remove('active'));
-        // =========================================================
-        // FIM DA SEÇÃO DE GALERIA
-        // =========================================================
-
+        
         // ==========================================
         // INICIALIZAÇÃO DO SISTEMA
         // ==========================================
