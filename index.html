@@ -152,7 +152,8 @@
         .list-item-actions button {
             background: none;
             border: none;
-            font-size: 1.1rem; /* Reduzido para caber */
+            /* *** MELHORIA APLICADA: Reduzido para caber 5 botões *** */
+            font-size: 1rem; 
             color: var(--text-color);
             padding: 0.5rem;
         }
@@ -274,7 +275,7 @@
         .modal-header h2 { margin-bottom: 0; }
         .modal-close-btn { font-size: 2rem; background: none; border: none; }
         
-        /* *** CORREÇÃO DE ROLAGEM APLICADA/REFORÇADA AQUI *** */
+        /* *** ESTA É A CLASSE QUE GARANTE A ROLAGEM (JÁ EXISTENTE) *** */
         .modal-body {
             overflow-y: auto; /* Permite rolagem VERTICAL no corpo */
             flex-grow: 1; /* Ocupa o espaço restante dentro do modal-content */
@@ -423,7 +424,7 @@
         .day-events-list .event-item h4 { font-size: 1rem; margin-bottom: 0.3rem;}
         .day-events-list .event-item p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;}
         
-        /* INÍCIO: MELHORIA SOLICITADA (Estilo Concluído) */
+        /* Estilo Concluído (Agenda) */
         .day-events-list .event-item.completed {
             border-left-color: var(--success-color);
             opacity: 0.7;
@@ -433,7 +434,6 @@
         }
         .list-item-actions .complete-btn { color: var(--success-color); }
         .list-item-actions .reopen-btn { color: var(--warning-color); }
-        /* FIM: MELHORIA SOLICITADA */
         
         /* ===== FIM: ESTILOS DA AGENDA-CALENDÁRIO ===== */
 
@@ -807,12 +807,11 @@
             const today = new Date();
             today.setHours(0,0,0,0);
             
-            // *** MELHORIA APLICADA: Filtra eventos não concluídos (!e.completed) ***
+            // Filtra eventos não concluídos (!e.completed)
             const upcomingEvents = db.events
                 .filter(e => {
                     if (!e.date) return false;
                     const eventDate = new Date(e.date + 'T00:00:00');
-                    // A lógica !e.completed já existia e está correta.
                     return eventDate >= today && !e.completed; 
                 })
                 .sort((a,b) => new Date(a.date) - new Date(b.date))
@@ -963,8 +962,52 @@
         // ==========================================
         // MÓDULO: GESTÃO DE IMÓVEIS (V2 - COM VISUALIZAÇÃO E GALERIA)
         // ==========================================
+
+        // *** INÍCIO: MELHORIA SOLICITADA (Função de Compartilhamento) ***
+        const handleShareProperty = (prop) => {
+            const title = prop.name;
+            
+            let text = `*${prop.name}*\n\n`;
+            text += `*Localização:* ${prop.location || 'Não informado'}\n`;
+            text += `*Valor:* ${formatCurrency(prop.listPrice)}\n\n`;
+            
+            // Adiciona descrição (limitada)
+            let description = prop.description || 'Nenhuma descrição.';
+            if (description.length > 200) {
+                description = description.substring(0, 200) + '...';
+            }
+            text += `${description}\n\n`;
+            
+            // Adiciona o link do mapa se existir
+            if (prop.locationLink) {
+                text += `*Veja no mapa:* ${prop.locationLink}\n`;
+            }
+            // Adiciona o link do vídeo se existir
+             if (prop.videoLink) {
+                text += `*Veja o vídeo:* ${prop.videoLink}\n`;
+            }
+
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: text,
+                }).then(() => {
+                    console.log('Imóvel compartilhado com sucesso.');
+                }).catch((error) => {
+                    console.error('Erro ao compartilhar:', error);
+                });
+            } else {
+                // Fallback para área de transferência
+                navigator.clipboard.writeText(text).then(() => {
+                     alert('API de compartilhamento não disponível. A ficha do imóvel foi copiada para a área de transferência.');
+                }).catch(err => {
+                    alert('Falha ao copiar ficha.');
+                });
+            }
+        };
+        // *** FIM: MELHORIA SOLICITADA ***
         
-        // *** INÍCIO: MELHORIA SOLICITADA (Adicionado prop-video-link) ***
+        // (Adicionado prop-video-link)
         const getPropertyFormHtml = (prop = {}) => {
             return `
                 <div class="form-group">
@@ -997,12 +1040,10 @@
                 </div>
             `;
         };
-        // *** FIM: MELHORIA SOLICITADA ***
         
-        // *** INÍCIO: MELHORIA SOLICITADA (Visualização de locationLink e videoLink) ***
+        // (Visualização de locationLink e videoLink)
         const getPropertyDetailsHtml = (prop) => {
             const hasImages = prop.images && prop.images.length > 0;
-            // A função getEmbedUrl já trata o videoLink
             const videoEmbedUrl = getEmbedUrl(prop.videoLink); 
             
             const amenitiesHtml = (prop.amenities && prop.amenities.length > 0)
@@ -1037,7 +1078,6 @@
                 </div>
             `;
         };
-        // *** FIM: MELHORIA SOLICITADA ***
         
         fabButtons['properties'].addEventListener('click', () => {
             openModal('Cadastrar Novo Imóvel', getPropertyFormHtml(), 'property');
@@ -1066,6 +1106,7 @@
                         </div>
                         <div class="list-item-actions">
                              ${hasImages ? `<button title="Fotos" class="gallery-btn" data-id="${prop.id}"><i class="fas fa-camera"></i></button>` : ''}
+                            <button title="Compartilhar" class="share-btn" data-id="${prop.id}"><i class="fas fa-share-alt"></i></button>
                             <button title="Visualizar" class="view-btn" data-id="${prop.id}"><i class="fas fa-eye"></i></button>
                             <button title="Editar" class="edit-btn" data-id="${prop.id}"><i class="fas fa-edit"></i></button>
                             <button title="Excluir" class="delete-btn" data-id="${prop.id}"><i class="fas fa-trash"></i></button>
@@ -1083,6 +1124,7 @@
             
             const id = button.dataset.id;
             const isGallery = button.classList.contains('gallery-btn');
+            const isShare = button.classList.contains('share-btn'); // *** ADICIONADO ***
             const isView = button.classList.contains('view-btn');
             const isEdit = button.classList.contains('edit-btn');
             const isDelete = button.classList.contains('delete-btn');
@@ -1092,6 +1134,8 @@
 
             if (isGallery) {
                 openImageGallery({ entity: 'property', id: id });
+            } else if (isShare) { // *** ADICIONADO ***
+                handleShareProperty(prop);
             } else if (isView) {
                 openModal(`Ficha: ${prop.name}`, getPropertyDetailsHtml(prop), 'view', null, false);
             } else if (isEdit) {
@@ -1236,7 +1280,7 @@
             }
         });
         
-        // *** INÍCIO: MELHORIA SOLICITADA (Botão Concluir/Reabrir no Modal) ***
+        // (Botão Concluir/Reabrir no Modal)
         const openDayEventsModal = (date, events) => {
             let content = '<div class="day-events-list">';
             content += '<h3>Compromissos</h3>';
@@ -1270,8 +1314,7 @@
             openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false);
         };
         
-        // *** INÍCIO: MELHORIA SOLICITADA (Lógica do botão Concluir/Reabrir) ***
-        // Listener dos botões DENTRO do modal de lista de eventos (MODIFICADO)
+        // (Lógica do botão Concluir/Reabrir)
         modalBody.addEventListener('click', e => {
             if(currentEntityType !== 'day-view') return; // Só age se for o modal da lista
             const button = e.target.closest('button');
@@ -1298,9 +1341,6 @@
                 const eventsOnDay = getEventsForDate(date);
                 openDayEventsModal(event.date, eventsOnDay);
                 
-                // O Dashboard será atualizado automaticamente na próxima vez
-                // que for carregado (via switchPanel)
-
             } else if (isEdit) {
                 closeModal(); // Fecha o modal da lista
                 openModal('Editar Compromisso', getEventFormHtml(event), 'event', id); // Abre o de edição
@@ -1322,7 +1362,6 @@
                 }
             }
         });
-        // *** FIM: MELHORIA SOLICITADA ***
         
         // ==========================================
         // MÓDULO: GESTÃO DE NOTAS (KnowledgeBase)
@@ -1529,7 +1568,7 @@
                 listToUpdate = 'clients';
             }
             
-            // *** INÍCIO: MELHORIA SOLICITADA (Salvando videoLink) ***
+            // (Salvando videoLink)
             if (currentEntityType === 'property') {
                 const propData = {
                     ...currentData, 
@@ -1546,7 +1585,6 @@
                 else db.properties.push(propData);
                 listToUpdate = 'properties';
             }
-            // *** FIM: MELHORIA SOLICITADA ***
             
             if (currentEntityType === 'event') {
                 const eventData = {
