@@ -422,6 +422,19 @@
         }
         .day-events-list .event-item h4 { font-size: 1rem; margin-bottom: 0.3rem;}
         .day-events-list .event-item p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;}
+        
+        /* INÍCIO: MELHORIA SOLICITADA (Estilo Concluído) */
+        .day-events-list .event-item.completed {
+            border-left-color: var(--success-color);
+            opacity: 0.7;
+        }
+        .day-events-list .event-item.completed h4 {
+            text-decoration: line-through;
+        }
+        .list-item-actions .complete-btn { color: var(--success-color); }
+        .list-item-actions .reopen-btn { color: var(--warning-color); }
+        /* FIM: MELHORIA SOLICITADA */
+        
         /* ===== FIM: ESTILOS DA AGENDA-CALENDÁRIO ===== */
 
         /* ===== INÍCIO: NOVOS ESTILOS GALERIA DE IMAGENS V2 ===== */
@@ -682,8 +695,13 @@
             
             // Garante compatibilidade com lastContact
             db.clients.forEach(c => { if (c.lastContact === undefined) c.lastContact = null; });
-            // Garante compatibilidade com locationLink
-            db.properties.forEach(p => { if (p.locationLink === undefined) p.locationLink = null; });
+            // Garante compatibilidade com locationLink e videoLink
+            db.properties.forEach(p => { 
+                if (p.locationLink === undefined) p.locationLink = null; 
+                if (p.videoLink === undefined) p.videoLink = null; 
+            });
+            // Garante compatibilidade com completed
+             db.events.forEach(e => { if (e.completed === undefined) e.completed = false; });
         };
     
         // ==========================================
@@ -693,6 +711,7 @@
         const formatDate = (dateString) => {
             if (!dateString) return '';
             try {
+                // Adiciona T00:00:00 para garantir que seja interpretado como data local
                 return new Date(dateString + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
             } catch (e) {
                 return 'Data inválida';
@@ -714,7 +733,7 @@
                 videoId = url.split('vimeo.com/')[1].split('?')[0];
                 return `https://player.vimeo.com/video/${videoId}`;
             }
-            return null;
+            return null; // Retorna null se não for um link de vídeo suportado
         };
     
         // ==========================================
@@ -788,11 +807,13 @@
             const today = new Date();
             today.setHours(0,0,0,0);
             
+            // *** MELHORIA APLICADA: Filtra eventos não concluídos (!e.completed) ***
             const upcomingEvents = db.events
                 .filter(e => {
                     if (!e.date) return false;
                     const eventDate = new Date(e.date + 'T00:00:00');
-                    return eventDate >= today && !e.completed;
+                    // A lógica !e.completed já existia e está correta.
+                    return eventDate >= today && !e.completed; 
                 })
                 .sort((a,b) => new Date(a.date) - new Date(b.date))
                 .slice(0, 5); 
@@ -942,6 +963,8 @@
         // ==========================================
         // MÓDULO: GESTÃO DE IMÓVEIS (V2 - COM VISUALIZAÇÃO E GALERIA)
         // ==========================================
+        
+        // *** INÍCIO: MELHORIA SOLICITADA (Adicionado prop-video-link) ***
         const getPropertyFormHtml = (prop = {}) => {
             return `
                 <div class="form-group">
@@ -965,15 +988,22 @@
                     <input type="url" id="prop-location-link" value="${prop.locationLink || ''}" placeholder="https://maps.app.goo.gl/...">
                 </div>
                 <div class="form-group">
+                    <label for="prop-video-link">Link do Vídeo (Youtube, Vimeo)</label>
+                    <input type="url" id="prop-video-link" value="${prop.videoLink || ''}" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+                <div class="form-group">
                     <label for="prop-description">Descrição Textual</label>
                     <textarea id="prop-description">${prop.description || ''}</textarea>
                 </div>
             `;
         };
+        // *** FIM: MELHORIA SOLICITADA ***
         
+        // *** INÍCIO: MELHORIA SOLICITADA (Visualização de locationLink e videoLink) ***
         const getPropertyDetailsHtml = (prop) => {
             const hasImages = prop.images && prop.images.length > 0;
-            const videoEmbedUrl = getEmbedUrl(prop.videoLink);
+            // A função getEmbedUrl já trata o videoLink
+            const videoEmbedUrl = getEmbedUrl(prop.videoLink); 
             
             const amenitiesHtml = (prop.amenities && prop.amenities.length > 0)
                 ? `<ul>${prop.amenities.map(name => `<li>${name}</li>`).join('')}</ul>`
@@ -983,7 +1013,9 @@
                 <div class="record-details">
                     <h3>${prop.name}</h3>
                     <p><strong>Localização:</strong> ${prop.location || 'Não informada'}</p>
+                    
                     ${prop.locationLink ? `<p><strong>Link do Mapa:</strong> <a href="${prop.locationLink}" target="_blank">Abrir no Mapa</a></p>` : ''}
+                    
                     <p><strong>Valor:</strong> ${formatCurrency(prop.listPrice)}</p>
                     <p><strong>Entrega:</strong> ${formatDate(prop.deliveryDate)}</p>
                     
@@ -1005,6 +1037,7 @@
                 </div>
             `;
         };
+        // *** FIM: MELHORIA SOLICITADA ***
         
         fabButtons['properties'].addEventListener('click', () => {
             openModal('Cadastrar Novo Imóvel', getPropertyFormHtml(), 'property');
@@ -1110,13 +1143,13 @@
             openModal('Novo Compromisso', getEventFormHtml(), 'event');
         });
         
-        // Função para buscar eventos (simplificada, sem recorrência complexa por enquanto)
+        // Função para buscar eventos
         const getEventsForDate = (targetDate) => {
             const targetDateStr = targetDate.toISOString().slice(0, 10);
             return db.events.filter(event => event.date === targetDateStr);
         };
 
-        // *** CORREÇÃO: Renderização da agenda com contagem ***
+        // Renderização da agenda com contagem
         const renderAgendaCalendar = () => {
             const grid = document.getElementById('calendar-grid');
             const monthYearEl = document.getElementById('month-year');
@@ -1151,14 +1184,11 @@
                 if(isToday) dayDiv.classList.add('today');
                 dayDiv.dataset.date = dateString;
                 
-                // Adiciona o número do dia
                 dayDiv.innerHTML = `<div class="day-number">${day}</div>`;
                 
-                // Busca eventos para este dia
                 const eventsOnThisDay = getEventsForDate(date);
                 const eventCount = eventsOnThisDay.length;
 
-                // Adiciona o contador se houver eventos
                 if (eventCount > 0) {
                     const countSpan = document.createElement('span');
                     countSpan.className = 'event-count';
@@ -1166,7 +1196,7 @@
                         countSpan.textContent = eventCount === 1 ? '①' : '②';
                     } else {
                         countSpan.textContent = '③+';
-                        countSpan.classList.add('many'); // Adiciona classe para estilização diferente
+                        countSpan.classList.add('many');
                     }
                     dayDiv.appendChild(countSpan);
                 }
@@ -1174,7 +1204,7 @@
                 grid.appendChild(dayDiv);
             }
 
-             // Dias do próximo mês (vazios) - para completar a grade
+             // Dias do próximo mês (vazios)
              const totalCells = firstDayOfMonth + daysInMonth;
              const remainingCells = (7 - (totalCells % 7)) % 7;
              for (let i = 0; i < remainingCells; i++) {
@@ -1191,40 +1221,47 @@
             renderAgendaCalendar();
         });
 
-        // *** CORREÇÃO: Listener de clique no calendário ***
+        // Listener de clique no calendário
         document.getElementById('calendar-grid').addEventListener('click', e => {
             const dayElement = e.target.closest('.calendar-day');
-            // Ignora cliques fora de um dia ou em dias de outro mês
             if (!dayElement || dayElement.classList.contains('other-month')) return; 
             
             const date = dayElement.dataset.date;
             const eventsOnDay = getEventsForDate(new Date(date + 'T00:00:00'));
 
             if (eventsOnDay.length > 0) {
-                // Se tem eventos, mostra a lista no modal
                 openDayEventsModal(date, eventsOnDay);
             } else {
-                // Se não tem eventos, abre modal para criar novo
                  openModal('Novo Compromisso', getEventFormHtml({}, date), 'event');
             }
         });
         
-        // Modal que exibe a LISTA de eventos do dia (sem alterações)
+        // *** INÍCIO: MELHORIA SOLICITADA (Botão Concluir/Reabrir no Modal) ***
         const openDayEventsModal = (date, events) => {
             let content = '<div class="day-events-list">';
             content += '<h3>Compromissos</h3>';
             events.sort((a,b) => (a.time || '').localeCompare(b.time || ''));
 
+            if (events.length === 0) {
+                content += '<p>Nenhum evento para este dia.</p>';
+            }
+
             events.forEach(event => {
                 const client = db.clients.find(c => c.id == event.clientId);
+                
+                // Botão de Concluir/Reabrir
+                const completeButtonHtml = event.completed
+                    ? `<button title="Reabrir" class="reopen-btn" data-id="${event.id}"><i class="fas fa-undo"></i></button>`
+                    : `<button title="Concluir" class="complete-btn" data-id="${event.id}"><i class="fas fa-check"></i></button>`;
+                
                 content += `
                     <div class="event-item ${event.completed ? 'completed' : ''}" data-id="${event.id}">
                         <h4>${event.title} ${event.time ? `(${event.time})` : ''}</h4>
                         <p>${event.description || 'Sem descrição.'}</p>
                         ${client ? `<p><strong>Cliente:</strong> ${client.name}</p>` : ''}
                         <div class="list-item-actions" style="justify-content: flex-end; margin-top: 10px;">
-                            <button title="Editar" class="edit-btn"><i class="fas fa-edit"></i></button>
-                            <button title="Excluir" class="delete-btn"><i class="fas fa-trash"></i></button>
+                            ${completeButtonHtml} <button title="Editar" class="edit-btn" data-id="${event.id}"><i class="fas fa-edit"></i></button>
+                            <button title="Excluir" class="delete-btn" data-id="${event.id}"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>
                 `;
@@ -1233,7 +1270,8 @@
             openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false);
         };
         
-        // Listener dos botões DENTRO do modal de lista de eventos (sem alterações)
+        // *** INÍCIO: MELHORIA SOLICITADA (Lógica do botão Concluir/Reabrir) ***
+        // Listener dos botões DENTRO do modal de lista de eventos (MODIFICADO)
         modalBody.addEventListener('click', e => {
             if(currentEntityType !== 'day-view') return; // Só age se for o modal da lista
             const button = e.target.closest('button');
@@ -1241,23 +1279,50 @@
             
             const eventItem = button.closest('.event-item');
             if(!eventItem) return;
+            
             const id = eventItem.dataset.id;
+            const event = db.events.find(ev => ev.id == id);
+            if (!event) return;
+
+            const isComplete = button.classList.contains('complete-btn');
+            const isReopen = button.classList.contains('reopen-btn');
             const isEdit = button.classList.contains('edit-btn');
             const isDelete = button.classList.contains('delete-btn');
-            const event = db.events.find(ev => ev.id == id);
             
-            if (isEdit) {
+            if (isComplete || isReopen) {
+                event.completed = isComplete; // true se 'complete', false se 'reopen'
+                saveData();
+                
+                // Re-renderiza o modal da lista de eventos
+                const date = new Date(event.date + 'T00:00:00');
+                const eventsOnDay = getEventsForDate(date);
+                openDayEventsModal(event.date, eventsOnDay);
+                
+                // O Dashboard será atualizado automaticamente na próxima vez
+                // que for carregado (via switchPanel)
+
+            } else if (isEdit) {
                 closeModal(); // Fecha o modal da lista
                 openModal('Editar Compromisso', getEventFormHtml(event), 'event', id); // Abre o de edição
             } else if (isDelete) {
                 if (confirm('Deseja excluir este compromisso?')) {
                     db.events = db.events.filter(ev => ev.id != id);
                     saveData();
-                    closeModal(); // Fecha o modal da lista
+                    
+                    const date = new Date(event.date + 'T00:00:00');
+                    const eventsOnDay = getEventsForDate(date);
+                    
+                    if (eventsOnDay.length > 0) {
+                        openDayEventsModal(event.date, eventsOnDay);
+                    } else {
+                        closeModal(); // Fecha o modal da lista se não houver mais eventos
+                    }
+                
                     renderAgendaCalendar(); // Atualiza a contagem no calendário
                 }
             }
         });
+        // *** FIM: MELHORIA SOLICITADA ***
         
         // ==========================================
         // MÓDULO: GESTÃO DE NOTAS (KnowledgeBase)
@@ -1464,6 +1529,7 @@
                 listToUpdate = 'clients';
             }
             
+            // *** INÍCIO: MELHORIA SOLICITADA (Salvando videoLink) ***
             if (currentEntityType === 'property') {
                 const propData = {
                     ...currentData, 
@@ -1472,13 +1538,15 @@
                     location: document.getElementById('prop-location').value,
                     listPrice: parseFloat(document.getElementById('prop-list-price').value) || 0, 
                     deliveryDate: document.getElementById('prop-delivery-date').value, 
-                    locationLink: document.getElementById('prop-location-link').value, // *** MELHORIA APLICADA ***
+                    locationLink: document.getElementById('prop-location-link').value, 
+                    videoLink: document.getElementById('prop-video-link').value, // <-- CAMPO ADICIONADO
                     description: document.getElementById('prop-description').value,
                 };
                  if(index > -1) db.properties[index] = propData;
                 else db.properties.push(propData);
                 listToUpdate = 'properties';
             }
+            // *** FIM: MELHORIA SOLICITADA ***
             
             if (currentEntityType === 'event') {
                 const eventData = {
@@ -1488,6 +1556,7 @@
                     date: document.getElementById('event-date').value, 
                     time: document.getElementById('event-time').value,
                     description: document.getElementById('event-description').value,
+                    completed: currentData.completed || false // Garante que não perca o status
                 };
                  if(index > -1) db.events[index] = eventData;
                 else db.events.push(eventData);
