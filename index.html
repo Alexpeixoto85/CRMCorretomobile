@@ -19,6 +19,7 @@
             --text-light-color: #FFF;
             --danger-color: #E74C3C;        /* Vermelho Suave */
             --success-color: #2ECC71;      /* Verde Suave */
+            --warning-color: #F39C12;       /* Laranja Suave (para contagem > 3) */
             --font-family: 'Montserrat', sans-serif;
         }
 
@@ -240,7 +241,7 @@
             display: none;
         }
 
-        /* == Modal == */
+        /* == Modal (Revisado para garantir rolagem) == */
         .modal-container {
             display: none;
             position: fixed;
@@ -249,18 +250,19 @@
             background-color: rgba(0,0,0,0.6);
             justify-content: center;
             align-items: center;
-            padding: 1rem;
+            padding: 1rem; /* Espaçamento externo */
         }
         .modal-container.active { display: flex; }
         .modal-content {
             background-color: #fefefe;
-            padding: 1.5rem;
+            padding: 1.5rem; /* Espaçamento interno */
             border-radius: 10px;
             width: 100%;
             max-width: 500px;
-            max-height: 85vh; /* Limita a altura */
+            max-height: 85vh; /* Limita altura MÁXIMA */
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Essencial para flex-grow e overflow */
+            overflow: hidden; /* Evita que o conteúdo vaze ANTES da rolagem do body */
         }
         .modal-header {
             display: flex;
@@ -272,11 +274,12 @@
         .modal-header h2 { margin-bottom: 0; }
         .modal-close-btn { font-size: 2rem; background: none; border: none; }
         
-        /* *** CORREÇÃO DE ROLAGEM APLICADA AQUI *** */
+        /* *** CORREÇÃO DE ROLAGEM APLICADA/REFORÇADA AQUI *** */
         .modal-body {
-            overflow-y: auto; /* Permite rolagem no corpo */
-            flex-grow: 1; /* Ocupa o espaço restante */
-            -webkit-overflow-scrolling: touch;
+            overflow-y: auto; /* Permite rolagem VERTICAL no corpo */
+            flex-grow: 1; /* Ocupa o espaço restante dentro do modal-content */
+            -webkit-overflow-scrolling: touch; /* Melhora rolagem no iOS */
+            padding-right: 5px; /* Evita que a barra de rolagem cubra o conteúdo */
         }
         .form-group {
             display: flex;
@@ -300,6 +303,8 @@
 
         .modal-footer {
             margin-top: 1.5rem;
+            padding-top: 1rem; /* Adiciona espaço acima dos botões */
+            border-top: 1px solid #eee; /* Linha divisória */
             display: flex;
             justify-content: flex-end;
             gap: 1rem;
@@ -364,7 +369,7 @@
             border-radius: 5px;
         }
         
-        /* ===== INÍCIO: NOVOS ESTILOS DA AGENDA-CALENDÁRIO V2 ===== */
+        /* ===== ESTILOS DA AGENDA-CALENDÁRIO (REVISADO PARA CONTAGEM) ===== */
         #calendar-container {
             background-color: var(--surface-color);
             padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -376,36 +381,48 @@
         #weekdays div { font-weight: bold; padding: 0.5rem 0; font-size: 0.8rem; color: var(--secondary-color); }
         .calendar-day {
             border: 1px solid #eee; min-height: 80px; padding: 5px;
-            display: flex; flex-direction: column; cursor: pointer; transition: background-color: 0.3s;
+            display: flex; flex-direction: column; justify-content: flex-start; /* Alinha número no topo */
+            align-items: center; /* Centraliza conteúdo horizontalmente */
+            cursor: pointer; transition: background-color: 0.3s; position: relative; /* Para posicionar contagem */
         }
         .calendar-day:hover { background-color: #f9f9f9; }
-        .day-number { font-weight: bold; align-self: center; font-size: 0.8rem; }
-        .calendar-day.other-month .day-number { opacity: 0.4; }
+        .day-number { font-weight: bold; font-size: 0.8rem; margin-bottom: 5px; /* Espaço abaixo do número */ }
+        .calendar-day.other-month { opacity: 0.4; pointer-events: none; /* Não clicável */}
         .calendar-day.today .day-number {
             background-color: var(--primary-color); color: var(--secondary-color);
             border-radius: 50%; width: 24px; height: 24px;
             display: flex; justify-content: center; align-items: center;
         }
-        .events-container { margin-top: 5px; flex-grow: 1; overflow-y: auto; max-height: 40px; }
-        .event-pill {
-            font-size: 0.7rem;
-            padding: 2px 4px;
-            margin: 1px;
-            border-radius: 3px;
+        /* NOVO: Estilo para o contador de eventos */
+        .event-count {
+            position: absolute; /* Posiciona relativo ao dia */
+            bottom: 5px; /* No fundo */
+            right: 5px; /* Na direita */
             background-color: var(--secondary-color);
             color: white;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1; /* Ajusta alinhamento vertical */
         }
-        .event-pill.completed { background-color: #6c757d; text-decoration: line-through; }
-        .event-pill.overdue { background-color: var(--warning-color); }
-        .day-events-list .event-item {
+        .event-count.many { /* Estilo para 3+ eventos */
+             background-color: var(--warning-color);
+             color: var(--secondary-color);
+        }
+
+        .day-events-list .event-item { /* Estilos do modal da lista de eventos */
             background-color: #fff; border-left: 5px solid var(--secondary-color);
             padding: 1rem; margin-bottom: 1rem; border-radius: 5px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        /* ===== FIM: NOVOS ESTILOS DA AGENDA-CALENDÁRIO V2 ===== */
+        .day-events-list .event-item h4 { font-size: 1rem; margin-bottom: 0.3rem;}
+        .day-events-list .event-item p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;}
+        /* ===== FIM: ESTILOS DA AGENDA-CALENDÁRIO ===== */
 
         /* ===== INÍCIO: NOVOS ESTILOS GALERIA DE IMAGENS V2 ===== */
         #image-gallery-modal {
@@ -547,7 +564,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modal-title"></h2>
-                <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+                <button id="modal-close-btn" class="modal-close-btn">×</button>
             </div>
             <div id="modal-body"></div>
             <div class="modal-footer">
@@ -665,6 +682,8 @@
             
             // Garante compatibilidade com lastContact
             db.clients.forEach(c => { if (c.lastContact === undefined) c.lastContact = null; });
+            // Garante compatibilidade com locationLink
+            db.properties.forEach(p => { if (p.locationLink === undefined) p.locationLink = null; });
         };
     
         // ==========================================
@@ -741,6 +760,8 @@
             currentEntityType = entityType;
             modalFooter.style.display = showFooter ? 'flex' : 'none';
             modalContainer.classList.add('active');
+            // Garante que o scroll do modal comece do topo
+            modalBody.scrollTop = 0; 
         };
     
         const closeModal = () => {
@@ -832,7 +853,6 @@
         const getClientDetailsHtml = (client) => {
             const stage = db.funnelStages.find(s => s.id === client.stageId);
             const property = db.properties.find(p => p.id == client.propertyId);
-            // *** MELHORIA APLICADA AQUI ***
             const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum contato registrado';
 
             return `
@@ -843,7 +863,9 @@
                     <p><strong>Email:</strong> ${client.email || 'Não informado'}</p>
                     <p><strong>CPF:</strong> ${client.cpf || 'Não informado'}</p>
                     <p><strong>Nascimento:</strong> ${formatDate(client.birthdate)}</p>
-                    <p><strong>Último Contato:</strong> ${lastContactStr}</p> <h3>Dados de Interesse</h3>
+                    <p><strong>Último Contato:</strong> ${lastContactStr}</p> 
+
+                    <h3>Dados de Interesse</h3>
                     <p><strong>Renda:</strong> ${formatCurrency(client.income)}</p>
                     <p><strong>Origem:</strong> ${client.leadSource || 'Não informada'}</p>
                     <p><strong>Imóvel de Interesse:</strong> ${property ? property.name : 'Não selecionado'}</p>
@@ -1060,7 +1082,7 @@
         });
 
         // ==========================================
-        // MÓDULO: GESTÃO DA AGENDA (V2 - CALENDÁRIO)
+        // MÓDULO: GESTÃO DA AGENDA (REVERTIDO PARA CONTAGEM)
         // ==========================================
         const getEventFormHtml = (event = {}, date = '') => {
             const today = new Date().toISOString().slice(0, 10);
@@ -1088,39 +1110,13 @@
             openModal('Novo Compromisso', getEventFormHtml(), 'event');
         });
         
+        // Função para buscar eventos (simplificada, sem recorrência complexa por enquanto)
         const getEventsForDate = (targetDate) => {
-            const eventsOnDay = [];
-            const targetDateObj = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
-
-            db.events.forEach(event => {
-                if (!event.date) return;
-                const startDate = new Date(event.date + 'T00:00:00');
-                const endDate = event.endDate ? new Date(event.endDate + 'T00:00:00') : null;
-
-                if (targetDateObj < startDate || (endDate && targetDateObj > endDate)) return;
-
-                let isMatch = false;
-                switch (event.recurrence) {
-                    case 'none':
-                        if (startDate.getTime() === targetDateObj.getTime()) isMatch = true;
-                        break;
-                    case 'daily':
-                        isMatch = true;
-                        break;
-                    case 'weekly':
-                        if (startDate.getDay() === targetDateObj.getDay()) isMatch = true;
-                        break;
-                    case 'monthly':
-                        if (startDate.getDate() === targetDateObj.getDate()) isMatch = true;
-                        break;
-                    default:
-                        if (startDate.getTime() === targetDateObj.getTime()) isMatch = true;
-                }
-                if (isMatch) eventsOnDay.push({ ...event, type: 'event' });
-            });
-            return eventsOnDay;
+            const targetDateStr = targetDate.toISOString().slice(0, 10);
+            return db.events.filter(event => event.date === targetDateStr);
         };
 
+        // *** CORREÇÃO: Renderização da agenda com contagem ***
         const renderAgendaCalendar = () => {
             const grid = document.getElementById('calendar-grid');
             const monthYearEl = document.getElementById('month-year');
@@ -1139,10 +1135,12 @@
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const today = new Date();
 
+            // Dias do mês anterior (vazios)
             for (let i = 0; i < firstDayOfMonth; i++) {
                 grid.innerHTML += `<div class="calendar-day other-month"></div>`;
             }
 
+            // Dias do mês atual
             for (let day = 1; day <= daysInMonth; day++) {
                 const date = new Date(year, month, day);
                 const dateString = date.toISOString().slice(0, 10);
@@ -1152,20 +1150,36 @@
                 dayDiv.className = 'calendar-day';
                 if(isToday) dayDiv.classList.add('today');
                 dayDiv.dataset.date = dateString;
-                dayDiv.innerHTML = `<div class="day-number">${day}</div><div class="events-container"></div>`;
                 
+                // Adiciona o número do dia
+                dayDiv.innerHTML = `<div class="day-number">${day}</div>`;
+                
+                // Busca eventos para este dia
                 const eventsOnThisDay = getEventsForDate(date);
-                const eventsContainer = dayDiv.querySelector('.events-container');
+                const eventCount = eventsOnThisDay.length;
 
-                eventsOnThisDay.forEach(event => {
-                    const eventPill = document.createElement('div');
-                    eventPill.className = 'event-pill';
-                    eventPill.textContent = event.title;
-                    if(event.completed) eventPill.classList.add('completed');
-                    eventsContainer.appendChild(eventPill);
-                });
+                // Adiciona o contador se houver eventos
+                if (eventCount > 0) {
+                    const countSpan = document.createElement('span');
+                    countSpan.className = 'event-count';
+                    if (eventCount <= 2) {
+                        countSpan.textContent = eventCount === 1 ? '①' : '②';
+                    } else {
+                        countSpan.textContent = '③+';
+                        countSpan.classList.add('many'); // Adiciona classe para estilização diferente
+                    }
+                    dayDiv.appendChild(countSpan);
+                }
+
                 grid.appendChild(dayDiv);
             }
+
+             // Dias do próximo mês (vazios) - para completar a grade
+             const totalCells = firstDayOfMonth + daysInMonth;
+             const remainingCells = (7 - (totalCells % 7)) % 7;
+             for (let i = 0; i < remainingCells; i++) {
+                 grid.innerHTML += `<div class="calendar-day other-month"></div>`;
+             }
         };
 
         document.getElementById('prev-month-btn').addEventListener('click', () => {
@@ -1177,20 +1191,25 @@
             renderAgendaCalendar();
         });
 
+        // *** CORREÇÃO: Listener de clique no calendário ***
         document.getElementById('calendar-grid').addEventListener('click', e => {
             const dayElement = e.target.closest('.calendar-day');
-            if (!dayElement || dayElement.classList.contains('other-month')) return;
-            const date = dayElement.dataset.date;
+            // Ignora cliques fora de um dia ou em dias de outro mês
+            if (!dayElement || dayElement.classList.contains('other-month')) return; 
             
+            const date = dayElement.dataset.date;
             const eventsOnDay = getEventsForDate(new Date(date + 'T00:00:00'));
 
-            if (eventsOnDay.length === 0) {
-                 openModal('Novo Compromisso', getEventFormHtml({}, date), 'event');
-            } else {
+            if (eventsOnDay.length > 0) {
+                // Se tem eventos, mostra a lista no modal
                 openDayEventsModal(date, eventsOnDay);
+            } else {
+                // Se não tem eventos, abre modal para criar novo
+                 openModal('Novo Compromisso', getEventFormHtml({}, date), 'event');
             }
         });
         
+        // Modal que exibe a LISTA de eventos do dia (sem alterações)
         const openDayEventsModal = (date, events) => {
             let content = '<div class="day-events-list">';
             content += '<h3>Compromissos</h3>';
@@ -1200,8 +1219,8 @@
                 const client = db.clients.find(c => c.id == event.clientId);
                 content += `
                     <div class="event-item ${event.completed ? 'completed' : ''}" data-id="${event.id}">
-                        <h4>${event.title} - ${event.time || 'horário não definido'}</h4>
-                        <p>${event.description}</p>
+                        <h4>${event.title} ${event.time ? `(${event.time})` : ''}</h4>
+                        <p>${event.description || 'Sem descrição.'}</p>
                         ${client ? `<p><strong>Cliente:</strong> ${client.name}</p>` : ''}
                         <div class="list-item-actions" style="justify-content: flex-end; margin-top: 10px;">
                             <button title="Editar" class="edit-btn"><i class="fas fa-edit"></i></button>
@@ -1214,8 +1233,9 @@
             openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false);
         };
         
+        // Listener dos botões DENTRO do modal de lista de eventos (sem alterações)
         modalBody.addEventListener('click', e => {
-            if(currentEntityType !== 'day-view') return;
+            if(currentEntityType !== 'day-view') return; // Só age se for o modal da lista
             const button = e.target.closest('button');
             if (!button) return;
             
@@ -1227,14 +1247,14 @@
             const event = db.events.find(ev => ev.id == id);
             
             if (isEdit) {
-                closeModal();
-                openModal('Editar Compromisso', getEventFormHtml(event), 'event', id);
+                closeModal(); // Fecha o modal da lista
+                openModal('Editar Compromisso', getEventFormHtml(event), 'event', id); // Abre o de edição
             } else if (isDelete) {
                 if (confirm('Deseja excluir este compromisso?')) {
                     db.events = db.events.filter(ev => ev.id != id);
                     saveData();
-                    closeModal();
-                    renderAgendaCalendar();
+                    closeModal(); // Fecha o modal da lista
+                    renderAgendaCalendar(); // Atualiza a contagem no calendário
                 }
             }
         });
