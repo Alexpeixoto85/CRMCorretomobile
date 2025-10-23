@@ -16,126 +16,126 @@
         /* == ESTILOS DO CODACADEMICO (BASE) == */
         /* ============================================== */
         :root {
-            --primary: #2c3e50;         /* Dark Slate Blue */
-            --secondary: #34495e;       /* Lighter Slate Blue */
-            --accent: #1abc9c;          /* Teal */
-            --light: #ecf0f1;           /* Light Gray */
-            --dark: #2c3e50;            /* Using primary for text for cohesion */
-            --success: #27ae60;         /* Emerald Green */
-            --warning: #f1c40f;         /* Sunflower Yellow */
-            --danger: #e74c3c;          /* Alizarin Red */
-            --info: #3498db;            /* Peter River Blue */
-            --orange: #e67e22;          /* Carrot Orange */
-            --purple: #9b59b6;          /* Amethyst Purple */
-            --light-accent: rgba(26, 188, 156, 0.1); /* Pale Teal */
-            --text-dark: #34495e;       /* Using secondary for main text */
-            --text-light: #7f8c8d;      /* Grayish text */
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease-in-out;
+            --primary: #2c3e50;         /* Dark Slate Blue */ /* [cite: 409] */
+            --secondary: #34495e;       /* Lighter Slate Blue */ /* [cite: 410] */
+            --accent: #1abc9c;          /* Teal */ /* [cite: 411] */
+            --light: #ecf0f1;           /* Light Gray */ /* [cite: 412] */
+            --dark: #2c3e50;            /* Using primary for text for cohesion */ /* [cite: 413] */
+            --success: #27ae60;         /* Emerald Green */ /* [cite: 414] */
+            --warning: #f1c40f;         /* Sunflower Yellow */ /* [cite: 415] */
+            --danger: #e74c3c;          /* Alizarin Red */ /* [cite: 416] */
+            --info: #3498db;            /* Peter River Blue */ /* [cite: 417] */
+            --orange: #e67e22;          /* Carrot Orange */ /* [cite: 418] */
+            --purple: #9b59b6;          /* Amethyst Purple */ /* [cite: 419] */
+            --light-accent: rgba(26, 188, 156, 0.1); /* Pale Teal */ /* [cite: 420] */
+            --text-dark: #34495e;       /* Using secondary for main text */ /* [cite: 421] */
+            --text-light: #7f8c8d;      /* Grayish text */ /* [cite: 422] */
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* [cite: 423] */
+            --transition: all 0.3s ease-in-out; /* [cite: 423] */
             
             /* Variáveis do CRM (para compatibilidade de cores) */
             --primary-color: var(--accent);       /* Mapeado para Teal */
             --secondary-color: var(--primary);    /* Mapeado para Dark Slate Blue */
-            --background-color: var(--light);
-            --surface-color: #FFFFFF;
-            --text-color: var(--text-dark);
+            --background-color: var(--light); /* [cite: 5, 412] */
+            --surface-color: #FFFFFF; /* [cite: 6] */
+            --text-color: var(--text-dark); /* [cite: 7, 421] */
             --text-light-color: #FFF;
-            --danger-color: var(--danger);
-            --success-color: var(--success);
-            --warning-color: var(--warning);
+            --danger-color: var(--danger); /* [cite: 8, 416] */
+            --success-color: var(--success); /* [cite: 9, 414] */
+            --warning-color: var(--warning); /* [cite: 10, 415] */
         }
 
         * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box; /* [cite: 12] */
+            -webkit-tap-highlight-color: transparent; /* [cite: 12] */
         }
 
         html, body {
             height: 100%;
-            overflow: hidden; 
+            /* overflow: hidden; */ /* <<< REMOVIDO DAQUI */
         }
 
         body {
-            background-color: var(--light);
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
+            background-color: var(--light); /* [cite: 14, 424] */
+            font-family: 'Poppins', sans-serif; /* [cite: 11, 424] */
+            color: var(--text-dark); /* [cite: 14, 424] */
+            line-height: 1.6; /* [cite: 424] */
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary);
+            font-family: 'Playfair Display', serif; /* [cite: 425] */
+            color: var(--primary); /* [cite: 425] */
         }
 
         .app-container {
-            display: flex;
-            min-height: 100vh;
+            display: flex; /* [cite: 426] */
+            min-height: 100vh; /* [cite: 426] */
         }
 
         .sidebar {
-            width: 280px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px 0;
-            box-shadow: var(--shadow);
-            z-index: 1000;
-            transition: var(--transition);
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
+            width: 280px; /* [cite: 427] */
+            background: linear-gradient(to bottom, var(--primary), var(--secondary)); /* [cite: 427] */
+            color: white; /* [cite: 427] */
+            padding: 20px 0; /* [cite: 427] */
+            box-shadow: var(--shadow); /* [cite: 427] */
+            z-index: 1000; /* [cite: 427] */
+            transition: var(--transition); /* [cite: 427] */
+            overflow-y: auto; /* [cite: 427] */
+            display: flex; /* [cite: 427] */
+            flex-direction: column; /* [cite: 427] */
         }
 
         .sidebar-header {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
+            padding: 0 20px 20px; /* [cite: 429] */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* [cite: 429] */
+            margin-bottom: 20px; /* [cite: 429] */
         }
 
         .sidebar-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif; /* [cite: 430] */
+            font-size: 1.8rem; /* [cite: 430] */
+            margin-bottom: 5px; /* [cite: 430] */
         }
 
         .sidebar-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 0.9rem; /* [cite: 431] */
+            opacity: 0.8; /* [cite: 431] */
         }
 
         .nav-menu-wrapper {
-            flex-grow: 1;
-            overflow-y: auto;
+            flex-grow: 1; /* [cite: 433] */
+            overflow-y: auto; /* [cite: 433] */
         }
 
         .nav-item {
-            margin: 5px 15px;
-            border-radius: 8px;
-            transition: var(--transition);
+            margin: 5px 15px; /* [cite: 434] */
+            border-radius: 8px; /* [cite: 434] */
+            transition: var(--transition); /* [cite: 434] */
         }
 
         .nav-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.1); /* [cite: 435] */
         }
 
         .nav-link {
-            color: white;
-            padding: 12px 15px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            transition: var(--transition);
+            color: white; /* [cite: 436] */
+            padding: 12px 15px; /* [cite: 436] */
+            border-radius: 8px; /* [cite: 436] */
+            display: flex; /* [cite: 436] */
+            align-items: center; /* [cite: 436] */
+            transition: var(--transition); /* [cite: 436] */
             cursor: pointer;
         }
 
         .nav-link:hover, .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.15); /* [cite: 437] */
+            color: white; /* [cite: 437] */
         }
 
         .nav-link i {
-            width: 24px;
-            margin-right: 12px;
-            font-size: 1.1rem;
+            width: 24px; /* [cite: 438] */
+            margin-right: 12px; /* [cite: 438] */
+            font-size: 1.1rem; /* [cite: 438] */
         }
         
         .nav-link span {
@@ -144,101 +144,101 @@
         }
 
         .main-content {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-            transition: var(--transition);
+            flex: 1; /* [cite: 439] */
+            padding: 30px; /* [cite: 439] */
+            overflow-y: auto; /* [cite: 439] */ /* <<<<<<< PERMITE ROLAGEM GERAL */
+            transition: var(--transition); /* [cite: 439] */
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            height: 100vh; /* Ocupa a altura da janela */
         }
 
         .main-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #dce4e6;
-            flex-shrink: 0;
+            display: flex; /* [cite: 440] */
+            justify-content: space-between; /* [cite: 440] */
+            align-items: center; /* [cite: 440] */
+            margin-bottom: 30px; /* [cite: 440] */
+            padding-bottom: 15px; /* [cite: 440] */
+            border-bottom: 1px solid #dce4e6; /* [cite: 440] */
+            flex-shrink: 0; /* Impede que o header encolha */
         }
 
         #main-header-title {
-            margin: 0;
+            margin: 0; /* [cite: 441] */
             font-size: 1.8rem;
         }
 
         .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; /* [cite: 450] */
+            justify-content: space-between; /* [cite: 450] */
+            align-items: center; /* [cite: 450] */
             margin-bottom: 20px;
         }
         
         .content-panel-body {
-            flex-grow: 1;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            padding-right: 5px; /* Evitar que scrollbar cubra conteúdo */
+            flex-grow: 1; /* Ocupa espaço restante */
+            overflow-y: auto; /* <<<<<<< HABILITA ROLAGEM INTERNA */ /* [cite: 68] */
+            -webkit-overflow-scrolling: touch; /* [cite: 71] */
+            padding-right: 5px; /* Evita que scrollbar cubra conteúdo */ /* [cite: 72] */
         }
         
         .content-panel {
+            display: none; /* [cite: 19] */
+            animation: fadeIn 0.3s ease; /* [cite: 467] */
+            flex-grow: 1; /* Ocupa espaço restante no main-content */
             display: none;
-            animation: fadeIn 0.3s ease;
-            flex-grow: 1;
-            display: none;
-            flex-direction: column;
-            overflow: hidden; /* Para conter o content-panel-body */
+            flex-direction: column; /* Organiza header e body verticalmente */
+            overflow: hidden; /* Impede que o panel inteiro role */ /* [cite: 64] */
         }
 
         .content-panel.active {
-            display: flex;
+            display: flex; /* Usa flexbox quando ativo */ /* [cite: 20] */
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(10px); } /* [cite: 469] */
+            to { opacity: 1; transform: translateY(0); } /* [cite: 470] */
         }
 
         .card-dashboard {
-            border-radius: 15px;
-            border: none;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            background: white;
-            height: 100%;
+            border-radius: 15px; /* [cite: 471] */
+            border: none; /* [cite: 471] */
+            box-shadow: var(--shadow); /* [cite: 471] */
+            transition: var(--transition); /* [cite: 471] */
+            background: white; /* [cite: 471] */
+            height: 100%; /* [cite: 471] */
         }
 
         .card-dashboard:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px); /* [cite: 472] */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* [cite: 472] */
         }
 
         .card-dashboard .card-body {
-            padding: 1.5rem;
+            padding: 1.5rem; /* [cite: 473] */
         }
         
         /* Ajustes para botões do Bootstrap */
         .btn-primary {
-            background-color: var(--accent);
-            border-color: var(--accent);
+            background-color: var(--accent); /* [cite: 490] */
+            border-color: var(--accent); /* [cite: 490] */
         }
         .btn-primary:hover {
-            background-color: #16a085;
-            border-color: #16a085;
+            background-color: #16a085; /* [cite: 491] */
+            border-color: #16a085; /* [cite: 491] */
         }
         .btn-outline-primary {
-            color: var(--accent);
-            border-color: var(--accent);
+            color: var(--accent); /* [cite: 492] */
+            border-color: var(--accent); /* [cite: 492] */
         }
         .btn-outline-primary:hover {
-            background-color: var(--accent);
-            color: white;
+            background-color: var(--accent); /* [cite: 493] */
+            color: white; /* [cite: 493] */
         }
         .btn-secondary {
-            background-color: var(--secondary);
+            background-color: var(--secondary); /* [cite: 84] */
             border-color: var(--secondary);
-            color: white;
+            color: white; /* [cite: 84] */
         }
         .btn-secondary:hover {
             background-color: var(--primary);
@@ -246,88 +246,89 @@
             color: white;
         }
         .btn-danger {
-            background-color: var(--danger);
+            background-color: var(--danger); /* [cite: 85] */
             border-color: var(--danger);
+            color: white; /* [cite: 85] */
         }
         
         /* Estilos responsivos (Mobile) */
         @media (max-width: 992px) {
             .app-container {
-                flex-direction: column;
+                flex-direction: column; /* [cite: 544] */
             }
 
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: fixed;
-                bottom: 0;
-                z-index: 1000;
+                width: 100%; /* [cite: 545] */
+                height: auto; /* [cite: 545] */
+                position: fixed; /* [cite: 545] */
+                bottom: 0; /* [cite: 545] */
+                z-index: 1000; /* [cite: 545] */
                 padding: 5px 0;
-                flex-direction: row;
-                align-items: center;
+                flex-direction: row; /* [cite: 545] */
+                align-items: center; /* [cite: 545] */
                 box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
             }
 
             .sidebar-header {
-                display: none;
+                display: none; /* [cite: 547] */
             }
 
             .nav-menu-wrapper {
-                overflow-x: auto;
-                display: flex;
-                flex-grow: 1;
+                overflow-x: auto; /* [cite: 548] */
+                display: flex; /* [cite: 548] */
+                flex-grow: 1; /* [cite: 548] */
             }
 
             .nav-menu {
-                display: flex;
-                flex-shrink: 0;
+                display: flex; /* [cite: 549] */
+                flex-shrink: 0; /* [cite: 549] */
                 padding: 0 5px;
-                width: 100%;
-                justify-content: space-around;
+                width: 100%; /* [cite: 549] */
+                justify-content: space-around; /* [cite: 549] */
             }
 
             .nav-item {
                 margin: 0 2px;
-                flex-shrink: 0;
+                flex-shrink: 0; /* [cite: 550] */
                 flex: 1;
             }
 
             .nav-link {
-                flex-direction: column;
+                flex-direction: column; /* [cite: 551] */
                 padding: 8px 5px;
-                font-size: 0.7rem;
+                font-size: 0.7rem; /* [cite: 551] */
                 text-align: center;
             }
 
             .nav-link i {
-                margin-right: 0;
+                margin-right: 0; /* [cite: 552] */
                 margin-bottom: 4px;
-                font-size: 1.1rem;
+                font-size: 1.1rem; /* [cite: 552] */
             }
 
             .main-content {
-                padding: 20px 15px 100px; /* Espaço para a barra inferior */
+                padding: 20px 15px 100px; /* Espaço para a barra inferior */ /* [cite: 553] */
             }
         }
 
         @media (max-width: 768px) {
             .main-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+                flex-direction: column; /* [cite: 554] */
+                align-items: flex-start; /* [cite: 554] */
+                gap: 15px; /* [cite: 554] */
             }
             .content-header {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: column; /* [cite: 557] */
+                align-items: flex-start; /* [cite: 557] */
                 gap: 15px;
             }
-            .content-header .btn-group, .content-header > .btn-primary { /* Ajuste para botões sozinhos */
-                align-self: flex-end;
+            .content-header .btn-group, .content-header > .btn-primary {
+                align-self: flex-end; /* [cite: 558] */
             }
         }
 
         .sidebar-toggle {
-            display: none; 
+            display: none; /* [cite: 563] */
         }
 
         /* ============================================== */
@@ -336,18 +337,18 @@
 
         /* == Dashboard (CRM) == */
         .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+            display: grid; /* [cite: 40] */
+            grid-template-columns: 1fr; /* [cite: 40] */
+            gap: 1rem; /* [cite: 40] */
         }
         .stat-card {
-            background-color: var(--surface-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
+            background-color: var(--surface-color); /* [cite: 41] */
+            padding: 1.5rem; /* [cite: 41] */
+            border-radius: 8px; /* [cite: 41] */
+            box-shadow: var(--shadow); /* [cite: 41] */
+            display: flex; /* [cite: 42] */
+            align-items: center; /* [cite: 42] */
+            gap: 1.5rem; /* [cite: 42] */
             transition: var(--transition);
         }
         .stat-card:hover {
@@ -355,64 +356,64 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         .stat-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            background-color: var(--light-accent);
-            padding: 1rem;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
+            font-size: 2.5rem; /* [cite: 43] */
+            color: var(--primary-color); /* [cite: 43] */
+            background-color: var(--light-accent); /* [cite: 44] */
+            padding: 1rem; /* [cite: 44] */
+            border-radius: 50%; /* [cite: 44] */
+            width: 60px; /* [cite: 44] */
+            height: 60px; /* [cite: 44] */
+            display: flex; /* [cite: 45] */
+            justify-content: center; /* [cite: 45] */
+            align-items: center; /* [cite: 45] */
+            flex-shrink: 0; /* [cite: 45] */
         }
         .stat-card .stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            line-height: 1.2;
+            font-size: 1.8rem; /* [cite: 46] */
+            font-weight: 700; /* [cite: 46] */
+            color: var(--secondary-color); /* [cite: 46] */
+            line-height: 1.2; /* [cite: 46] */
         }
         .stat-card h3 {
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-            color: var(--text-color);
+            font-size: 0.9rem; /* [cite: 47] */
+            margin-bottom: 0.25rem; /* [cite: 47] */
+            color: var(--text-color); /* [cite: 47] */
             opacity: 0.9;
-            font-family: 'Poppins', sans-serif; /* Sobrescreve Playfair */
+            font-family: 'Poppins', sans-serif;
         }
         .list-card {
-            background-color: var(--surface-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
+            background-color: var(--surface-color); /* [cite: 48] */
+            padding: 1.5rem; /* [cite: 48] */
+            border-radius: 8px; /* [cite: 48] */
+            box-shadow: var(--shadow); /* [cite: 48] */
         }
         .list-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
+            font-size: 1.1rem; /* [cite: 49] */
+            margin-bottom: 1rem; /* [cite: 49] */
+            color: var(--secondary-color); /* [cite: 49] */
         }
-        .list-card ul { list-style: none; padding-left: 0; }
-        .list-card li { padding: 0.5rem 0; border-bottom: 1px solid #eee; }
-        .list-card li:last-child { border-bottom: none; }
+        .list-card ul { list-style: none; padding-left: 0; } /* [cite: 50] */
+        .list-card li { padding: 0.5rem 0; border-bottom: 1px solid #eee; } /* [cite: 51] */
+        .list-card li:last-child { border-bottom: none; } /* [cite: 52] */
         .event-time {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-right: 8px;
+            font-weight: 600; /* [cite: 53] */
+            color: var(--primary-color); /* [cite: 53] */
+            margin-right: 8px; /* [cite: 53] */
         }
         
         /* == Listas (Clientes, Imóveis, Notas) == */
         .search-bar {
-            font-size: 1rem;
+            font-size: 1rem; /* [cite: 29] */
         }
         .list-item {
-            background: var(--surface-color);
-            padding: 1rem 1.5rem;
-            margin-bottom: 0.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--surface-color); /* [cite: 30] */
+            padding: 1rem 1.5rem; /* [cite: 30] */
+            margin-bottom: 0.5rem; /* [cite: 30] */
+            border-radius: 8px; /* [cite: 30] */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* [cite: 30] */
+            display: flex; /* [cite: 31] */
+            justify-content: space-between; /* [cite: 31] */
+            align-items: center; /* [cite: 31] */
             transition: var(--transition);
         }
         .list-item:hover {
@@ -420,39 +421,39 @@
             transform: translateY(-2px);
         }
         .list-item-content {
-            flex-grow: 1;
-            min-width: 0;
+            flex-grow: 1; /* [cite: 32] */
+            min-width: 0; /* [cite: 32] */
         }
         .list-item-content h4 {
-            font-size: 1.1rem; /* Um pouco maior */
-            font-weight: 600;
-            color: var(--secondary-color);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-family: 'Poppins', sans-serif; /* Sobrescreve Playfair */
+            font-size: 1.1rem;
+            font-weight: 600; /* [cite: 33] */
+            color: var(--secondary-color); /* [cite: 34] */
+            white-space: nowrap; /* [cite: 34] */
+            overflow: hidden; /* [cite: 34] */
+            text-overflow: ellipsis; /* [cite: 34] */
+            font-family: 'Poppins', sans-serif;
             margin-bottom: 0.1rem;
         }
         .list-item-content p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 0.9rem; /* [cite: 35] */
+            opacity: 0.8; /* [cite: 35] */
+            white-space: nowrap; /* [cite: 35] */
+            overflow: hidden; /* [cite: 35] */
+            text-overflow: ellipsis; /* [cite: 35] */
             margin-bottom: 0;
         }
         .list-item-actions {
-            display: flex;
-            gap: 0.3rem;
-            flex-shrink: 0;
-            padding-left: 0.5rem;
+            display: flex; /* [cite: 36] */
+            gap: 0.3rem; /* [cite: 36] */
+            flex-shrink: 0; /* [cite: 37] */
+            padding-left: 0.5rem; /* [cite: 37] */
         }
         .list-item-actions button {
-            background: none;
-            border: none;
-            font-size: 1rem;
-            color: var(--text-color);
-            padding: 0.5rem;
+            background: none; /* [cite: 38] */
+            border: none; /* [cite: 38] */
+            font-size: 1rem; /* [cite: 38] */
+            color: var(--text-color); /* [cite: 38] */
+            padding: 0.5rem; /* [cite: 39] */
             opacity: 0.7;
             transition: opacity 0.2s;
         }
@@ -462,48 +463,48 @@
 
         /* == Modal (CRM) == */
         .modal-container {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
+            display: none; /* [cite: 58] */
+            position: fixed; /* [cite: 58] */
+            z-index: 2000; /* [cite: 58] */
+            left: 0; top: 0; width: 100%; height: 100%; /* [cite: 58] */
+            background-color: rgba(0,0,0,0.6); /* [cite: 58] */
+            justify-content: center; /* [cite: 59] */
+            align-items: center; /* [cite: 59] */
+            padding: 1rem; /* [cite: 59] */
         }
-        .modal-container.active { display: flex; }
+        .modal-container.active { display: flex; } /* [cite: 60] */
         .modal-content {
-            background-color: #fefefe;
-            padding: 0; /* Removido padding para header/footer/body controlarem */
-            border-radius: 10px;
-            width: 100%;
-            max-width: 500px;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            background-color: #fefefe; /* [cite: 61] */
+            padding: 0; 
+            border-radius: 10px; /* [cite: 62] */
+            width: 100%; /* [cite: 62] */
+            max-width: 500px; /* [cite: 62] */
+            max-height: 85vh; /* [cite: 62] */
+            display: flex; /* [cite: 63] */
+            flex-direction: column; /* [cite: 63] */
+            overflow: hidden; /* [cite: 64] */
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; /* [cite: 65] */
+            justify-content: space-between; /* [cite: 65] */
+            align-items: center; /* [cite: 65] */
             padding: 1rem 1.5rem;
-            flex-shrink: 0;
-            background-color: var(--primary);
-            color: white;
+            flex-shrink: 0; /* [cite: 65] */
+            background-color: var(--primary); /* [cite: 496] */
+            color: white; /* [cite: 496] */
             border-bottom: none;
-            border-radius: 10px 10px 0 0;
+            border-radius: 10px 10px 0 0; /* [cite: 496] */
         }
         .modal-header h2 { 
-            margin-bottom: 0; 
+            margin-bottom: 0; /* [cite: 66] */
             color: white;
             font-size: 1.25rem;
         }
         .modal-close-btn { 
             font-size: 1.5rem; 
-            background: none; 
-            border: none;
+            background: none; /* [cite: 67] */
+            border: none; /* [cite: 67] */
             color: white;
             opacity: 0.8;
             line-height: 1;
@@ -513,170 +514,170 @@
         }
         
         .modal-body {
-            overflow-y: auto;
-            flex: 1;
-            min-height: 0;
-            -webkit-overflow-scrolling: touch;
-            padding: 1.5rem; /* Padding do conteúdo */
+            overflow-y: auto; /* [cite: 68] */
+            flex: 1; /* [cite: 69] */
+            min-height: 0; /* [cite: 70] */
+            -webkit-overflow-scrolling: touch; /* [cite: 71] */
+            padding: 1.5rem; /* [cite: 61] */
         }
         
-        .modal-body .form-label { font-weight: 600; font-size: 0.9rem; }
+        .modal-body .form-label { font-weight: 600; font-size: 0.9rem; } /* [cite: 74] */
         
         .modal-footer {
-            margin-top: 0;
-            padding: 1rem 1.5rem;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            flex-shrink: 0;
+            margin-top: 0; /* [cite: 78] */
+            padding: 1rem 1.5rem; /* [cite: 78] */
+            border-top: 1px solid #eee; /* [cite: 79] */
+            display: flex; /* [cite: 80] */
+            justify-content: flex-end; /* [cite: 80] */
+            gap: 1rem; /* [cite: 80] */
+            flex-shrink: 0; /* [cite: 80] */
             background-color: #f9f9f9;
             border-radius: 0 0 10px 10px;
         }
         
-        .modal-footer .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }
-        .modal-footer .btn-secondary { background-color: var(--secondary-color); border-color: var(--secondary-color); }
-        .modal-footer .btn-danger { background-color: var(--danger-color); border-color: var(--danger-color); }
+        .modal-footer .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); } /* [cite: 83] */
+        .modal-footer .btn-secondary { background-color: var(--secondary-color); border-color: var(--secondary-color); } /* [cite: 84] */
+        .modal-footer .btn-danger { background-color: var(--danger-color); border-color: var(--danger-color); } /* [cite: 85] */
         
         /* == Ficha de Visualização (CRM) == */
-        .record-details { line-height: 1.6; }
+        .record-details { line-height: 1.6; } /* [cite: 86] */
         .record-details h3 {
-            font-size: 1.1rem;
-            color: var(--secondary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 5px;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem; /* [cite: 87] */
+            color: var(--secondary-color); /* [cite: 87] */
+            border-bottom: 2px solid var(--primary-color); /* [cite: 87] */
+            padding-bottom: 5px; /* [cite: 88] */
+            margin-top: 1rem; /* [cite: 88] */
+            margin-bottom: 0.5rem; /* [cite: 88] */
         }
         .record-details p {
-            margin-bottom: 0.5rem;
-            word-break: break-word;
+            margin-bottom: 0.5rem; /* [cite: 89] */
+            word-break: break-word; /* [cite: 89] */
         }
-        .record-details strong { color: #333; }
+        .record-details strong { color: #333; } /* [cite: 90] */
         .record-details a {
-            color: var(--primary-color);
-            font-weight: 600;
-            word-break: break-all;
+            color: var(--primary-color); /* [cite: 91] */
+            font-weight: 600; /* [cite: 91] */
+            word-break: break-all; /* [cite: 91] */
             text-decoration: none;
         }
         .record-details a:hover { text-decoration: underline; }
 
         /* == Painel de Configurações (CRM) == */
         .settings-card {
-            background-color: var(--surface-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
+            background-color: var(--surface-color); /* [cite: 92] */
+            padding: 1.5rem; /* [cite: 92] */
+            border-radius: 8px; /* [cite: 92] */
+            box-shadow: var(--shadow); /* [cite: 92] */
         }
-        .settings-card h3 { margin-bottom: 1rem; }
+        .settings-card h3 { margin-bottom: 1rem; } /* [cite: 93] */
         .settings-card p { font-size: 0.9rem; color: var(--text-light); }
         .settings-card label {
-            display: block;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            display: block; /* [cite: 95] */
+            margin-top: 1rem; /* [cite: 95] */
+            margin-bottom: 0.5rem; /* [cite: 95] */
+            font-weight: 600; /* [cite: 95] */
         }
         
         /* == Agenda-Calendário (CRM) == */
         #calendar-container {
-            background-color: var(--surface-color);
-            padding: 1rem; border-radius: 8px; box-shadow: var(--shadow);
+            background-color: var(--surface-color); /* [cite: 97] */
+            padding: 1rem; border-radius: 8px; box-shadow: var(--shadow); /* [cite: 97] */
         }
-        #calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        #calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; } /* [cite: 98] */
         #calendar-header button { 
-            background: none; 
-            border: 1px solid #ccc; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            padding: 0.5rem 1rem; 
+            background: none; /* [cite: 99] */
+            border: 1px solid #ccc; /* [cite: 99] */
+            border-radius: 5px; /* [cite: 100] */
+            cursor: pointer; /* [cite: 100] */
+            padding: 0.5rem 1rem; /* [cite: 100] */
         }
         #calendar-header button:hover { background-color: #f4f4f4; }
-        #month-year { font-size: 1.2rem; font-weight: 600; color: var(--secondary-color); }
-        #calendar-grid, #weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
-        #weekdays div { font-weight: bold; padding: 0.5rem 0; font-size: 0.8rem; color: var(--secondary-color); }
+        #month-year { font-size: 1.2rem; font-weight: 600; color: var(--secondary-color); } /* [cite: 101] */
+        #calendar-grid, #weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; } /* [cite: 102] */
+        #weekdays div { font-weight: bold; padding: 0.5rem 0; font-size: 0.8rem; color: var(--secondary-color); } /* [cite: 103] */
         .calendar-day {
-            border: 1px solid #eee;
-            min-height: 80px; padding: 5px;
-            display: flex; flex-direction: column; justify-content: flex-start;
-            align-items: center;
-            cursor: pointer; transition: background-color 0.3s; position: relative;
+            border: 1px solid #eee; /* [cite: 104] */
+            min-height: 80px; padding: 5px; /* [cite: 104] */
+            display: flex; flex-direction: column; justify-content: flex-start; /* [cite: 105] */
+            align-items: center; /* [cite: 106] */
+            cursor: pointer; transition: background-color 0.3s; position: relative; /* [cite: 107] */
         }
-        .calendar-day:hover { background-color: #f9f9f9; }
-        .day-number { font-weight: bold; font-size: 0.8rem; margin-bottom: 5px; }
-        .calendar-day.other-month { opacity: 0.4; pointer-events: none; }
+        .calendar-day:hover { background-color: #f9f9f9; } /* [cite: 108] */
+        .day-number { font-weight: bold; font-size: 0.8rem; margin-bottom: 5px; } /* [cite: 109] */
+        .calendar-day.other-month { opacity: 0.4; pointer-events: none; } /* [cite: 110] */
         .calendar-day.today .day-number {
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            border-radius: 50%; width: 24px; height: 24px;
-            display: flex; justify-content: center; align-items: center;
+            background-color: var(--primary-color); /* [cite: 111] */
+            color: var(--secondary-color); /* [cite: 111] */
+            border-radius: 50%; width: 24px; height: 24px; /* [cite: 111] */
+            display: flex; justify-content: center; align-items: center; /* [cite: 112] */
         }
         .event-count {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background-color: var(--secondary-color);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: bold;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            line-height: 1;
+            position: absolute; /* [cite: 113] */
+            bottom: 5px; /* [cite: 114] */
+            right: 5px; /* [cite: 115] */
+            background-color: var(--secondary-color); /* [cite: 116] */
+            color: white; /* [cite: 116] */
+            font-size: 0.7rem; /* [cite: 116] */
+            font-weight: bold; /* [cite: 116] */
+            border-radius: 50%; /* [cite: 116] */
+            width: 18px; /* [cite: 116] */
+            height: 18px; /* [cite: 116] */
+            display: flex; /* [cite: 116] */
+            justify-content: center; /* [cite: 116] */
+            align-items: center; /* [cite: 116] */
+            line-height: 1; /* [cite: 117] */
         }
         .event-count.many {
-             background-color: var(--warning-color);
-             color: var(--secondary-color);
+             background-color: var(--warning-color); /* [cite: 118] */
+             color: var(--secondary-color); /* [cite: 118] */
         }
 
         .day-events-list .event-item {
-            background-color: #fff;
-            border-left: 5px solid var(--secondary-color);
-            padding: 1rem; margin-bottom: 1rem; border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background-color: #fff; /* [cite: 119] */
+            border-left: 5px solid var(--secondary-color); /* [cite: 119] */
+            padding: 1rem; margin-bottom: 1rem; border-radius: 5px; /* [cite: 119] */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* [cite: 120] */
         }
-        .day-events-list .event-item h4 { font-size: 1rem; margin-bottom: 0.3rem;}
-        .day-events-list .event-item p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;}
+        .day-events-list .event-item h4 { font-size: 1rem; margin-bottom: 0.3rem;} /* [cite: 121] */
+        .day-events-list .event-item p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;} /* [cite: 122] */
         
         .day-events-list .event-item.completed {
-            border-left-color: var(--success-color);
-            opacity: 0.7;
+            border-left-color: var(--success-color); /* [cite: 123] */
+            opacity: 0.7; /* [cite: 123] */
         }
         .day-events-list .event-item.completed h4 {
-            text-decoration: line-through;
+            text-decoration: line-through; /* [cite: 124] */
         }
-        .list-item-actions .complete-btn { color: var(--success-color); }
-        .list-item-actions .reopen-btn { color: var(--warning-color); }
+        .list-item-actions .complete-btn { color: var(--success-color); } /* [cite: 125] */
+        .list-item-actions .reopen-btn { color: var(--warning-color); } /* [cite: 126] */
         
         /* == Galeria de Imagens (CRM) == */
         #image-gallery-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 3000;
-            display: none; flex-direction: column; justify-content: center; align-items: center;
+            position: fixed; /* [cite: 127] */
+            top: 0; left: 0; width: 100%; height: 100%; /* [cite: 127] */
+            background: rgba(0,0,0,0.85); z-index: 3000; /* [cite: 128] */
+            display: none; flex-direction: column; justify-content: center; align-items: center; /* [cite: 128] */
         }
-        #image-gallery-modal.active { display: flex; }
-        #gallery-image-container { position: relative; width: 100%; height: 80%; }
-        #gallery-image-container img { width: 100%; height: 100%; object-fit: contain; }
+        #image-gallery-modal.active { display: flex; } /* [cite: 129] */
+        #gallery-image-container { position: relative; width: 100%; height: 80%; } /* [cite: 130] */
+        #gallery-image-container img { width: 100%; height: 100%; object-fit: contain; } /* [cite: 131] */
         .gallery-nav {
-            position: absolute;
-            top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.5); color: white; border: none;
-            font-size: 2.5rem; cursor: pointer; padding: 0 1rem;
+            position: absolute; /* [cite: 132] */
+            top: 50%; transform: translateY(-50%); /* [cite: 132] */
+            background: rgba(0,0,0,0.5); color: white; border: none; /* [cite: 133] */
+            font-size: 2.5rem; cursor: pointer; padding: 0 1rem; /* [cite: 133] */
         }
-        #gallery-prev { left: 10px; }
-        #gallery-next { right: 10px; }
+        #gallery-prev { left: 10px; } /* [cite: 134] */
+        #gallery-next { right: 10px; } /* [cite: 135] */
         .gallery-tool {
-            position: absolute;
-            top: 15px;
-            background: rgba(0,0,0,0.5); color: white; border: none;
-            font-size: 1.5rem; cursor: pointer; padding: 0.5rem; border-radius: 5px;
+            position: absolute; /* [cite: 136] */
+            top: 15px; /* [cite: 136] */
+            background: rgba(0,0,0,0.5); color: white; border: none; /* [cite: 137] */
+            font-size: 1.5rem; cursor: pointer; padding: 0.5rem; border-radius: 5px; /* [cite: 137] */
         }
-        #gallery-close { right: 15px; }
-        #gallery-counter { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white;
-            background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px;}
+        #gallery-close { right: 15px; } /* [cite: 138] */
+        #gallery-counter { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; /* [cite: 139] */
+            background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px;} /* [cite: 139] */
 
     </style>
 </head>
@@ -775,8 +776,7 @@
                 <h2 style="display: none;">Clientes</h2>
                 <button id="add-client-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Cliente</button>
             </div>
-            <div class="content-panel-body">
-                <input type="text" id="client-search" class="search-bar form-control mb-3" placeholder="Buscar cliente por nome ou contato...">
+            <div class="content-panel-body"> <input type="text" id="client-search" class="search-bar form-control mb-3" placeholder="Buscar cliente por nome ou contato...">
                 <div id="clients-list-container">
                     </div>
             </div>
@@ -787,8 +787,7 @@
                 <h2 style="display: none;">Imóveis</h2>
                 <button id="add-property-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Imóvel</button>
             </div>
-            <div class="content-panel-body">
-                <input type="text" id="property-search" class="search-bar form-control mb-3" placeholder="Buscar imóvel por nome ou localização...">
+            <div class="content-panel-body"> <input type="text" id="property-search" class="search-bar form-control mb-3" placeholder="Buscar imóvel por nome ou localização...">
                 <div id="properties-list-container">
                     </div>
             </div>
@@ -799,8 +798,7 @@
                  <h2 style="display: none;">Agenda</h2>
                 <button id="add-event-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Compromisso</button>
             </div>
-             <div class="content-panel-body">
-                <div id="calendar-container">
+             <div class="content-panel-body"> <div id="calendar-container">
                     <div id="calendar-header">
                         <button id="prev-month-btn"><i class="fas fa-chevron-left"></i></button>
                         <h3 id="month-year"></h3>
@@ -817,8 +815,7 @@
                 <h2 style="display: none;">Notas</h2>
                 <button id="add-info-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Nova Nota</button>
             </div>
-            <div class="content-panel-body">
-                <input type="text" id="info-search" class="search-bar form-control mb-3" placeholder="Buscar nota por título ou conteúdo...">
+            <div class="content-panel-body"> <input type="text" id="info-search" class="search-bar form-control mb-3" placeholder="Buscar nota por título ou conteúdo...">
                 <div id="info-list-container">
                     </div>
             </div>
@@ -828,8 +825,7 @@
              <div class="content-header">
                 <h2 style="display: none;">Configurações</h2>
             </div>
-            <div class="content-panel-body">
-                <div class="settings-card">
+            <div class="content-panel-body"> <div class="settings-card">
                     <h3>Gerenciamento de Dados</h3>
                     <p>Use para fazer backup ou restaurar dados do seu CRM (compatível com a versão de desktop).</p>
                     <hr style="margin: 1rem 0;">
@@ -875,127 +871,114 @@
 
 <script>
 // ==========================================
-// == LÓGICA DO CRM (COM CORREÇÃO DE IMPORT) ==
+// == LÓGICA DO CRM (COM CORREÇÃO DE ROLAGEM) ==
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
     // BANCO DE DADOS (INDEXEDDB COM DEXIE.JS)
     // ==========================================
-    const dexieDb = new Dexie('CRMLuxoDatabase');
-    dexieDb.version(1).stores({
-        dataStore: 'id' // ID fixo: 1
+    const dexieDb = new Dexie('CRMLuxoDatabase'); /* [cite: 157] */
+    dexieDb.version(1).stores({ /* [cite: 158] */
+        dataStore: 'id' // ID fixo: 1 /* [cite: 158] */
     });
     // ==========================================
     // ELEMENTOS DO DOM
     // ==========================================
     const headerTitle = document.getElementById('main-header-title'); 
-    const modalContainer = document.getElementById('modal-container');
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
-    const modalSaveBtn = document.getElementById('modal-save-btn');
-    const modalFooter = document.querySelector('.modal-footer');
-    const addButtons = {
+    const modalContainer = document.getElementById('modal-container'); /* [cite: 160] */
+    const modalTitle = document.getElementById('modal-title'); /* [cite: 160] */
+    const modalBody = document.getElementById('modal-body'); /* [cite: 160] */
+    const modalSaveBtn = document.getElementById('modal-save-btn'); /* [cite: 160] */
+    const modalFooter = document.querySelector('.modal-footer'); /* [cite: 160] */
+    const addButtons = { // Adaptado dos FABs [cite: 161]
         'clients': document.getElementById('add-client-btn'),
         'properties': document.getElementById('add-property-btn'),
         'agenda': document.getElementById('add-event-btn'),
         'informacoes': document.getElementById('add-info-btn')
     };
     
-    let currentEditingId = null; 
-    let currentEntityType = ''; 
-    let currentCalendarDate = new Date();
+    let currentEditingId = null; /* [cite: 162] */
+    let currentEntityType = ''; /* [cite: 162] */
+    let currentCalendarDate = new Date(); /* [cite: 162] */
     // ==========================================
     // ESTADO INICIAL E MANIPULAÇÃO DE DADOS
     // ==========================================
-    let db = {};
-    const defaultDb = { // Estrutura padrão para inicialização e compatibilidade
-        settings: { brokerName: 'Nome do Corretor', brokerCreci: 'CRECI: 00000', brokerPhone: '5582999998888', logoUrl: 'https://via.placeholder.com/150x50.png?text=Sua+Logo', goals: { leads: 50, revenue: 50000, }, defaultCommission: 5, },
-        funnelStages: [ { id: 1, name: 'Lead', probability: 5 }, ],
-        amenities: [ { name: 'Piscina', icon: 'fas fa-swimming-pool' }, ],
-        clients: [], properties: [], events: [], usefulLinks: [], contracts: [],
-        financialRecords: [], performanceSnapshots: [], dutyReports: [], knowledgeBase: [],
+    let db = {}; /* [cite: 163] */
+    const defaultDb = { /* [cite: 164] */
+        settings: { brokerName: 'Nome do Corretor', brokerCreci: 'CRECI: 00000', brokerPhone: '5582999998888', logoUrl: 'https://via.placeholder.com/150x50.png?text=Sua+Logo', goals: { leads: 50, revenue: 50000, }, defaultCommission: 5, }, /* [cite: 164, 165] */
+        funnelStages: [ { id: 1, name: 'Lead', probability: 5 }, ], /* [cite: 165] */
+        amenities: [ { name: 'Piscina', icon: 'fas fa-swimming-pool' }, ], /* [cite: 165] */
+        clients: [], properties: [], events: [], usefulLinks: [], contracts: [], /* [cite: 165, 166] */
+        financialRecords: [], performanceSnapshots: [], dutyReports: [], knowledgeBase: [], /* [cite: 166, 167] */
     };
 
-    const saveData = async () => {
+    const saveData = async () => { /* [cite: 167] */
         try {
-            // Salva o objeto db inteiro dentro da propriedade 'data'
-            await dexieDb.dataStore.put({ id: 1, data: db });
-            console.log("Dados salvos no IndexedDB");
+            await dexieDb.dataStore.put({ id: 1, data: db }); /* [cite: 167] */
+            console.log("Dados salvos no IndexedDB"); /* [cite: 168] */
         } catch (error) {
-            console.error("Falha ao salvar os dados no IndexedDB:", error);
-            alert("Ocorreu um erro crítico ao tentar salvar os dados.");
+            console.error("Falha ao salvar os dados no IndexedDB:", error); /* [cite: 169] */
+            alert("Ocorreu um erro crítico ao tentar salvar os dados."); /* [cite: 169] */
         }
     };
 
-    // **NOVA FUNÇÃO** para garantir compatibilidade após load/import
     const ensureDbCompatibility = (targetDb) => {
-        // Garante que todos os arrays/objetos principais existam
-        if (!targetDb.clients) targetDb.clients = [];
-        if (!targetDb.properties) targetDb.properties = [];
-        if (!targetDb.events) targetDb.events = [];
-        if (!targetDb.knowledgeBase) targetDb.knowledgeBase = [];
-        if (!targetDb.settings) targetDb.settings = defaultDb.settings; // Garante settings
-        if (!targetDb.funnelStages) targetDb.funnelStages = defaultDb.funnelStages;
-        if (!targetDb.amenities) targetDb.amenities = defaultDb.amenities;
-        if (!targetDb.usefulLinks) targetDb.usefulLinks = [];
-        if (!targetDb.contracts) targetDb.contracts = [];
-        if (!targetDb.financialRecords) targetDb.financialRecords = [];
-        if (!targetDb.performanceSnapshots) targetDb.performanceSnapshots = [];
-        if (!targetDb.dutyReports) targetDb.dutyReports = [];
-        
-        // Garante campos específicos dentro dos arrays (para compatibilidade com versões antigas)
-        targetDb.clients.forEach(c => { if (c.lastContact === undefined) c.lastContact = null; });
-        targetDb.properties.forEach(p => { 
-            if (p.locationLink === undefined) p.locationLink = null; 
-            if (p.videoLink === undefined) p.videoLink = null; 
-            if (p.images === undefined) p.images = []; // Garante array de imagens
-            if (p.mainImageIndex === undefined) p.mainImageIndex = -1; // Garante índice da imagem principal
-            if (p.amenities === undefined) p.amenities = []; // Garante array de diferenciais
+        if (!targetDb.clients) targetDb.clients = []; /* [cite: 173] */
+        if (!targetDb.properties) targetDb.properties = []; /* [cite: 174] */
+        if (!targetDb.events) targetDb.events = []; /* [cite: 174] */
+        if (!targetDb.knowledgeBase) targetDb.knowledgeBase = []; /* [cite: 174] */
+        if (!targetDb.settings) targetDb.settings = defaultDb.settings; /* [cite: 174] */
+        if (!targetDb.funnelStages) targetDb.funnelStages = defaultDb.funnelStages; /* [cite: 175] */
+        if (!targetDb.amenities) targetDb.amenities = defaultDb.amenities; /* [cite: 175] */
+        if (!targetDb.usefulLinks) targetDb.usefulLinks = []; /* [cite: 175] */
+        if (!targetDb.contracts) targetDb.contracts = []; /* [cite: 175] */
+        if (!targetDb.financialRecords) targetDb.financialRecords = []; /* [cite: 176] */
+        if (!targetDb.performanceSnapshots) targetDb.performanceSnapshots = []; /* [cite: 176] */
+        if (!targetDb.dutyReports) targetDb.dutyReports = []; /* [cite: 176] */
+        targetDb.clients.forEach(c => { if (c.lastContact === undefined) c.lastContact = null; }); /* [cite: 177] */
+        targetDb.properties.forEach(p => {  /* [cite: 178] */
+            if (p.locationLink === undefined) p.locationLink = null; /* [cite: 178] */
+            if (p.videoLink === undefined) p.videoLink = null; /* [cite: 178] */
+            if (p.images === undefined) p.images = []; 
+            if (p.mainImageIndex === undefined) p.mainImageIndex = -1; 
+            if (p.amenities === undefined) p.amenities = []; 
         });
-        targetDb.events.forEach(e => { if (e.completed === undefined) e.completed = false; });
-        targetDb.knowledgeBase.forEach(n => { if (n.images === undefined) n.images = []; if(n.videos === undefined) n.videos = []; }); // Garante imagens/vídeos nas notas
-        
-        // Garante a estrutura de pagamentos em financialRecords (se ausente)
+        targetDb.events.forEach(e => { if (e.completed === undefined) e.completed = false; }); /* [cite: 179] */
+        targetDb.knowledgeBase.forEach(n => { if (n.images === undefined) n.images = []; if(n.videos === undefined) n.videos = []; }); 
         targetDb.financialRecords?.forEach(record => {
-             if (!record.payments) {
-                console.warn(`Registro financeiro antigo detectado (${record.description}), gerando estrutura de pagamentos.`);
-                record.payments = generatePaymentsArray(record); // Adapta a estrutura antiga
-             }
+             if (!record.payments) { record.payments = generatePaymentsArray(record); }
         });
     };
 
-    // ** FUNÇÃO ADAPTADA ** para usar ensureDbCompatibility
-    const loadData = async () => {
-        const storedData = await dexieDb.dataStore.get(1);
-        if (storedData && storedData.data) { // Verifica se 'data' existe
-            console.log("Dados carregados do IndexedDB.");
-            // Carrega os dados da propriedade 'data'
-            db = storedData.data;
-            // Garante compatibilidade dos dados carregados
+    const loadData = async () => { /* [cite: 170] */
+        const storedData = await dexieDb.dataStore.get(1); /* [cite: 170] */
+        if (storedData && storedData.data) { /* [cite: 171] */
+            console.log("Dados carregados do IndexedDB."); /* [cite: 171] */
+            db = storedData.data; /* [cite: 172] */
             ensureDbCompatibility(db);
         } else {
-            console.log("Nenhum dado encontrado ou formato inválido. Inicializando com o padrão.");
-            db = JSON.parse(JSON.stringify(defaultDb)); // Usa cópia profunda do default
-            await saveData(); // Salva a estrutura padrão inicial
+            console.log("Nenhum dado encontrado ou formato inválido. Inicializando com o padrão."); /* [cite: 172] */
+            db = JSON.parse(JSON.stringify(defaultDb)); /* [cite: 173] */
+            await saveData(); /* [cite: 173] */
         }
     };
 
     // ==========================================
-    // FUNÇÕES UTILITÁRIAS (Sem alterações)
+    // FUNÇÕES UTILITÁRIAS
     // ==========================================
-    const formatCurrency = (value) => value ? Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'R$ 0,00';
-    const formatDate = (dateString) => {
-        if (!dateString) return '';
-        try { return new Date(dateString + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }); }
-        catch (e) { return 'Data inválida'; }
+    const formatCurrency = (value) => value ? Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'R$ 0,00'; /* [cite: 181] */
+    const formatDate = (dateString) => { /* [cite: 182] */
+        if (!dateString) return ''; /* [cite: 182] */
+        try { return new Date(dateString + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }); } /* [cite: 183] */
+        catch (e) { return 'Data inválida'; } /* [cite: 184] */
     };
-    const getEmbedUrl = (url) => { /* ... (código getEmbedUrl sem alterações) ... */ 
-        if (!url) return null; let videoId;
-        if (url.includes('youtube.com/watch?v=')) { videoId = url.split('v=')[1].split('&')[0]; return `https://www.youtube.com/embed/${videoId}`; }
-        if (url.includes('youtu.be/')) { videoId = url.split('youtu.be/')[1].split('?')[0]; return `https://www.youtube.com/embed/${videoId}`; }
-        if (url.includes('vimeo.com/')) { videoId = url.split('vimeo.com/')[1].split('?')[0]; return `https://player.vimeo.com/video/${videoId}`; }
-        return null;
+    const getEmbedUrl = (url) => { /* [cite: 185] */
+        if (!url) return null; let videoId; /* [cite: 185] */
+        if (url.includes('youtube.com/watch?v=')) { videoId = url.split('v=')[1].split('&')[0]; return `https://www.youtube.com/embed/${videoId}`; } /* [cite: 186, 187] */
+        if (url.includes('youtu.be/')) { videoId = url.split('youtu.be/')[1].split('?')[0]; return `https://www.youtube.com/embed/${videoId}`; } /* [cite: 187, 188] */
+        if (url.includes('vimeo.com/')) { videoId = url.split('vimeo.com/')[1].split('?')[0]; return `https://player.vimeo.com/video/${videoId}`; } /* [cite: 188, 189] */
+        return null; /* [cite: 190] */
     };
     const generatePaymentsArray = (record) => { /* ... (código generatePaymentsArray sem alterações) ... */ 
         const payments = []; const startDate = new Date(record.startDate + 'T00:00:00'); const installments = record.recurrence === 'monthly' ? 1200 : (record.totalInstallments || 1);
@@ -1003,239 +986,292 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ==========================================
-    // FUNÇÕES DE LAYOUT (Acadêmico - Sem alterações)
+    // FUNÇÕES DE LAYOUT (Acadêmico)
     // ==========================================
-    document.getElementById('sidebarToggle')?.addEventListener('click', () => { /* ... (código sidebarToggle sem alterações) ... */
+    document.getElementById('sidebarToggle')?.addEventListener('click', () => { 
         document.getElementById('sidebar').classList.toggle('open');
     });
-    const updateMainHeaderTitle = () => { /* ... (código updateMainHeaderTitle sem alterações) ... */
+    const updateMainHeaderTitle = () => { 
         const activePanel = document.querySelector('.content-panel.active'); if (!activePanel) return; const activeNav = document.querySelector(`.nav-link.active[data-panel="${activePanel.id.replace('panel-','')}"`); const titleText = activeNav ? activeNav.dataset.title : 'Dashboard'; if (headerTitle) { headerTitle.textContent = titleText; }
     };
 
     // ==========================================
-    // NAVEGAÇÃO E RENDERIZAÇÃO GERAL (Sem alterações)
+    // NAVEGAÇÃO E RENDERIZAÇÃO GERAL
     // ==========================================
-    const navButtons = document.querySelectorAll('.nav-link[data-panel]');
-    const panels = document.querySelectorAll('.content-panel');
-    const switchPanel = (panelId, title) => { /* ... (código switchPanel sem alterações) ... */
-        panels.forEach(p => p.classList.remove('active')); document.getElementById(`panel-${panelId}`)?.classList.add('active'); navButtons.forEach(b => b.classList.remove('active')); document.querySelector(`.nav-link[data-panel="${panelId}"]`)?.classList.add('active'); headerTitle.textContent = title; updateMainHeaderTitle(); const sidebar = document.getElementById('sidebar'); if (sidebar.classList.contains('open')) { sidebar.classList.remove('open'); }
-        switch(panelId) { case 'dashboard': renderDashboard(); break; case 'clients': renderClientsList(); break; case 'properties': renderPropertiesList(); break; case 'agenda': renderAgendaCalendar(); break; case 'informacoes': renderKnowledgeBaseList(); break; case 'settings': renderSettings(); break; }
+    const navButtons = document.querySelectorAll('.nav-link[data-panel]'); /* [cite: 191] */
+    const panels = document.querySelectorAll('.content-panel'); /* [cite: 192] */
+    const switchPanel = (panelId, title) => { /* [cite: 192] */
+        panels.forEach(p => p.classList.remove('active')); /* [cite: 192] */
+        document.getElementById(`panel-${panelId}`)?.classList.add('active'); /* [cite: 193] */
+        navButtons.forEach(b => b.classList.remove('active')); /* [cite: 193] */
+        document.querySelector(`.nav-link[data-panel="${panelId}"]`)?.classList.add('active'); /* [cite: 193] */
+        headerTitle.textContent = title; /* [cite: 193] */
+        updateMainHeaderTitle(); 
+        const sidebar = document.getElementById('sidebar'); 
+        if (sidebar.classList.contains('open')) { sidebar.classList.remove('open'); }
+        
+        // Renderiza conteúdo específico do painel [cite: 195, 196, 197]
+        switch(panelId) { 
+            case 'dashboard': renderDashboard(); break; 
+            case 'clients': renderClientsList(); break; 
+            case 'properties': renderPropertiesList(); break; 
+            case 'agenda': renderAgendaCalendar(); break; 
+            case 'informacoes': renderKnowledgeBaseList(); break; 
+            case 'settings': renderSettings(); break; 
+        }
     };
-    navButtons.forEach(button => { /* ... (código event listener navegação sem alterações) ... */
-        button.addEventListener('click', () => { switchPanel(button.dataset.panel, button.dataset.title); });
+    navButtons.forEach(button => { /* [cite: 197] */
+        button.addEventListener('click', () => { /* [cite: 197] */
+            switchPanel(button.dataset.panel, button.dataset.title); /* [cite: 197] */
+        });
     });
     
     // ==========================================
-    // MODAIS (Sem alterações)
+    // MODAIS
     // ==========================================
-    const openModal = (title, bodyHtml, entityType, id = null, showFooter = true) => { /* ... (código openModal sem alterações) ... */
-        modalTitle.textContent = title; modalBody.innerHTML = bodyHtml; currentEditingId = id; currentEntityType = entityType; modalFooter.style.display = showFooter ? 'flex' : 'none'; modalContainer.classList.add('active'); modalBody.scrollTop = 0;
+    const openModal = (title, bodyHtml, entityType, id = null, showFooter = true) => { /* [cite: 198] */
+        modalTitle.textContent = title; /* [cite: 198] */
+        modalBody.innerHTML = bodyHtml; /* [cite: 199] */
+        currentEditingId = id; /* [cite: 199] */
+        currentEntityType = entityType; /* [cite: 199] */
+        modalFooter.style.display = showFooter ? 'flex' : 'none'; /* [cite: 199] */
+        modalContainer.classList.add('active'); /* [cite: 199] */
+        modalBody.scrollTop = 0; /* [cite: 200] */
     };
-    const closeModal = () => { /* ... (código closeModal sem alterações) ... */
-        modalContainer.classList.remove('active'); modalTitle.textContent = ''; modalBody.innerHTML = ''; currentEditingId = null; currentEntityType = '';
+    const closeModal = () => { /* [cite: 201] */
+        modalContainer.classList.remove('active'); /* [cite: 201] */
+        modalTitle.textContent = ''; /* [cite: 202] */
+        modalBody.innerHTML = ''; /* [cite: 202] */
+        currentEditingId = null; /* [cite: 202] */
+        currentEntityType = ''; /* [cite: 202] */
     };
-    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-    document.getElementById('modal-cancel-btn').addEventListener('click', closeModal);
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal); /* [cite: 203] */
+    document.getElementById('modal-cancel-btn').addEventListener('click', closeModal); /* [cite: 203] */
     
     // ==========================================
     // MÓDULOS: DASHBOARD, CLIENTES, IMÓVEIS, AGENDA, NOTAS
-    // (Lógica interna dos módulos sem alterações significativas, 
-    //  apenas garantindo que usam a variável global 'db')
     // ==========================================
-    const renderDashboard = () => { /* ... (código renderDashboard sem alterações) ... */ 
-        document.getElementById('stat-total-clients').textContent = db.clients.length; document.getElementById('stat-total-properties').textContent = db.properties.length; const eventsList = document.getElementById('stat-upcoming-events'); eventsList.innerHTML = ''; const today = new Date(); today.setHours(0,0,0,0); const upcomingEvents = db.events.filter(e => { if (!e.date) return false; const eventDate = new Date(e.date + 'T00:00:00'); return eventDate >= today && !e.completed; }).sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0, 5); if (upcomingEvents.length === 0) { eventsList.innerHTML = '<li>Nenhum compromisso futuro.</li>'; return; } upcomingEvents.forEach(event => { eventsList.innerHTML += `<li>${formatDate(event.date)} ${event.time ? `<span class="event-time">${event.time}</span>` : ''} - ${event.title}</li>`; });
-    };
-    const getClientFormHtml = (client = {}) => { /* ... (código getClientFormHtml sem alterações) ... */ 
-        const funnelOptions = db.funnelStages.map(stage => `<option value="${stage.id}" ${client.stageId == stage.id ? 'selected' : ''}>${stage.name}</option>`).join(''); return `<div class="mb-3"><label for="client-name" class="form-label">Nome Completo</label><input type="text" id="client-name" class="form-control" value="${client.name || ''}"></div> <div class="mb-3"><label for="client-phone" class="form-label">Contato (WhatsApp)</label><input type="tel" id="client-phone" class="form-control" value="${client.phone || ''}"></div><div class="mb-3"><label for="client-email" class="form-label">E-mail</label><input type="email" id="client-email" class="form-control" value="${client.email || ''}"></div><div class="mb-3"><label for="client-income" class="form-label">Renda (R$)</label><input type="number" id="client-income" class="form-control" value="${client.income || ''}"></div><div class="mb-3"><label for="client-stageId" class="form-label">Etapa do Funil</label><select id="client-stageId" class="form-select">${funnelOptions}</select> </div><div class="mb-3"><label for="client-notes" class="form-label">Observações</label><textarea id="client-notes" class="form-control" rows="3">${client.notes || ''}</textarea></div>`;
-    };
-    const getClientDetailsHtml = (client) => { /* ... (código getClientDetailsHtml sem alterações) ... */ 
-        const stage = db.funnelStages.find(s => s.id === client.stageId); const property = db.properties.find(p => p.id == client.propertyId); const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum contato registrado'; return `<div class="record-details"><h3>Dados Pessoais</h3><p><strong>Nome:</strong> ${client.name || 'Não informado'}</p><p><strong>Contato:</strong> ${client.phone ? `<a href="https://wa.me/${client.phone.replace(/\D/g, '')}">${client.phone}</a>` : 'Não informado'}</p><p><strong>Email:</strong> ${client.email || 'Não informado'}</p><p><strong>CPF:</strong> ${client.cpf || 'Não informado'}</p><p><strong>Nascimento:</strong> ${formatDate(client.birthdate)}</p><p><strong>Último Contato:</strong> ${lastContactStr}</p> <h3>Dados de Interesse</h3><p><strong>Renda:</strong> ${formatCurrency(client.income)}</p><p><strong>Origem:</strong> ${client.leadSource || 'Não informada'}</p><p><strong>Imóvel de Interesse:</strong> ${property ? property.name : 'Não selecionado'}</p><p><strong>Etapa do Funil:</strong> ${stage ? stage.name : 'Não definida'}</p> <h3>Observações</h3><p>${client.notes ? client.notes.replace(/\n/g, '<br>') : 'Nenhuma observação.'}</p></div>`;
-    };
-    addButtons['clients'].addEventListener('click', () => { /* ... (código add client listener sem alterações) ... */
-        openModal('Cadastrar Novo Cliente', getClientFormHtml(), 'client');
-    });
-    const renderClientsList = (filter = '') => { /* ... (código renderClientsList sem alterações) ... */
-        const container = document.getElementById('clients-list-container'); container.innerHTML = ''; const filteredClients = db.clients.filter(c => (c.name || '').toLowerCase().includes(filter.toLowerCase()) || (c.phone || '').includes(filter)).sort((a,b) => (a.name || '').localeCompare(b.name || '')); if (filteredClients.length === 0) { container.innerHTML = '<p>Nenhum cliente encontrado.</p>'; return; } filteredClients.forEach(client => { const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum'; container.innerHTML += `<div class="list-item"><div class="list-item-content"><h4>${client.name}</h4><p>${client.phone || 'Sem contato'} | Últ. Contato: ${lastContactStr}</p></div> <div class="list-item-actions"><button title="Visualizar" class="view-btn" data-id="${client.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${client.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${client.id}"><i class="fas fa-trash"></i></button></div></div>`; });
-    };
-    document.getElementById('client-search').addEventListener('input', (e) => renderClientsList(e.target.value));
-    document.getElementById('clients-list-container').addEventListener('click', e => { /* ... (código client actions listener sem alterações) ... */
-        const button = e.target.closest('button'); if (!button) return; const id = button.dataset.id; const isView = button.classList.contains('view-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); const client = db.clients.find(c => c.id == id); if (!client) return; if (isView) { openModal(`Ficha: ${client.name.split(' ')[0]}`, getClientDetailsHtml(client), 'view', null, false); } else if (isEdit) { openModal('Editar Cliente', getClientFormHtml(client), 'client', id); } else if (isDelete) { if (confirm(`Deseja realmente excluir o cliente ${client.name}?`)) { db.clients = db.clients.filter(c => c.id != id); saveData(); renderClientsList(document.getElementById('client-search').value); } }
-    });
+    const renderDashboard = () => { /* [cite: 203] */
+        document.getElementById('stat-total-clients').textContent = db.clients.length; /* [cite: 203] */
+        document.getElementById('stat-total-properties').textContent = db.properties.length; /* [cite: 204] */
+        const eventsList = document.getElementById('stat-upcoming-events'); /* [cite: 204] */
+        eventsList.innerHTML = ''; /* [cite: 204] */
+        const today = new Date(); /* [cite: 205] */
+        today.setHours(0,0,0,0); /* [cite: 205] */
+        const upcomingEvents = db.events.filter(e => { /* [cite: 205] */
+            if (!e.date) return false; const eventDate = new Date(e.date + 'T00:00:00'); /* [cite: 205] */
+            return eventDate >= today && !e.completed; /* [cite: 206] */
+        }).sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0, 5); /* [cite: 206] */
+        if (upcomingEvents.length === 0) { eventsList.innerHTML = '<li>Nenhum compromisso futuro.</li>'; return; } /* [cite: 207, 208] */
+        upcomingEvents.forEach(event => { eventsList.innerHTML += `<li>${formatDate(event.date)} ${event.time ? `<span class="event-time">${event.time}</span>` : ''} - ${event.title}</li>`; }); /* [cite: 208, 209] */
+    }; /* [cite: 210] */
+    const getClientFormHtml = (client = {}) => { /* [cite: 210] */
+        const funnelOptions = db.funnelStages.map(stage => `<option value="${stage.id}" ${client.stageId == stage.id ? 'selected' : ''}>${stage.name}</option>`).join(''); /* [cite: 210, 211] */
+        return ` <div class="mb-3"><label for="client-name" class="form-label">Nome Completo</label><input type="text" id="client-name" class="form-control" value="${client.name || ''}"></div> <div class="mb-3"><label for="client-phone" class="form-label">Contato (WhatsApp)</label><input type="tel" id="client-phone" class="form-control" value="${client.phone || ''}"></div><div class="mb-3"><label for="client-email" class="form-label">E-mail</label><input type="email" id="client-email" class="form-control" value="${client.email || ''}"></div><div class="mb-3"><label for="client-income" class="form-label">Renda (R$)</label><input type="number" id="client-income" class="form-control" value="${client.income || ''}"></div><div class="mb-3"><label for="client-stageId" class="form-label">Etapa do Funil</label><select id="client-stageId" class="form-select">${funnelOptions}</select> </div><div class="mb-3"><label for="client-notes" class="form-label">Observações</label><textarea id="client-notes" class="form-control" rows="3">${client.notes || ''}</textarea></div>`; /* [cite: 211, 212, 213, 214, 215, 216] */
+    }; /* [cite: 217] */
+    const getClientDetailsHtml = (client) => { /* [cite: 217] */
+        const stage = db.funnelStages.find(s => s.id === client.stageId); /* [cite: 217] */
+        const property = db.properties.find(p => p.id == client.propertyId); /* [cite: 218] */
+        const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum contato registrado'; /* [cite: 218] */
+        return ` <div class="record-details"><h3>Dados Pessoais</h3><p><strong>Nome:</strong> ${client.name || 'Não informado'}</p><p><strong>Contato:</strong> ${client.phone ? `<a href="https://wa.me/${client.phone.replace(/\D/g, '')}">${client.phone}</a>` : 'Não informado'}</p><p><strong>Email:</strong> ${client.email || 'Não informado'}</p><p><strong>CPF:</strong> ${client.cpf || 'Não informado'}</p><p><strong>Nascimento:</strong> ${formatDate(client.birthdate)}</p><p><strong>Último Contato:</strong> ${lastContactStr}</p> <h3>Dados de Interesse</h3><p><strong>Renda:</strong> ${formatCurrency(client.income)}</p> <p><strong>Origem:</strong> ${client.leadSource || 'Não informada'}</p><p><strong>Imóvel de Interesse:</strong> ${property ? property.name : 'Não selecionado'}</p><p><strong>Etapa do Funil:</strong> ${stage ? stage.name : 'Não definida'}</p> <h3>Observações</h3><p>${client.notes ? client.notes.replace(/\n/g, '<br>') : 'Nenhuma observação.'}</p></div>`; /* [cite: 219, 220, 221, 222, 223, 224, 225, 226, 227, 228] */
+    }; /* [cite: 229] */
+    addButtons['clients'].addEventListener('click', () => { openModal('Cadastrar Novo Cliente', getClientFormHtml(), 'client'); }); /* [cite: 229] */
+    const renderClientsList = (filter = '') => { /* [cite: 230] */
+        const container = document.getElementById('clients-list-container'); container.innerHTML = ''; /* [cite: 230, 231] */
+        const filteredClients = db.clients.filter(c => (c.name || '').toLowerCase().includes(filter.toLowerCase()) || (c.phone || '').includes(filter)).sort((a,b) => (a.name || '').localeCompare(b.name || '')); /* [cite: 231] */
+        if (filteredClients.length === 0) { container.innerHTML = '<p>Nenhum cliente encontrado.</p>'; return; } /* [cite: 232, 233] */
+        filteredClients.forEach(client => { const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum'; container.innerHTML += `<div class="list-item"> <div class="list-item-content"><h4>${client.name}</h4><p>${client.phone || 'Sem contato'} | Últ. Contato: ${lastContactStr}</p></div> <div class="list-item-actions"><button title="Visualizar" class="view-btn" data-id="${client.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${client.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${client.id}"><i class="fas fa-trash"></i></button></div></div>`; }); /* [cite: 233, 234, 235, 236] */
+    }; /* [cite: 237] */
+    document.getElementById('client-search').addEventListener('input', (e) => renderClientsList(e.target.value)); /* [cite: 237] */
+    document.getElementById('clients-list-container').addEventListener('click', e => { /* [cite: 237] */
+        const button = e.target.closest('button'); if (!button) return; const id = button.dataset.id; const isView = button.classList.contains('view-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); const client = db.clients.find(c => c.id == id); if (!client) return; /* [cite: 238] */
+        if (isView) { openModal(`Ficha: ${client.name.split(' ')[0]}`, getClientDetailsHtml(client), 'view', null, false); } /* [cite: 238] */
+        else if (isEdit) { openModal('Editar Cliente', getClientFormHtml(client), 'client', id); } /* [cite: 239] */
+        else if (isDelete) { if (confirm(`Deseja realmente excluir o cliente ${client.name}?`)) { db.clients = db.clients.filter(c => c.id != id); saveData(); renderClientsList(document.getElementById('client-search').value); } } /* [cite: 239, 240] */
+    }); /* [cite: 240] */
     
-    const handleShareProperty = (prop) => { /* ... (código handleShareProperty sem alterações) ... */ 
-        const title = prop.name; let text = `*${prop.name}*\n\n`; text += `*Localização:* ${prop.location || 'Não informado'}\n`; text += `*Valor:* ${formatCurrency(prop.listPrice)}\n\n`; let description = prop.description || 'Nenhuma descrição.'; if (description.length > 200) { description = description.substring(0, 200) + '...'; } text += `${description}\n\n`; if (prop.locationLink) { text += `*Veja no mapa:* ${prop.locationLink}\n`; } if (prop.videoLink) { text += `*Veja o vídeo:* ${prop.videoLink}\n`; } if (navigator.share) { navigator.share({ title: title, text: text, }).then(() => { console.log('Imóvel compartilhado com sucesso.'); }).catch((error) => { console.error('Erro ao compartilhar:', error); }); } else { navigator.clipboard.writeText(text).then(() => { alert('API de compartilhamento não disponível. A ficha do imóvel foi copiada para a área de transferência.'); }).catch(err => { alert('Falha ao copiar ficha.'); }); }
-    };
-    const getPropertyFormHtml = (prop = {}) => { /* ... (código getPropertyFormHtml sem alterações) ... */ 
-        return `<div class="mb-3"><label for="prop-name" class="form-label">Nome do Imóvel/Empreendimento</label><input type="text" id="prop-name" class="form-control" value="${prop.name || ''}"></div><div class="mb-3"><label for="prop-location" class="form-label">Localização</label><input type="text" id="prop-location" class="form-control" value="${prop.location || ''}"></div> <div class="mb-3"><label for="prop-list-price" class="form-label">Valor de Tabela (R$)</label><input type="number" id="prop-list-price" class="form-control" value="${prop.listPrice || ''}"></div> <div class="mb-3"><label for="prop-delivery-date" class="form-label">Data de Entrega</label><input type="date" id="prop-delivery-date" class="form-control" value="${prop.deliveryDate || ''}"></div><div class="mb-3"><label for="prop-location-link" class="form-label">Link da Localização (Google Maps)</label><input type="url" id="prop-location-link" class="form-control" value="${prop.locationLink || ''}" placeholder="https://maps.app.goo.gl/..."></div><div class="mb-3"><label for="prop-video-link" class="form-label">Link do Vídeo (Youtube, Vimeo)</label><input type="url" id="prop-video-link" class="form-control" value="${prop.videoLink || ''}" placeholder="https://www.youtube.com/watch?v=..."></div><div class="mb-3"><label for="prop-description" class="form-label">Descrição Textual</label><textarea id="prop-description" class="form-control" rows="3">${prop.description || ''}</textarea></div>`;
-    };
-    const getPropertyDetailsHtml = (prop) => { /* ... (código getPropertyDetailsHtml sem alterações) ... */ 
-        const hasImages = prop.images && prop.images.length > 0; const videoEmbedUrl = getEmbedUrl(prop.videoLink); const amenitiesHtml = (prop.amenities && prop.amenities.length > 0) ? `<ul>${prop.amenities.map(name => `<li>${name}</li>`).join('')}</ul>` : '<p>Nenhum diferencial cadastrado.</p>'; return `<div class="record-details"> <h3>${prop.name}</h3><p><strong>Localização:</strong> ${prop.location || 'Não informada'}</p> ${prop.locationLink ? `<p><strong>Link do Mapa:</strong> <a href="${prop.locationLink}" target="_blank">Abrir no Mapa</a></p>` : ''} <p><strong>Valor:</strong> ${formatCurrency(prop.listPrice)}</p><p><strong>Entrega:</strong> ${formatDate(prop.deliveryDate)}</p> ${hasImages ? `<p><a href="#" class="view-gallery-link" data-id="${prop.id}"><strong><i class="fas fa-camera"></i> Ver Galeria de Fotos (${prop.images.length})</strong></a></p>` : '<p><i class="fas fa-camera-slash"></i> Sem fotos</p>'} <h3>Descrição</h3><p>${prop.description ? prop.description.replace(/\n/g, '<br>') : 'Nenhuma descrição.'}</p> <h3>Diferenciais</h3> ${amenitiesHtml} ${videoEmbedUrl ? `<h3>Vídeo</h3><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin-top: 1rem; border-radius: 8px;"><iframe src="${videoEmbedUrl}" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>` : ''} </div>`;
-    };
-    addButtons['properties'].addEventListener('click', () => { /* ... (código add property listener sem alterações) ... */
-        openModal('Cadastrar Novo Imóvel', getPropertyFormHtml(), 'property');
-    });
-    const renderPropertiesList = (filter = '') => { /* ... (código renderPropertiesList sem alterações) ... */
-        const container = document.getElementById('properties-list-container'); container.innerHTML = ''; const filtered = db.properties.filter(p => (p.name || '').toLowerCase().includes(filter.toLowerCase()) || (p.location || '').toLowerCase().includes(filter.toLowerCase())).sort((a,b) => (a.name || '').localeCompare(b.name || '')); if (filtered.length === 0) { container.innerHTML = '<p>Nenhum imóvel encontrado.</p>'; return; } filtered.forEach(prop => { const hasImages = prop.images && prop.images.length > 0; container.innerHTML += `<div class="list-item"> <div class="list-item-content"><h4>${prop.name}</h4><p>${prop.location || 'Sem localização'} | ${formatCurrency(prop.listPrice)}</p></div> <div class="list-item-actions"> ${hasImages ? `<button title="Fotos" class="gallery-btn" data-id="${prop.id}"><i class="fas fa-camera"></i></button>` : ''}<button title="Compartilhar" class="share-btn" data-id="${prop.id}"><i class="fas fa-share-alt"></i></button> <button title="Visualizar" class="view-btn" data-id="${prop.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${prop.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${prop.id}"><i class="fas fa-trash"></i></button> </div></div>`; });
-    };
-    document.getElementById('property-search').addEventListener('input', e => renderPropertiesList(e.target.value));
-    document.getElementById('properties-list-container').addEventListener('click', e => { /* ... (código property actions listener sem alterações) ... */
-        const button = e.target.closest('button'); if (!button) return; const id = button.dataset.id; const isGallery = button.classList.contains('gallery-btn'); const isShare = button.classList.contains('share-btn'); const isView = button.classList.contains('view-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); const prop = db.properties.find(p => p.id == id); if (!prop) return; if (isGallery) { openImageGallery({ entity: 'property', id: id }); } else if (isShare) { handleShareProperty(prop); } else if (isView) { openModal(`Ficha: ${prop.name}`, getPropertyDetailsHtml(prop), 'view', null, false); } else if (isEdit) { openModal('Editar Imóvel', getPropertyFormHtml(prop), 'property', id); } else if (isDelete) { if (confirm(`Deseja realmente excluir o imóvel ${prop.name}?`)) { db.properties = db.properties.filter(p => p.id != id); saveData(); renderPropertiesList(document.getElementById('property-search').value); } }
-    });
-    modalBody.addEventListener('click', e => { /* ... (código view gallery link listener sem alterações) ... */
-        const link = e.target.closest('.view-gallery-link'); if (link) { e.preventDefault(); const id = link.dataset.id; openImageGallery({ entity: 'property', id: id }); }
-    });
+    const handleShareProperty = (prop) => { /* [cite: 241] */
+        const title = prop.name; let text = `*${prop.name}*\n\n`; text += `*Localização:* ${prop.location || 'Não informado'}\n`; text += `*Valor:* ${formatCurrency(prop.listPrice)}\n\n`; let description = prop.description || 'Nenhuma descrição.'; if (description.length > 200) { description = description.substring(0, 200) + '...'; } text += `${description}\n\n`; if (prop.locationLink) { text += `*Veja no mapa:* ${prop.locationLink}\n`; } if (prop.videoLink) { text += `*Veja o vídeo:* ${prop.videoLink}\n`; } /* [cite: 241, 242, 243, 244, 245, 246, 247, 248] */
+        if (navigator.share) { navigator.share({ title: title, text: text, }).then(() => { console.log('Imóvel compartilhado com sucesso.'); }).catch((error) => { console.error('Erro ao compartilhar:', error); }); } /* [cite: 248, 249] */
+        else { navigator.clipboard.writeText(text).then(() => { alert('API de compartilhamento não disponível. A ficha do imóvel foi copiada para a área de transferência.'); }).catch(err => { alert('Falha ao copiar ficha.'); }); } /* [cite: 250, 251, 252] */
+    }; /* [cite: 252] */
+    const getPropertyFormHtml = (prop = {}) => { /* [cite: 252] */
+        return ` <div class="mb-3"><label for="prop-name" class="form-label">Nome do Imóvel/Empreendimento</label><input type="text" id="prop-name" class="form-control" value="${prop.name || ''}"></div><div class="mb-3"><label for="prop-location" class="form-label">Localização</label><input type="text" id="prop-location" class="form-control" value="${prop.location || ''}"></div> <div class="mb-3"><label for="prop-list-price" class="form-label">Valor de Tabela (R$)</label><input type="number" id="prop-list-price" class="form-control" value="${prop.listPrice || ''}"></div> <div class="mb-3"><label for="prop-delivery-date" class="form-label">Data de Entrega</label><input type="date" id="prop-delivery-date" class="form-control" value="${prop.deliveryDate || ''}"></div><div class="mb-3"><label for="prop-location-link" class="form-label">Link da Localização (Google Maps)</label><input type="url" id="prop-location-link" class="form-control" value="${prop.locationLink || ''}" placeholder="https://maps.app.goo.gl/..."></div><div class="mb-3"><label for="prop-video-link" class="form-label">Link do Vídeo (Youtube, Vimeo)</label><input type="url" id="prop-video-link" class="form-control" value="${prop.videoLink || ''}" placeholder="https://www.youtube.com/watch?v=..."></div><div class="mb-3"><label for="prop-description" class="form-label">Descrição Textual</label><textarea id="prop-description" class="form-control" rows="3">${prop.description || ''}</textarea></div> `; /* [cite: 252, 253, 254, 255, 256, 257, 258] */
+    }; /* [cite: 259] */
+    const getPropertyDetailsHtml = (prop) => { /* [cite: 259] */
+        const hasImages = prop.images && prop.images.length > 0; const videoEmbedUrl = getEmbedUrl(prop.videoLink); /* [cite: 259] */
+        const amenitiesHtml = (prop.amenities && prop.amenities.length > 0) ? `<ul>${prop.amenities.map(name => `<li>${name}</li>`).join('')}</ul>` : '<p>Nenhum diferencial cadastrado.</p>'; /* [cite: 260] */
+        return ` <div class="record-details"> <h3>${prop.name}</h3><p><strong>Localização:</strong> ${prop.location || 'Não informada'}</p> ${prop.locationLink ? `<p><strong>Link do Mapa:</strong> <a href="${prop.locationLink}" target="_blank">Abrir no Mapa</a></p>` : ''} <p><strong>Valor:</strong> ${formatCurrency(prop.listPrice)}</p><p><strong>Entrega:</strong> ${formatDate(prop.deliveryDate)}</p> ${hasImages ? `<p><a href="#" class="view-gallery-link" data-id="${prop.id}"><strong><i class="fas fa-camera"></i> Ver Galeria de Fotos (${prop.images.length})</strong></a></p>` : '<p><i class="fas fa-camera-slash"></i> Sem fotos</p>'} <h3>Descrição</h3><p>${prop.description ? prop.description.replace(/\n/g, '<br>') : 'Nenhuma descrição.'}</p> <h3>Diferenciais</h3> ${amenitiesHtml} ${videoEmbedUrl ? `<h3>Vídeo</h3><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin-top: 1rem; border-radius: 8px;"><iframe src="${videoEmbedUrl}" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>` : ''} </div>`; /* [cite: 261, 262, 263, 264, 265, 266, 267, 268] */
+    }; /* [cite: 269] */
+    addButtons['properties'].addEventListener('click', () => { openModal('Cadastrar Novo Imóvel', getPropertyFormHtml(), 'property'); }); /* [cite: 270] */
+    const renderPropertiesList = (filter = '') => { /* [cite: 271] */
+        const container = document.getElementById('properties-list-container'); container.innerHTML = ''; /* [cite: 271, 272] */
+        const filtered = db.properties.filter(p => (p.name || '').toLowerCase().includes(filter.toLowerCase()) || (p.location || '').toLowerCase().includes(filter.toLowerCase())).sort((a,b) => (a.name || '').localeCompare(b.name || '')); /* [cite: 272] */
+        if (filtered.length === 0) { container.innerHTML = '<p>Nenhum imóvel encontrado.</p>'; return; } /* [cite: 273, 274] */
+        filtered.forEach(prop => { const hasImages = prop.images && prop.images.length > 0; container.innerHTML += `<div class="list-item"> <div class="list-item-content"><h4>${prop.name}</h4><p>${prop.location || 'Sem localização'} | ${formatCurrency(prop.listPrice)}</p></div> <div class="list-item-actions"> ${hasImages ? `<button title="Fotos" class="gallery-btn" data-id="${prop.id}"><i class="fas fa-camera"></i></button>` : ''}<button title="Compartilhar" class="share-btn" data-id="${prop.id}"><i class="fas fa-share-alt"></i></button> <button title="Visualizar" class="view-btn" data-id="${prop.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${prop.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${prop.id}"><i class="fas fa-trash"></i></button> </div></div>`; }); /* [cite: 274, 275, 276, 277, 278] */
+    }; /* [cite: 279] */
+    document.getElementById('property-search').addEventListener('input', e => renderPropertiesList(e.target.value)); /* [cite: 279] */
+    document.getElementById('properties-list-container').addEventListener('click', e => { /* [cite: 279] */
+        const button = e.target.closest('button'); if (!button) return; const id = button.dataset.id; const isGallery = button.classList.contains('gallery-btn'); const isShare = button.classList.contains('share-btn'); const isView = button.classList.contains('view-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); const prop = db.properties.find(p => p.id == id); if (!prop) return; /* [cite: 280] */
+        if (isGallery) { openImageGallery({ entity: 'property', id: id }); } /* [cite: 281] */
+        else if (isShare) { handleShareProperty(prop); } /* [cite: 281] */
+        else if (isView) { openModal(`Ficha: ${prop.name}`, getPropertyDetailsHtml(prop), 'view', null, false); } /* [cite: 281] */
+        else if (isEdit) { openModal('Editar Imóvel', getPropertyFormHtml(prop), 'property', id); } /* [cite: 282] */
+        else if (isDelete) { if (confirm(`Deseja realmente excluir o imóvel ${prop.name}?`)) { db.properties = db.properties.filter(p => p.id != id); saveData(); renderPropertiesList(document.getElementById('property-search').value); } } /* [cite: 283, 284] */
+    }); /* [cite: 284] */
+    modalBody.addEventListener('click', e => { /* [cite: 285] */
+        const link = e.target.closest('.view-gallery-link'); if (link) { e.preventDefault(); const id = link.dataset.id; openImageGallery({ entity: 'property', id: id }); } /* [cite: 285, 286] */
+    }); /* [cite: 286] */
 
-    const getEventFormHtml = (event = {}, date = '') => { /* ... (código getEventFormHtml sem alterações) ... */
-        const today = new Date().toISOString().slice(0, 10); return `<div class="mb-3"><label for="event-title" class="form-label">Título</label><input type="text" id="event-title" class="form-control" value="${event.title || ''}"></div><div class="mb-3"><label for="event-date" class="form-label">Data</label><input type="date" id="event-date" class="form-control" value="${event.date || date || today}"></div><div class="mb-3"><label for="event-time" class="form-label">Hora</label><input type="time" id="event-time" class="form-control" value="${event.time || ''}"></div><div class="mb-3"><label for="event-description" class="form-label">Descrição</label><textarea id="event-description" class="form-control" rows="3">${event.description || ''}</textarea></div>`;
+    const getEventFormHtml = (event = {}, date = '') => { /* [cite: 286] */
+        const today = new Date().toISOString().slice(0, 10); /* [cite: 286] */
+        return ` <div class="mb-3"><label for="event-title" class="form-label">Título</label><input type="text" id="event-title" class="form-control" value="${event.title || ''}"></div><div class="mb-3"><label for="event-date" class="form-label">Data</label><input type="date" id="event-date" class="form-control" value="${event.date || date || today}"></div><div class="mb-3"><label for="event-time" class="form-label">Hora</label><input type="time" id="event-time" class="form-control" value="${event.time || ''}"></div><div class="mb-3"><label for="event-description" class="form-label">Descrição</label><textarea id="event-description" class="form-control" rows="3">${event.description || ''}</textarea></div>`; /* [cite: 287, 288, 289, 290] */
+    }; /* [cite: 291] */
+    addButtons['agenda'].addEventListener('click', () => { openModal('Novo Compromisso', getEventFormHtml(), 'event'); }); /* [cite: 291] */
+    const getEventsForDate = (targetDate) => { /* [cite: 292] */
+        const targetDateStr = targetDate.toISOString().slice(0, 10); /* [cite: 292] */
+        return db.events.filter(event => event.date === targetDateStr); /* [cite: 293] */
     };
-    addButtons['agenda'].addEventListener('click', () => { /* ... (código add event listener sem alterações) ... */
-        openModal('Novo Compromisso', getEventFormHtml(), 'event');
-    });
-    const getEventsForDate = (targetDate) => { /* ... (código getEventsForDate sem alterações) ... */
-        const targetDateStr = targetDate.toISOString().slice(0, 10); return db.events.filter(event => event.date === targetDateStr);
-    };
-    const renderAgendaCalendar = () => { /* ... (código renderAgendaCalendar sem alterações) ... */
-        const grid = document.getElementById('calendar-grid'); const monthYearEl = document.getElementById('month-year'); const weekdaysEl = document.getElementById('weekdays'); grid.innerHTML = ''; weekdaysEl.innerHTML = ''; const month = currentCalendarDate.getMonth(); const year = currentCalendarDate.getFullYear(); monthYearEl.textContent = new Date(year, month).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }); ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].forEach(day => weekdaysEl.innerHTML += `<div>${day}</div>`); const firstDayOfMonth = new Date(year, month, 1).getDay(); const daysInMonth = new Date(year, month + 1, 0).getDate(); const today = new Date(); for (let i = 0; i < firstDayOfMonth; i++) { grid.innerHTML += `<div class="calendar-day other-month"></div>`; } for (let day = 1; day <= daysInMonth; day++) { const date = new Date(year, month, day); const dateString = date.toISOString().slice(0, 10); const isToday = date.toDateString() === today.toDateString(); const dayDiv = document.createElement('div'); dayDiv.className = 'calendar-day'; if(isToday) dayDiv.classList.add('today'); dayDiv.dataset.date = dateString; dayDiv.innerHTML = `<div class="day-number">${day}</div>`; const eventsOnThisDay = getEventsForDate(date); const eventCount = eventsOnThisDay.length; if (eventCount > 0) { const countSpan = document.createElement('span'); countSpan.className = 'event-count'; if (eventCount <= 2) { countSpan.textContent = eventCount === 1 ? '①' : '②'; } else { countSpan.textContent = '③+'; countSpan.classList.add('many'); } dayDiv.appendChild(countSpan); } grid.appendChild(dayDiv); } const totalCells = firstDayOfMonth + daysInMonth; const remainingCells = (7 - (totalCells % 7)) % 7; for (let i = 0; i < remainingCells; i++) { grid.innerHTML += `<div class="calendar-day other-month"></div>`; }
-    };
-    document.getElementById('prev-month-btn').addEventListener('click', () => { /* ... (código prev month listener sem alterações) ... */
-        currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1); renderAgendaCalendar();
-    });
-    document.getElementById('next-month-btn').addEventListener('click', () => { /* ... (código next month listener sem alterações) ... */
-        currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1); renderAgendaCalendar();
-    });
-    document.getElementById('calendar-grid').addEventListener('click', e => { /* ... (código calendar grid listener sem alterações) ... */
-        const dayElement = e.target.closest('.calendar-day'); if (!dayElement || dayElement.classList.contains('other-month')) return; const date = dayElement.dataset.date; const eventsOnDay = getEventsForDate(new Date(date + 'T00:00:00')); if (eventsOnDay.length > 0) { openDayEventsModal(date, eventsOnDay); } else { openModal('Novo Compromisso', getEventFormHtml({}, date), 'event'); }
-    });
-    const openDayEventsModal = (date, events) => { /* ... (código openDayEventsModal sem alterações) ... */
-        let content = '<div class="day-events-list">'; content += '<h3>Compromissos</h3>'; events.sort((a,b) => (a.time || '').localeCompare(b.time || '')); if (events.length === 0) { content += '<p>Nenhum evento para este dia.</p>'; } events.forEach(event => { const client = db.clients.find(c => c.id == event.clientId); const completeButtonHtml = event.completed ? `<button title="Reabrir" class="reopen-btn" data-id="${event.id}"><i class="fas fa-undo"></i></button>` : `<button title="Concluir" class="complete-btn" data-id="${event.id}"><i class="fas fa-check"></i></button>`; content += `<div class="event-item ${event.completed ? 'completed' : ''}" data-id="${event.id}"><h4>${event.title} ${event.time ? `(${event.time})` : ''}</h4><p>${event.description || 'Sem descrição.'}</p>${client ? `<p><strong>Cliente:</strong> ${client.name}</p>` : ''} <div class="list-item-actions" style="justify-content: flex-end; margin-top: 10px;">${completeButtonHtml} <button title="Editar" class="edit-btn" data-id="${event.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${event.id}"><i class="fas fa-trash"></i></button></div> </div>`; }); content += '</div>'; openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false);
-    };
-    modalBody.addEventListener('click', e => { /* ... (código day view actions listener sem alterações) ... */
-        if(currentEntityType !== 'day-view') return; const button = e.target.closest('button'); if (!button) return; const eventItem = button.closest('.event-item'); if(!eventItem) return; const id = eventItem.dataset.id; const event = db.events.find(ev => ev.id == id); if (!event) return; const isComplete = button.classList.contains('complete-btn'); const isReopen = button.classList.contains('reopen-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); if (isComplete || isReopen) { event.completed = isComplete; saveData(); const date = new Date(event.date + 'T00:00:00'); const eventsOnDay = getEventsForDate(date); openDayEventsModal(event.date, eventsOnDay); } else if (isEdit) { closeModal(); openModal('Editar Compromisso', getEventFormHtml(event), 'event', id); } else if (isDelete) { if (confirm('Deseja excluir este compromisso?')) { db.events = db.events.filter(ev => ev.id != id); saveData(); const date = new Date(event.date + 'T00:00:00'); const eventsOnDay = getEventsForDate(date); if (eventsOnDay.length > 0) { openDayEventsModal(event.date, eventsOnDay); } else { closeModal(); } renderAgendaCalendar(); } }
-    });
+    const renderAgendaCalendar = () => { /* [cite: 293] */
+        const grid = document.getElementById('calendar-grid'); const monthYearEl = document.getElementById('month-year'); const weekdaysEl = document.getElementById('weekdays'); /* [cite: 293, 294] */
+        grid.innerHTML = ''; weekdaysEl.innerHTML = ''; /* [cite: 294] */
+        const month = currentCalendarDate.getMonth(); const year = currentCalendarDate.getFullYear(); /* [cite: 294, 295] */
+        monthYearEl.textContent = new Date(year, month).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }); /* [cite: 295] */
+        ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].forEach(day => weekdaysEl.innerHTML += `<div>${day}</div>`); /* [cite: 296] */
+        const firstDayOfMonth = new Date(year, month, 1).getDay(); const daysInMonth = new Date(year, month + 1, 0).getDate(); const today = new Date(); /* [cite: 296, 297] */
+        for (let i = 0; i < firstDayOfMonth; i++) { grid.innerHTML += `<div class="calendar-day other-month"></div>`; } /* [cite: 298] */
+        for (let day = 1; day <= daysInMonth; day++) { /* [cite: 299] */
+            const date = new Date(year, month, day); const dateString = date.toISOString().slice(0, 10); const isToday = date.toDateString() === today.toDateString(); /* [cite: 299, 300] */
+            const dayDiv = document.createElement('div'); dayDiv.className = 'calendar-day'; if(isToday) dayDiv.classList.add('today'); dayDiv.dataset.date = dateString; /* [cite: 300, 301] */
+            dayDiv.innerHTML = `<div class="day-number">${day}</div>`; /* [cite: 301] */
+            const eventsOnThisDay = getEventsForDate(date); const eventCount = eventsOnThisDay.length; /* [cite: 301] */
+            if (eventCount > 0) { const countSpan = document.createElement('span'); countSpan.className = 'event-count'; if (eventCount <= 2) { countSpan.textContent = eventCount === 1 ? '①' : '②'; } else { countSpan.textContent = '③+'; countSpan.classList.add('many'); } dayDiv.appendChild(countSpan); } /* [cite: 302, 303, 304, 305] */
+            grid.appendChild(dayDiv); /* [cite: 306] */
+        } /* [cite: 307] */
+        const totalCells = firstDayOfMonth + daysInMonth; const remainingCells = (7 - (totalCells % 7)) % 7; /* [cite: 307, 308] */
+        for (let i = 0; i < remainingCells; i++) { grid.innerHTML += `<div class="calendar-day other-month"></div>`; } /* [cite: 309] */
+    }; /* [cite: 310] */
+    document.getElementById('prev-month-btn').addEventListener('click', () => { currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1); renderAgendaCalendar(); }); /* [cite: 310] */
+    document.getElementById('next-month-btn').addEventListener('click', () => { currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1); renderAgendaCalendar(); }); /* [cite: 311] */
+    document.getElementById('calendar-grid').addEventListener('click', e => { /* [cite: 312] */
+        const dayElement = e.target.closest('.calendar-day'); if (!dayElement || dayElement.classList.contains('other-month')) return; const date = dayElement.dataset.date; const eventsOnDay = getEventsForDate(new Date(date + 'T00:00:00')); /* [cite: 312] */
+        if (eventsOnDay.length > 0) { openDayEventsModal(date, eventsOnDay); } else { openModal('Novo Compromisso', getEventFormHtml({}, date), 'event'); } /* [cite: 313] */
+    }); /* [cite: 313] */
+    const openDayEventsModal = (date, events) => { /* [cite: 314] */
+        let content = '<div class="day-events-list">'; content += '<h3>Compromissos</h3>'; events.sort((a,b) => (a.time || '').localeCompare(b.time || '')); if (events.length === 0) { content += '<p>Nenhum evento para este dia.</p>'; } /* [cite: 314, 315, 316] */
+        events.forEach(event => { const client = db.clients.find(c => c.id == event.clientId); const completeButtonHtml = event.completed ? `<button title="Reabrir" class="reopen-btn" data-id="${event.id}"><i class="fas fa-undo"></i></button>` : `<button title="Concluir" class="complete-btn" data-id="${event.id}"><i class="fas fa-check"></i></button>`; content += `<div class="event-item ${event.completed ? 'completed' : ''}" data-id="${event.id}"><h4>${event.title} ${event.time ? `(${event.time})` : ''}</h4><p>${event.description || 'Sem descrição.'}</p>${client ? `<p><strong>Cliente:</strong> ${client.name}</p>` : ''} <div class="list-item-actions" style="justify-content: flex-end; margin-top: 10px;">${completeButtonHtml} <button title="Editar" class="edit-btn" data-id="${event.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${event.id}"><i class="fas fa-trash"></i></button></div> </div>`; }); /* [cite: 317, 318, 319, 320, 321] */
+        content += '</div>'; openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false); /* [cite: 322] */
+    }; /* [cite: 322] */
+    modalBody.addEventListener('click', e => { /* [cite: 323] */
+        if(currentEntityType !== 'day-view') return; const button = e.target.closest('button'); if (!button) return; const eventItem = button.closest('.event-item'); if(!eventItem) return; const id = eventItem.dataset.id; const event = db.events.find(ev => ev.id == id); if (!event) return; /* [cite: 323, 324, 325] */
+        const isComplete = button.classList.contains('complete-btn'); const isReopen = button.classList.contains('reopen-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); /* [cite: 325] */
+        if (isComplete || isReopen) { event.completed = isComplete; saveData(); const date = new Date(event.date + 'T00:00:00'); const eventsOnDay = getEventsForDate(date); openDayEventsModal(event.date, eventsOnDay); } /* [cite: 326, 327, 328, 329] */
+        else if (isEdit) { closeModal(); openModal('Editar Compromisso', getEventFormHtml(event), 'event', id); } /* [cite: 329, 330, 331] */
+        else if (isDelete) { if (confirm('Deseja excluir este compromisso?')) { db.events = db.events.filter(ev => ev.id != id); saveData(); const date = new Date(event.date + 'T00:00:00'); const eventsOnDay = getEventsForDate(date); if (eventsOnDay.length > 0) { openDayEventsModal(event.date, eventsOnDay); } else { closeModal(); } renderAgendaCalendar(); } } /* [cite: 331, 332, 333, 334, 335, 336] */
+    }); /* [cite: 336] */
 
-    const handleShareNote = (info) => { /* ... (código handleShareNote sem alterações) ... */
-        if (navigator.share) { navigator.share({ title: info.title, text: info.content, }).then(() => { console.log('Nota compartilhada com sucesso.'); }).catch((error) => { console.error('Erro ao compartilhar:', error); }); } else { navigator.clipboard.writeText(`*${info.title}*\n\n${info.content}`).then(() => { alert('API de compartilhamento não disponível. A nota foi copiada para a área de transferência.'); }).catch(err => { alert('Falha ao copiar nota.'); }); }
-    };
-    const getKnowledgeBaseFormHtml = (info = {}) => { /* ... (código getKnowledgeBaseFormHtml sem alterações) ... */
-        return `<div class="mb-3"><label for="info-title" class="form-label">Título</label><input type="text" id="info-title" class="form-control" value="${info.title || ''}"></div><div class="mb-3"><label for="info-content" class="form-label">Conteúdo</label><textarea id="info-content" class="form-control" rows="10">${info.content || ''}</textarea></div>`;
-    };
-    addButtons['informacoes'].addEventListener('click', () => { /* ... (código add note listener sem alterações) ... */
-        openModal('Adicionar Nova Nota', getKnowledgeBaseFormHtml(), 'knowledgeBase');
-    });
-    const renderKnowledgeBaseList = (filter = '') => { /* ... (código renderKnowledgeBaseList sem alterações) ... */
-        const container = document.getElementById('info-list-container'); container.innerHTML = ''; const lowerFilter = filter.toLowerCase(); const filteredInfo = db.knowledgeBase.filter(info => (info.title || '').toLowerCase().includes(lowerFilter) || (info.content || '').toLowerCase().includes(lowerFilter)).sort((a,b) => (a.title || '').localeCompare(b.title || '')); if (filteredInfo.length === 0) { container.innerHTML = '<p>Nenhuma nota encontrada.</p>'; return; } filteredInfo.forEach(info => { container.innerHTML += `<div class="list-item"><div class="list-item-content"> <h4>${info.title}</h4><p>${(info.content || '').substring(0, 80)}...</p></div><div class="list-item-actions"> <button title="Compartilhar" class="share-btn" data-id="${info.id}"><i class="fas fa-share-alt"></i></button><button title="Visualizar" class="view-btn" data-id="${info.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${info.id}"><i class="fas fa-edit"></i></button> <button title="Excluir" class="delete-btn" data-id="${info.id}"><i class="fas fa-trash"></i></button></div></div>`; });
-    };
-    document.getElementById('info-search').addEventListener('input', e => { /* ... (código info search listener sem alterações) ... */
-        renderKnowledgeBaseList(e.target.value);
-    });
-    document.getElementById('info-list-container').addEventListener('click', e => { /* ... (código note actions listener sem alterações) ... */
-        const button = e.target.closest('button'); if (!button) return; const id = button.dataset.id; const isShare = button.classList.contains('share-btn'); const isView = button.classList.contains('view-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); const info = db.knowledgeBase.find(i => i.id == id); if (!info) return; if (isShare) { handleShareNote(info); } else if (isView) { const viewHtml = `<div class="record-details"><p>${info.content ? info.content.replace(/\n/g, '<br>') : 'Nenhum conteúdo.'}</p> </div>`; openModal(info.title, viewHtml, 'view', null, false); } else if (isEdit) { openModal('Editar Nota', getKnowledgeBaseFormHtml(info), 'knowledgeBase', id); } else if (isDelete) { if (confirm('Deseja realmente excluir esta nota?')) { db.knowledgeBase = db.knowledgeBase.filter(i => i.id != id); saveData(); renderKnowledgeBaseList(document.getElementById('info-search').value); } }
-    });
+    const handleShareNote = (info) => { /* [cite: 337] */
+        if (navigator.share) { navigator.share({ title: info.title, text: info.content, }).then(() => { console.log('Nota compartilhada com sucesso.'); }).catch((error) => { console.error('Erro ao compartilhar:', error); }); } /* [cite: 337, 338, 339] */
+        else { navigator.clipboard.writeText(`*${info.title}*\n\n${info.content}`).then(() => { alert('API de compartilhamento não disponível. A nota foi copiada para a área de transferência.'); }).catch(err => { alert('Falha ao copiar nota.'); }); } /* [cite: 340, 341, 342] */
+    }; /* [cite: 342] */
+    const getKnowledgeBaseFormHtml = (info = {}) => { /* [cite: 342] */
+        return ` <div class="mb-3"><label for="info-title" class="form-label">Título</label><input type="text" id="info-title" class="form-control" value="${info.title || ''}"> </div><div class="mb-3"><label for="info-content" class="form-label">Conteúdo</label><textarea id="info-content" class="form-control" rows="10">${info.content || ''}</textarea></div>`; /* [cite: 342, 343, 344] */
+    }; /* [cite: 345] */
+    addButtons['informacoes'].addEventListener('click', () => { openModal('Adicionar Nova Nota', getKnowledgeBaseFormHtml(), 'knowledgeBase'); }); /* [cite: 345] */
+    const renderKnowledgeBaseList = (filter = '') => { /* [cite: 346] */
+        const container = document.getElementById('info-list-container'); container.innerHTML = ''; /* [cite: 346, 347] */
+        const lowerFilter = filter.toLowerCase(); const filteredInfo = db.knowledgeBase.filter(info => (info.title || '').toLowerCase().includes(lowerFilter) || (info.content || '').toLowerCase().includes(lowerFilter)).sort((a,b) => (a.title || '').localeCompare(b.title || '')); /* [cite: 347] */
+        if (filteredInfo.length === 0) { container.innerHTML = '<p>Nenhuma nota encontrada.</p>'; return; } /* [cite: 348, 349] */
+        filteredInfo.forEach(info => { container.innerHTML += `<div class="list-item"><div class="list-item-content"> <h4>${info.title}</h4><p>${(info.content || '').substring(0, 80)}...</p></div><div class="list-item-actions"> <button title="Compartilhar" class="share-btn" data-id="${info.id}"><i class="fas fa-share-alt"></i></button><button title="Visualizar" class="view-btn" data-id="${info.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${info.id}"><i class="fas fa-edit"></i></button> <button title="Excluir" class="delete-btn" data-id="${info.id}"><i class="fas fa-trash"></i></button></div></div>`; }); /* [cite: 349, 350, 351, 352] */
+    }; /* [cite: 353] */
+    document.getElementById('info-search').addEventListener('input', e => { renderKnowledgeBaseList(e.target.value); }); /* [cite: 353] */
+    document.getElementById('info-list-container').addEventListener('click', e => { /* [cite: 354] */
+        const button = e.target.closest('button'); if (!button) return; const id = button.dataset.id; const isShare = button.classList.contains('share-btn'); const isView = button.classList.contains('view-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); const info = db.knowledgeBase.find(i => i.id == id); if (!info) return; /* [cite: 354, 355] */
+        if (isShare) { handleShareNote(info); } /* [cite: 356] */
+        else if (isView) { const viewHtml = `<div class="record-details"><p>${info.content ? info.content.replace(/\n/g, '<br>') : 'Nenhum conteúdo.'}</p> </div>`; openModal(info.title, viewHtml, 'view', null, false); } /* [cite: 356, 357] */
+        else if (isEdit) { openModal('Editar Nota', getKnowledgeBaseFormHtml(info), 'knowledgeBase', id); } /* [cite: 358] */
+        else if (isDelete) { if (confirm('Deseja realmente excluir esta nota?')) { db.knowledgeBase = db.knowledgeBase.filter(i => i.id != id); saveData(); renderKnowledgeBaseList(document.getElementById('info-search').value); } } /* [cite: 359, 360] */
+    }); /* [cite: 360] */
     
     // ==========================================
-    // MÓDULO: CONFIGURAÇÕES (Lógica de Import/Export AJUSTADA)
+    // MÓDULO: CONFIGURAÇÕES
     // ==========================================
-    const renderSettings = () => { /* ... (código renderSettings sem alterações) ... */
-        // Aqui você pode adicionar lógica para preencher campos de config se necessário
-    };
-    document.getElementById('clear-system-btn').addEventListener('click', () => { /* ... (código clear system listener sem alterações) ... */
-        if (confirm('ATENÇÃO! Isso apagará TODOS os dados do sistema permanentemente. Deseja continuar?')) { dexieDb.delete().then(() => { alert("Banco de dados apagado com sucesso."); location.reload(); }).catch((err) => { console.error("Não foi possível apagar o banco de dados", err); alert("Ocorreu um erro ao tentar limpar o sistema."); }); }
-    });
-    document.getElementById('export-backup-btn').addEventListener('click', () => { /* ... (código export listener sem alterações) ... */
-        const dataStr = JSON.stringify(db, null, 2); const blob = new Blob([dataStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `backup_crm_v2_${new Date().toISOString().slice(0,10)}.json`; a.click(); URL.revokeObjectURL(url);
-    });
-    document.getElementById('import-backup-btn').addEventListener('click', () => { /* ... (código trigger import listener sem alterações) ... */
-         document.getElementById('import-backup').click();
-    });
-    
-    // ** LISTENER DE IMPORT CORRIGIDO **
-    document.getElementById('import-backup').addEventListener('change', e => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            try {
-                const importedDb = JSON.parse(event.target.result); // Carrega o JSON do arquivo
-                
-                // Validação básica da estrutura (verifica se parece um backup válido)
-                if (!importedDb || typeof importedDb !== 'object' || !importedDb.settings || !Array.isArray(importedDb.clients)) {
-                     throw new Error("Formato de backup inválido.");
+    const renderSettings = () => {}; /* [cite: 361] */
+    document.getElementById('clear-system-btn').addEventListener('click', () => { /* [cite: 361] */
+        if (confirm('ATENÇÃO! Isso apagará TODOS os dados do sistema permanentemente. Deseja continuar?')) { dexieDb.delete().then(() => { alert("Banco de dados apagado com sucesso."); location.reload(); }).catch((err) => { console.error("Não foi possível apagar o banco de dados", err); alert("Ocorreu um erro ao tentar limpar o sistema."); }); } /* [cite: 361, 362, 363] */
+    }); /* [cite: 363] */
+    document.getElementById('export-backup-btn').addEventListener('click', () => { /* [cite: 364] */
+        const dataStr = JSON.stringify(db, null, 2); const blob = new Blob([dataStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `backup_crm_v2_${new Date().toISOString().slice(0,10)}.json`; a.click(); URL.revokeObjectURL(url); /* [cite: 364, 365] */
+    }); /* [cite: 365] */
+    document.getElementById('import-backup-btn').addEventListener('click', () => { document.getElementById('import-backup').click(); }); /* [cite: 366] */
+    document.getElementById('import-backup').addEventListener('change', e => { /* [cite: 367] */
+        const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); /* [cite: 367] */
+        reader.onload = (event) => { /* [cite: 367] */
+            try { const importedDb = JSON.parse(event.target.result); /* [cite: 368] */
+                if (!importedDb || typeof importedDb !== 'object' || !importedDb.settings || !Array.isArray(importedDb.clients)) { throw new Error("Formato de backup inválido."); }
+                if (confirm('Isso substituirá todos os dados atuais. Deseja continuar?')) { /* [cite: 368] */
+                    db = importedDb; /* Substituição direta */
+                    ensureDbCompatibility(db); /* Garante compatibilidade */
+                    saveData().then(() => { alert('Backup importado com sucesso! O aplicativo será recarregado.'); location.reload(); /* [cite: 369] */ }).catch(saveErr => { console.error("Erro ao salvar dados importados:", saveErr); alert('Erro ao salvar os dados importados.'); });
                 }
-
-                if (confirm('Isso substituirá todos os dados atuais. Deseja continuar?')) {
-                    // **CORREÇÃO:** Atribui diretamente o objeto carregado à variável 'db'
-                    db = importedDb; 
-                    
-                    // **NOVO:** Garante que a estrutura importada é compatível
-                    ensureDbCompatibility(db); 
-                    
-                    // Salva o novo 'db' no IndexedDB
-                    saveData().then(() => { // Espera o save concluir
-                        alert('Backup importado com sucesso! O aplicativo será recarregado.');
-                        location.reload(); // Recarrega para refletir os dados importados
-                    }).catch(saveErr => {
-                        console.error("Erro ao salvar dados importados:", saveErr);
-                        alert('Erro ao salvar os dados importados. Tente novamente.');
-                    });
-                }
-            } catch (err) {
-                console.error("Erro ao importar backup:", err);
-                alert(`Erro ao ler o arquivo de backup: ${err.message}. Verifique se o arquivo é um JSON válido exportado pelo CRM.`);
-            } finally {
-                e.target.value = ''; // Limpa o input de arquivo
+            } catch (err) { console.error("Erro ao importar backup:", err); alert(`Erro ao ler o arquivo de backup: ${err.message}. Verifique se o arquivo é um JSON válido exportado pelo CRM.`); /* [cite: 370] */ 
+            } finally { e.target.value = ''; }
+        };
+        reader.onerror = () => { alert('Erro ao tentar ler o arquivo selecionado.'); e.target.value = ''; };
+        reader.readAsText(file); /* [cite: 370] */
+    }); /* [cite: 370] */
+    
+    // ==========================================
+    // LÓGICA DE SALVAMENTO DO MODAL
+    // ==========================================
+    modalSaveBtn.addEventListener('click', async () => { /* [cite: 371] */
+        let currentData = {}; let index = -1; let listToUpdate = null; /* [cite: 371] */
+        if (currentEditingId) { /* [cite: 371] */
+             switch(currentEntityType) { /* [cite: 372] */
+                case 'client': index = db.clients.findIndex(c => c.id == currentEditingId); if (index > -1) currentData = db.clients[index]; break; /* [cite: 372, 373] */
+                case 'property': index = db.properties.findIndex(p => p.id == currentEditingId); if (index > -1) currentData = db.properties[index]; break; /* [cite: 373, 374] */
+                case 'event': index = db.events.findIndex(e => e.id == currentEditingId); if (index > -1) currentData = db.events[index]; break; /* [cite: 374, 375] */
+                case 'knowledgeBase': index = db.knowledgeBase.findIndex(i => i.id == currentEditingId); if (index > -1) currentData = db.knowledgeBase[index]; break; /* [cite: 375, 376] */
             }
-        };
-        reader.onerror = () => {
-             alert('Erro ao tentar ler o arquivo selecionado.');
-             e.target.value = ''; // Limpa o input de arquivo
-        };
-        reader.readAsText(file);
-    });
-    
-    // ==========================================
-    // LÓGICA DE SALVAMENTO DO MODAL (Sem alterações)
-    // ==========================================
-    modalSaveBtn.addEventListener('click', async () => { /* ... (código modalSaveBtn listener sem alterações) ... */
-        let currentData = {}; let index = -1; let listToUpdate = null; if (currentEditingId) { switch(currentEntityType) { case 'client': index = db.clients.findIndex(c => c.id == currentEditingId); if (index > -1) currentData = db.clients[index]; break; case 'property': index = db.properties.findIndex(p => p.id == currentEditingId); if (index > -1) currentData = db.properties[index]; break; case 'event': index = db.events.findIndex(e => e.id == currentEditingId); if (index > -1) currentData = db.events[index]; break; case 'knowledgeBase': index = db.knowledgeBase.findIndex(i => i.id == currentEditingId); if (index > -1) currentData = db.knowledgeBase[index]; break; } }
-        if (currentEntityType === 'client') { const clientData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), name: document.getElementById('client-name').value, phone: document.getElementById('client-phone').value, email: document.getElementById('client-email').value, income: parseFloat(document.getElementById('client-income').value) || 0, stageId: parseInt(document.getElementById('client-stageId').value), notes: document.getElementById('client-notes').value, }; if(index > -1) db.clients[index] = clientData; else db.clients.push(clientData); listToUpdate = 'clients'; }
-        if (currentEntityType === 'property') { const propData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), name: document.getElementById('prop-name').value, location: document.getElementById('prop-location').value, listPrice: parseFloat(document.getElementById('prop-list-price').value) || 0, deliveryDate: document.getElementById('prop-delivery-date').value, locationLink: document.getElementById('prop-location-link').value, videoLink: document.getElementById('prop-video-link').value, description: document.getElementById('prop-description').value, }; if(index > -1) db.properties[index] = propData; else db.properties.push(propData); listToUpdate = 'properties'; }
-        if (currentEntityType === 'event') { const eventData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), title: document.getElementById('event-title').value, date: document.getElementById('event-date').value, time: document.getElementById('event-time').value, description: document.getElementById('event-description').value, completed: currentData.completed || false }; if(index > -1) db.events[index] = eventData; else db.events.push(eventData); listToUpdate = 'agenda'; }
-        if (currentEntityType === 'knowledgeBase') { const infoData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), title: document.getElementById('info-title').value.trim(), content: document.getElementById('info-content').value.trim(), }; if (!infoData.title) { alert('O título é obrigatório.'); return; } if (index > -1) db.knowledgeBase[index] = infoData; else db.knowledgeBase.push(infoData); listToUpdate = 'informacoes'; }
-        await saveData(); closeModal(); if (listToUpdate) { const activeNav = document.querySelector(`.nav-link[data-panel="${listToUpdate}"]`); switchPanel(listToUpdate, activeNav.dataset.title); }
-    });
+        }
+        if (currentEntityType === 'client') { const clientData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), name: document.getElementById('client-name').value, phone: document.getElementById('client-phone').value, email: document.getElementById('client-email').value, income: parseFloat(document.getElementById('client-income').value) || 0, stageId: parseInt(document.getElementById('client-stageId').value), notes: document.getElementById('client-notes').value, }; if(index > -1) db.clients[index] = clientData; else db.clients.push(clientData); listToUpdate = 'clients'; } /* [cite: 376, 377, 378, 379, 380] */
+        if (currentEntityType === 'property') { const propData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), name: document.getElementById('prop-name').value, location: document.getElementById('prop-location').value, listPrice: parseFloat(document.getElementById('prop-list-price').value) || 0, deliveryDate: document.getElementById('prop-delivery-date').value, locationLink: document.getElementById('prop-location-link').value, videoLink: document.getElementById('prop-video-link').value, description: document.getElementById('prop-description').value, }; if(index > -1) db.properties[index] = propData; else db.properties.push(propData); listToUpdate = 'properties'; } /* [cite: 381, 382, 383, 384] */
+        if (currentEntityType === 'event') { const eventData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), title: document.getElementById('event-title').value, date: document.getElementById('event-date').value, time: document.getElementById('event-time').value, description: document.getElementById('event-description').value, completed: currentData.completed || false }; if(index > -1) db.events[index] = eventData; else db.events.push(eventData); listToUpdate = 'agenda'; } /* [cite: 385, 386, 387, 388, 389] */
+        if (currentEntityType === 'knowledgeBase') { const infoData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), title: document.getElementById('info-title').value.trim(), content: document.getElementById('info-content').value.trim(), }; if (!infoData.title) { alert('O título é obrigatório.'); return; } if (index > -1) db.knowledgeBase[index] = infoData; else db.knowledgeBase.push(infoData); listToUpdate = 'informacoes'; } /* [cite: 390, 391, 392, 393] */
+        await saveData(); closeModal(); /* [cite: 393] */
+        if (listToUpdate) { const activeNav = document.querySelector(`.nav-link[data-panel="${listToUpdate}"]`); switchPanel(listToUpdate, activeNav.dataset.title); } /* [cite: 394, 395] */
+    }); /* [cite: 395] */
     
     // =========================================================
-    // GALERIA DE IMAGENS (Sem alterações)
+    // GALERIA DE IMAGENS
     // =========================================================
-    const galleryModal = document.getElementById('image-gallery-modal');
-    const galleryImage = document.getElementById('gallery-current-image');
-    const galleryContainer = document.getElementById('gallery-image-container');
-    const galleryCounter = document.getElementById('gallery-counter');
-    let currentImageIndex = 0;
-    let currentImages = [];
-    const openImageGallery = (options) => { /* ... (código openImageGallery sem alterações) ... */
-        let imagesToShow = []; let startIndex = options.startIndex || 0; if (options.entity === 'property') { const property = db.properties.find(p => p.id == options.id); if (property && property.images && property.images.length > 0) { imagesToShow = property.images; } } else if (options.entity === 'note') { const note = db.knowledgeBase.find(n => n.id == options.id); if (note && note.images && note.images.length > 0) { imagesToShow = note.images; } } if (imagesToShow.length === 0) return; currentImages = imagesToShow; currentImageIndex = startIndex; updateGalleryView(); galleryModal.classList.add('active');
+    const galleryModal = document.getElementById('image-gallery-modal'); /* [cite: 396] */
+    const galleryImage = document.getElementById('gallery-current-image'); /* [cite: 397] */
+    const galleryContainer = document.getElementById('gallery-image-container'); /* [cite: 397] */
+    const galleryCounter = document.getElementById('gallery-counter'); /* [cite: 397] */
+    let currentImageIndex = 0; let currentImages = []; /* [cite: 397] */
+    const openImageGallery = (options) => { /* [cite: 398] */
+        let imagesToShow = []; let startIndex = options.startIndex || 0; /* [cite: 398, 399] */
+        if (options.entity === 'property') { const property = db.properties.find(p => p.id == options.id); if (property && property.images && property.images.length > 0) { imagesToShow = property.images; } } /* [cite: 399, 400, 401] */
+         else if (options.entity === 'note') { const note = db.knowledgeBase.find(n => n.id == options.id); if (note && note.images && note.images.length > 0) { imagesToShow = note.images; } } 
+        if (imagesToShow.length === 0) return; /* [cite: 401] */
+        currentImages = imagesToShow; currentImageIndex = startIndex; updateGalleryView(); galleryModal.classList.add('active'); /* [cite: 402] */
     };
-    const updateGalleryView = () => { /* ... (código updateGalleryView sem alterações) ... */
-        galleryImage.src = currentImages[currentImageIndex]; galleryCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
-    };
-    const changeImage = (direction) => { /* ... (código changeImage sem alterações) ... */
-        currentImageIndex += direction; if (currentImageIndex >= currentImages.length) { currentImageIndex = 0; } if (currentImageIndex < 0) { currentImageIndex = currentImages.length - 1; } updateGalleryView();
-    };
-    document.getElementById('gallery-next').addEventListener('click', () => changeImage(1));
-    document.getElementById('gallery-prev').addEventListener('click', () => changeImage(-1));
-    document.getElementById('gallery-close').addEventListener('click', () => galleryModal.classList.remove('active'));
+    const updateGalleryView = () => { galleryImage.src = currentImages[currentImageIndex]; galleryCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`; }; /* [cite: 402, 403] */
+    const changeImage = (direction) => { currentImageIndex += direction; if (currentImageIndex >= currentImages.length) { currentImageIndex = 0; } if (currentImageIndex < 0) { currentImageIndex = currentImages.length - 1; } updateGalleryView(); }; /* [cite: 403, 404, 405] */
+    document.getElementById('gallery-next').addEventListener('click', () => changeImage(1)); /* [cite: 405] */
+    document.getElementById('gallery-prev').addEventListener('click', () => changeImage(-1)); /* [cite: 406] */
+    document.getElementById('gallery-close').addEventListener('click', () => galleryModal.classList.remove('active')); /* [cite: 406] */
     
     // ==========================================
     // INICIALIZAÇÃO DO SISTEMA
     // ==========================================
-    const init = async () => {
-        await loadData();
-        // updateHeader(); // Se houver função para atualizar o header com dados do BD
-        switchPanel('dashboard', 'Dashboard'); // Inicia no Dashboard
+    const init = async () => { /* [cite: 406] */
+        await loadData(); /* [cite: 406] */
+        // updateHeader(); // Se houver função para atualizar header
+        switchPanel('dashboard', 'Dashboard'); // Inicia no Dashboard /* [cite: 407] */
     };
-
-    init();
+    init(); /* [cite: 407] */
 });
 </script>
 </body>
