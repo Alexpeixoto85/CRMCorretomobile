@@ -152,8 +152,7 @@
         .list-item-actions button {
             background: none;
             border: none;
-            /* *** MELHORIA APLICADA: Reduzido para caber 5 botões *** */
-            font-size: 1rem; 
+            font-size: 1rem; /* Reduzido para caber 5 botões */
             color: var(--text-color);
             padding: 0.5rem;
         }
@@ -275,13 +274,16 @@
         .modal-header h2 { margin-bottom: 0; }
         .modal-close-btn { font-size: 2rem; background: none; border: none; }
         
-        /* *** ESTA É A CLASSE QUE GARANTE A ROLAGEM (JÁ EXISTENTE) *** */
+        /* *** INÍCIO: CORREÇÃO DE ROLAGEM APLICADA *** */
         .modal-body {
             overflow-y: auto; /* Permite rolagem VERTICAL no corpo */
-            flex-grow: 1; /* Ocupa o espaço restante dentro do modal-content */
+            flex: 1; /* Ocupa o espaço restante (flex-grow: 1, flex-shrink: 1, flex-basis: 0) */
+            min-height: 0; /* ESSENCIAL: Permite que o item flex encolha e ative o overflow */
             -webkit-overflow-scrolling: touch; /* Melhora rolagem no iOS */
             padding-right: 5px; /* Evita que a barra de rolagem cubra o conteúdo */
         }
+        /* *** FIM: CORREÇÃO DE ROLAGEM APLICADA *** */
+        
         .form-group {
             display: flex;
             flex-direction: column;
@@ -963,7 +965,7 @@
         // MÓDULO: GESTÃO DE IMÓVEIS (V2 - COM VISUALIZAÇÃO E GALERIA)
         // ==========================================
 
-        // *** INÍCIO: MELHORIA SOLICITADA (Função de Compartilhamento) ***
+        // (Função de Compartilhamento)
         const handleShareProperty = (prop) => {
             const title = prop.name;
             
@@ -1005,7 +1007,6 @@
                 });
             }
         };
-        // *** FIM: MELHORIA SOLICITADA ***
         
         // (Adicionado prop-video-link)
         const getPropertyFormHtml = (prop = {}) => {
@@ -1124,7 +1125,7 @@
             
             const id = button.dataset.id;
             const isGallery = button.classList.contains('gallery-btn');
-            const isShare = button.classList.contains('share-btn'); // *** ADICIONADO ***
+            const isShare = button.classList.contains('share-btn'); 
             const isView = button.classList.contains('view-btn');
             const isEdit = button.classList.contains('edit-btn');
             const isDelete = button.classList.contains('delete-btn');
@@ -1134,7 +1135,7 @@
 
             if (isGallery) {
                 openImageGallery({ entity: 'property', id: id });
-            } else if (isShare) { // *** ADICIONADO ***
+            } else if (isShare) { 
                 handleShareProperty(prop);
             } else if (isView) {
                 openModal(`Ficha: ${prop.name}`, getPropertyDetailsHtml(prop), 'view', null, false);
