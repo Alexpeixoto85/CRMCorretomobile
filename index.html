@@ -14,321 +14,463 @@
     <style>
         /* ============================================== */
         /* == ESTILOS DO CODACADEMICO (BASE) == */
+       
         /* ============================================== */
         :root {
-            --primary: #2c3e50;         /* Dark Slate Blue */ /* */
-            --secondary: #34495e;       /* Lighter Slate Blue */ /* */
-            --accent: #1abc9c;          /* Teal */ /* */
-            --light: #ecf0f1;           /* Light Gray */ /* */
-            --dark: #2c3e50;            /* Using primary for text for cohesion */ /* */
-            --success: #27ae60;         /* Emerald Green */ /* */
-            --warning: #f1c40f;         /* Sunflower Yellow */ /* */
-            --danger: #e74c3c;          /* Alizarin Red */ /* */
-            --info: #3498db;            /* Peter River Blue */ /* */
-            --orange: #e67e22;          /* Carrot Orange */ /* */
-            --purple: #9b59b6;          /* Amethyst Purple */ /* */
-            --light-accent: rgba(26, 188, 156, 0.1); /* Pale Teal */ /* */
-            --text-dark: #34495e;       /* Using secondary for main text */ /* */
-            --text-light: #7f8c8d;      /* Grayish text */ /* */
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* */
-            --transition: all 0.3s ease-in-out; /* */
+            --primary: #2c3e50;
+ /* Dark Slate Blue */ /* */
+            --secondary: #34495e;
+ /* Lighter Slate Blue */ /* */
+            --accent: #1abc9c;
+ /* Teal */ /* */
+            --light: #ecf0f1;
+ /* Light Gray */ /* */
+            --dark: #2c3e50;
+ /* Using primary for text for cohesion */ /* */
+            --success: #27ae60;
+ /* Emerald Green */ /* */
+            --warning: #f1c40f;
+ /* Sunflower Yellow */ /* */
+            --danger: #e74c3c;
+ /* Alizarin Red */ /* */
+            --info: #3498db;
+ /* Peter River Blue */ /* */
+            --orange: #e67e22;
+ /* Carrot Orange */ /* */
+            --purple: #9b59b6;
+ /* Amethyst Purple */ /* */
+            --light-accent: rgba(26, 188, 156, 0.1);
+ /* Pale Teal */ /* */
+            --text-dark: #34495e;
+ /* Using secondary for main text */ /* */
+            --text-light: #7f8c8d;
+ /* Grayish text */ /* */
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+ /* */
+            --transition: all 0.3s ease-in-out;
+ /* */
             
             /* Variáveis do CRM (para compatibilidade de cores) */
-            --primary-color: var(--accent);       /* Mapeado para Teal */
-            --secondary-color: var(--primary);    /* Mapeado para Dark Slate Blue */
-            --background-color: var(--light); /* */
-            --surface-color: #FFFFFF; /* */
-            --text-color: var(--text-dark); /* */
+            --primary-color: var(--accent);
+ /* Mapeado para Teal */
+            --secondary-color: var(--primary);
+ /* Mapeado para Dark Slate Blue */
+            --background-color: var(--light);
+ /* */
+            --surface-color: #FFFFFF;
+ /* */
+            --text-color: var(--text-dark);
+ /* */
             --text-light-color: #FFF;
-            --danger-color: var(--danger); /* */
-            --success-color: var(--success); /* */
-            --warning-color: var(--warning); /* */
+            --danger-color: var(--danger);
+ /* */
+            --success-color: var(--success);
+ /* */
+            --warning-color: var(--warning);
+ /* */
         }
 
         * {
-            box-sizing: border-box; /* */
-            -webkit-tap-highlight-color: transparent; /* */
+            box-sizing: border-box;
+ /* */
+            -webkit-tap-highlight-color: transparent;
+ /* */
         }
 
         html, body {
             height: 100%;
-            /* overflow: hidden; */ /* REMOVIDO PARA PERMITIR ROLAGEM */
+ /* overflow: hidden; */ /* REMOVIDO PARA PERMITIR ROLAGEM */
         }
 
         body {
-            background-color: var(--light); /* */
-            font-family: 'Poppins', sans-serif; /* */
-            color: var(--text-dark); /* */
-            line-height: 1.6; /* */
+            background-color: var(--light);
+ /* */
+            font-family: 'Poppins', sans-serif;
+ /* */
+            color: var(--text-dark);
+ /* */
+            line-height: 1.6;
+ /* */
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif; /* */
-            color: var(--primary); /* */
+            font-family: 'Playfair Display', serif;
+ /* */
+            color: var(--primary);
+ /* */
         }
 
         .app-container {
-            display: flex; /* */
-            min-height: 100vh; /* */
+            display: flex;
+ /* */
+            min-height: 100vh;
+ /* */
         }
 
         .sidebar {
-            width: 280px; /* */
-            background: linear-gradient(to bottom, var(--primary), var(--secondary)); /* */
-            color: white; /* */
-            padding: 20px 0; /* */
-            box-shadow: var(--shadow); /* */
-            z-index: 1000; /* */
-            transition: var(--transition); /* */
-            overflow-y: auto; /* */
-            display: flex; /* */
-            flex-direction: column; /* */
+            width: 280px;
+ /* */
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+ /* */
+            color: white;
+ /* */
+            padding: 20px 0;
+ /* */
+            box-shadow: var(--shadow);
+ /* */
+            z-index: 1000;
+ /* */
+            transition: var(--transition);
+ /* */
+            overflow-y: auto;
+ /* */
+            display: flex;
+ /* */
+            flex-direction: column;
+ /* */
         }
 
         .sidebar-header {
-            padding: 0 20px 20px; /* */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* */
-            margin-bottom: 20px; /* */
+            padding: 0 20px 20px;
+ /* */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+ /* */
+            margin-bottom: 20px;
+ /* */
         }
 
         .sidebar-logo {
-            font-family: 'Playfair Display', serif; /* */
-            font-size: 1.8rem; /* */
-            margin-bottom: 5px; /* */
+            font-family: 'Playfair Display', serif;
+ /* */
+            font-size: 1.8rem;
+ /* */
+            margin-bottom: 5px;
+ /* */
         }
 
         .sidebar-subtitle {
-            font-size: 0.9rem; /* */
-            opacity: 0.8; /* */
+            font-size: 0.9rem;
+ /* */
+            opacity: 0.8;
+ /* */
         }
 
         .nav-menu-wrapper {
-            flex-grow: 1; /* */
-            overflow-y: auto; /* */
+            flex-grow: 1;
+ /* */
+            overflow-y: auto;
+ /* */
         }
 
         .nav-item {
-            margin: 5px 15px; /* */
-            border-radius: 8px; /* */
-            transition: var(--transition); /* */
+            margin: 5px 15px;
+ /* */
+            border-radius: 8px;
+ /* */
+            transition: var(--transition);
+ /* */
         }
 
         .nav-item:hover {
-            background-color: rgba(255, 255, 255, 0.1); /* */
+            background-color: rgba(255, 255, 255, 0.1);
+ /* */
         }
 
         .nav-link {
-            color: white; /* */
-            padding: 12px 15px; /* */
-            border-radius: 8px; /* */
-            display: flex; /* */
-            align-items: center; /* */
-            transition: var(--transition); /* */
+            color: white;
+ /* */
+            padding: 12px 15px;
+ /* */
+            border-radius: 8px;
+ /* */
+            display: flex;
+ /* */
+            align-items: center;
+ /* */
+            transition: var(--transition);
+ /* */
             cursor: pointer;
-        }
+ }
 
         .nav-link:hover, .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.15); /* */
-            color: white; /* */
+            background-color: rgba(255, 255, 255, 0.15);
+ /* */
+            color: white;
+ /* */
         }
 
         .nav-link i {
-            width: 24px; /* */
-            margin-right: 12px; /* */
-            font-size: 1.1rem; /* */
+            width: 24px;
+ /* */
+            margin-right: 12px;
+ /* */
+            font-size: 1.1rem;
+ /* */
         }
         
         .nav-link span {
             font-size: 0.9rem;
-            font-weight: 500;
+ font-weight: 500;
         }
 
         .main-content {
-            flex: 1; /* */
-            padding: 30px; /* */
-            overflow-y: auto; /* PERMITE ROLAGEM GERAL */ /* */
-            transition: var(--transition); /* */
+            flex: 1;
+ /* */
+            padding: 30px;
+ /* */
+            overflow-y: auto;
+ /* PERMITE ROLAGEM GERAL */ /* */
+            transition: var(--transition);
+ /* */
             display: flex;
             flex-direction: column;
-            height: 100vh; /* Ocupa a altura da janela */
+            height: 100vh;
+ /* Ocupa a altura da janela */
         }
 
         .main-header {
-            display: flex; /* */
-            justify-content: space-between; /* */
-            align-items: center; /* */
-            margin-bottom: 30px; /* */
-            padding-bottom: 15px; /* */
-            border-bottom: 1px solid #dce4e6; /* */
-            flex-shrink: 0; /* Impede que o header encolha */
+            display: flex;
+ /* */
+            justify-content: space-between;
+ /* */
+            align-items: center;
+ /* */
+            margin-bottom: 30px;
+ /* */
+            padding-bottom: 15px;
+ /* */
+            border-bottom: 1px solid #dce4e6;
+ /* */
+            flex-shrink: 0;
+ /* Impede que o header encolha */
         }
 
         #main-header-title {
-            margin: 0; /* */
+            margin: 0;
+ /* */
             font-size: 1.8rem;
-        }
+ }
 
         .content-header {
-            display: flex; /* */
-            justify-content: space-between; /* */
-            align-items: center; /* */
+            display: flex;
+ /* */
+            justify-content: space-between;
+ /* */
+            align-items: center;
+ /* */
             margin-bottom: 20px;
-        }
+ }
         
         .content-panel-body {
-            flex-grow: 1; /* Ocupa espaço restante */
-            overflow-y: auto; /* HABILITA ROLAGEM INTERNA */ /* */
-            -webkit-overflow-scrolling: touch; /* */
-            padding-right: 5px; /* Evita que scrollbar cubra conteúdo */ /* */
+            flex-grow: 1;
+ /* Ocupa espaço restante */
+            overflow-y: auto;
+ /* HABILITA ROLAGEM INTERNA */ /* */
+            -webkit-overflow-scrolling: touch;
+ /* */
+            padding-right: 5px;
+ /* Evita que scrollbar cubra conteúdo */ /* */
         }
         
         .content-panel {
-            display: none; /* */
-            animation: fadeIn 0.3s ease; /* */
-            flex-grow: 1; /* Ocupa espaço restante no main-content */
             display: none;
-            flex-direction: column; /* Organiza header e body verticalmente */
-            overflow: hidden; /* Impede que o panel inteiro role */ /* */
+ /* */
+            animation: fadeIn 0.3s ease;
+ /* */
+            flex-grow: 1;
+ /* Ocupa espaço restante no main-content */
+            display: none;
+ flex-direction: column; /* Organiza header e body verticalmente */
+            overflow: hidden;
+ /* Impede que o panel inteiro role */ /* */
         }
 
         .content-panel.active {
-            display: flex; /* Usa flexbox quando ativo */ /* */
+            display: flex;
+ /* Usa flexbox quando ativo */ /* */
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); } /* */
-            to { opacity: 1; transform: translateY(0); } /* */
+            from { opacity: 0;
+ transform: translateY(10px); } /* */
+            to { opacity: 1;
+ transform: translateY(0); } /* */
         }
 
         .card-dashboard {
-            border-radius: 15px; /* */
-            border: none; /* */
-            box-shadow: var(--shadow); /* */
-            transition: var(--transition); /* */
-            background: white; /* */
-            height: 100%; /* */
+            border-radius: 15px;
+ /* */
+            border: none;
+ /* */
+            box-shadow: var(--shadow);
+ /* */
+            transition: var(--transition);
+ /* */
+            background: white;
+ /* */
+            height: 100%;
+ /* */
         }
 
         .card-dashboard:hover {
-            transform: translateY(-5px); /* */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* */
+            transform: translateY(-5px);
+ /* */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+ /* */
         }
 
         .card-dashboard .card-body {
-            padding: 1.5rem; /* */
+            padding: 1.5rem;
+ /* */
         }
         
         /* Ajustes para botões do Bootstrap */
         .btn-primary {
-            background-color: var(--accent); /* */
-            border-color: var(--accent); /* */
+            background-color: var(--accent);
+ /* */
+            border-color: var(--accent);
+ /* */
         }
         .btn-primary:hover {
-            background-color: #16a085; /* */
-            border-color: #16a085; /* */
+            background-color: #16a085;
+ /* */
+            border-color: #16a085;
+ /* */
         }
         .btn-outline-primary {
-            color: var(--accent); /* */
-            border-color: var(--accent); /* */
+            color: var(--accent);
+ /* */
+            border-color: var(--accent);
+ /* */
         }
         .btn-outline-primary:hover {
-            background-color: var(--accent); /* */
-            color: white; /* */
+            background-color: var(--accent);
+ /* */
+            color: white;
+ /* */
         }
         .btn-secondary {
-            background-color: var(--secondary); /* */
+            background-color: var(--secondary);
+ /* */
             border-color: var(--secondary);
-            color: white; /* */
+            color: white;
+ /* */
         }
         .btn-secondary:hover {
             background-color: var(--primary);
-            border-color: var(--primary);
+ border-color: var(--primary);
             color: white;
         }
         .btn-danger {
-            background-color: var(--danger); /* */
+            background-color: var(--danger);
+ /* */
             border-color: var(--danger);
-            color: white; /* */
+            color: white;
+ /* */
         }
         
         /* Estilos responsivos (Mobile) */
         @media (max-width: 992px) {
             .app-container {
-                flex-direction: column; /* */
+                flex-direction: column;
+ /* */
             }
 
             .sidebar {
-                width: 100%; /* */
-                height: auto; /* */
-                position: fixed; /* */
-                bottom: 0; /* */
-                z-index: 1000; /* */
+                width: 100%;
+ /* */
+                height: auto;
+ /* */
+                position: fixed;
+ /* */
+                bottom: 0;
+ /* */
+                z-index: 1000;
+ /* */
                 padding: 5px 0;
-                flex-direction: row; /* */
-                align-items: center; /* */
+ flex-direction: row; /* */
+                align-items: center;
+ /* */
                 box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
-            }
+ }
 
             .sidebar-header {
-                display: none; /* */
+                display: none;
+ /* */
             }
 
             .nav-menu-wrapper {
-                overflow-x: auto; /* */
-                display: flex; /* */
-                flex-grow: 1; /* */
+                overflow-x: auto;
+ /* */
+                display: flex;
+ /* */
+                flex-grow: 1;
+ /* */
             }
 
             .nav-menu {
-                display: flex; /* */
-                flex-shrink: 0; /* */
+                display: flex;
+ /* */
+                flex-shrink: 0;
+ /* */
                 padding: 0 5px;
-                width: 100%; /* */
-                justify-content: space-around; /* */
+ width: 100%; /* */
+                justify-content: space-around;
+ /* */
             }
 
             .nav-item {
                 margin: 0 2px;
-                flex-shrink: 0; /* */
+ flex-shrink: 0; /* */
                 flex: 1;
-            }
+ }
 
             .nav-link {
-                flex-direction: column; /* */
+                flex-direction: column;
+ /* */
                 padding: 8px 5px;
-                font-size: 0.7rem; /* */
+ font-size: 0.7rem; /* */
                 text-align: center;
-            }
+ }
 
             .nav-link i {
-                margin-right: 0; /* */
+                margin-right: 0;
+ /* */
                 margin-bottom: 4px;
-                font-size: 1.1rem; /* */
+ font-size: 1.1rem; /* */
             }
 
             .main-content {
-                padding: 20px 15px 100px; /* Espaço para a barra inferior */ /* */
+                padding: 20px 15px 100px;
+ /* Espaço para a barra inferior */ /* */
             }
         }
 
         @media (max-width: 768px) {
             .main-header {
-                flex-direction: column; /* */
-                align-items: flex-start; /* */
-                gap: 15px; /* */
+                flex-direction: column;
+ /* */
+                align-items: flex-start;
+ /* */
+                gap: 15px;
+ /* */
             }
             .content-header {
-                flex-direction: column; /* */
-                align-items: flex-start; /* */
+                flex-direction: column;
+ /* */
+                align-items: flex-start;
+ /* */
                 gap: 15px;
-            }
+ }
             .content-header .btn-group, .content-header > .btn-primary {
-                align-self: flex-end; /* */
+                align-self: flex-end;
+ /* */
             }
         }
 
         .sidebar-toggle {
-            display: none; /* */
+            display: none;
+ /* */
         }
 
         /* ============================================== */
@@ -337,347 +479,554 @@
 
         /* == Dashboard (CRM) == */
         .dashboard-grid {
-            display: grid; /* */
-            grid-template-columns: 1fr; /* */
-            gap: 1rem; /* */
+            display: grid;
+ /* */
+            grid-template-columns: 1fr;
+ /* */
+            gap: 1rem;
+ /* */
         }
         .stat-card {
-            background-color: var(--surface-color); /* */
-            padding: 1.5rem; /* */
-            border-radius: 8px; /* */
-            box-shadow: var(--shadow); /* */
-            display: flex; /* */
-            align-items: center; /* */
-            gap: 1.5rem; /* */
+            background-color: var(--surface-color);
+ /* */
+            padding: 1.5rem;
+ /* */
+            border-radius: 8px;
+ /* */
+            box-shadow: var(--shadow);
+ /* */
+            display: flex;
+ /* */
+            align-items: center;
+ /* */
+            gap: 1.5rem;
+ /* */
             transition: var(--transition);
-        }
+ }
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+ box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         .stat-icon {
-            font-size: 2.5rem; /* */
-            color: var(--primary-color); /* */
-            background-color: var(--light-accent); /* */
-            padding: 1rem; /* */
-            border-radius: 50%; /* */
-            width: 60px; /* */
-            height: 60px; /* */
-            display: flex; /* */
-            justify-content: center; /* */
-            align-items: center; /* */
-            flex-shrink: 0; /* */
+            font-size: 2.5rem;
+ /* */
+            color: var(--primary-color);
+ /* */
+            background-color: var(--light-accent);
+ /* */
+            padding: 1rem;
+ /* */
+            border-radius: 50%;
+ /* */
+            width: 60px;
+ /* */
+            height: 60px;
+ /* */
+            display: flex;
+ /* */
+            justify-content: center;
+ /* */
+            align-items: center;
+ /* */
+            flex-shrink: 0;
+ /* */
         }
         .stat-card .stat-value {
-            font-size: 1.8rem; /* */
-            font-weight: 700; /* */
-            color: var(--secondary-color); /* */
-            line-height: 1.2; /* */
+            font-size: 1.8rem;
+ /* */
+            font-weight: 700;
+ /* */
+            color: var(--secondary-color);
+ /* */
+            line-height: 1.2;
+ /* */
         }
         .stat-card h3 {
-            font-size: 0.9rem; /* */
-            margin-bottom: 0.25rem; /* */
-            color: var(--text-color); /* */
+            font-size: 0.9rem;
+ /* */
+            margin-bottom: 0.25rem;
+ /* */
+            color: var(--text-color);
+ /* */
             opacity: 0.9;
             font-family: 'Poppins', sans-serif;
-        }
+ }
         .list-card {
-            background-color: var(--surface-color); /* */
-            padding: 1.5rem; /* */
-            border-radius: 8px; /* */
-            box-shadow: var(--shadow); /* */
+            background-color: var(--surface-color);
+ /* */
+            padding: 1.5rem;
+ /* */
+            border-radius: 8px;
+ /* */
+            box-shadow: var(--shadow);
+ /* */
         }
         .list-card h3 {
-            font-size: 1.1rem; /* */
-            margin-bottom: 1rem; /* */
-            color: var(--secondary-color); /* */
+            font-size: 1.1rem;
+ /* */
+            margin-bottom: 1rem;
+ /* */
+            color: var(--secondary-color);
+ /* */
         }
-        .list-card ul { list-style: none; padding-left: 0; } /* */
-        .list-card li { padding: 0.5rem 0; border-bottom: 1px solid #eee; } /* */
-        .list-card li:last-child { border-bottom: none; } /* */
+        .list-card ul { list-style: none;
+ padding-left: 0; } /* */
+        .list-card li { padding: 0.5rem 0;
+ border-bottom: 1px solid #eee; } /* */
+        .list-card li:last-child { border-bottom: none;
+ } /* */
         .event-time {
-            font-weight: 600; /* */
-            color: var(--primary-color); /* */
-            margin-right: 8px; /* */
+            font-weight: 600;
+ /* */
+            color: var(--primary-color);
+ /* */
+            margin-right: 8px;
+ /* */
         }
         
         /* == Listas (Clientes, Imóveis, Notas) == */
         .search-bar {
-            font-size: 1rem; /* */
+            font-size: 1rem;
+ /* */
         }
         .list-item {
-            background: var(--surface-color); /* */
-            padding: 1rem 1.5rem; /* */
-            margin-bottom: 0.5rem; /* */
-            border-radius: 8px; /* */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* */
-            display: flex; /* */
-            justify-content: space-between; /* */
-            align-items: center; /* */
+            background: var(--surface-color);
+ /* */
+            padding: 1rem 1.5rem;
+ /* */
+            margin-bottom: 0.5rem;
+ /* */
+            border-radius: 8px;
+ /* */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+ /* */
+            display: flex;
+ /* */
+            justify-content: space-between;
+ /* */
+            align-items: center;
+ /* */
             transition: var(--transition);
-        }
+ }
         .list-item:hover {
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
+ transform: translateY(-2px);
         }
         .list-item-content {
-            flex-grow: 1; /* */
-            min-width: 0; /* */
+            flex-grow: 1;
+ /* */
+            min-width: 0;
+ /* */
         }
         .list-item-content h4 {
             font-size: 1.1rem;
-            font-weight: 600; /* */
-            color: var(--secondary-color); /* */
-            white-space: nowrap; /* */
-            overflow: hidden; /* */
-            text-overflow: ellipsis; /* */
+ font-weight: 600; /* */
+            color: var(--secondary-color);
+ /* */
+            white-space: nowrap;
+ /* */
+            overflow: hidden;
+ /* */
+            text-overflow: ellipsis;
+ /* */
             font-family: 'Poppins', sans-serif;
             margin-bottom: 0.1rem;
-        }
+ }
         .list-item-content p {
-            font-size: 0.9rem; /* */
-            opacity: 0.8; /* */
-            white-space: nowrap; /* */
-            overflow: hidden; /* */
-            text-overflow: ellipsis; /* */
+            font-size: 0.9rem;
+ /* */
+            opacity: 0.8;
+ /* */
+            white-space: nowrap;
+ /* */
+            overflow: hidden;
+ /* */
+            text-overflow: ellipsis;
+ /* */
             margin-bottom: 0;
-        }
+ }
         .list-item-actions {
-            display: flex; /* */
-            gap: 0.3rem; /* Ajustado para caber mais botões */
-            flex-shrink: 0; /* */
-            padding-left: 0.5rem; /* */
+            display: flex;
+ /* */
+            gap: 0.3rem;
+ /* Ajustado para caber mais botões */
+            flex-shrink: 0;
+ /* */
+            padding-left: 0.5rem;
+ /* */
         }
         .list-item-actions button {
-            background: none; /* */
-            border: none; /* */
-            font-size: 1rem; /* Mantido */
-            color: var(--text-color); /* */
-            padding: 0.5rem; /* */
+            background: none;
+ /* */
+            border: none;
+ /* */
+            font-size: 1rem;
+ /* Mantido */
+            color: var(--text-color);
+ /* */
+            padding: 0.5rem;
+ /* */
             opacity: 0.7;
             transition: opacity 0.2s;
-        }
+ }
         .list-item-actions button:hover {
             opacity: 1;
-        }
+ }
 
         /* == Modal (CRM) == */
         .modal-container {
-            display: none; /* */
-            position: fixed; /* */
-            z-index: 2000; /* */
-            left: 0; top: 0; width: 100%; height: 100%; /* */
-            background-color: rgba(0,0,0,0.6); /* */
-            justify-content: center; /* */
-            align-items: center; /* */
-            padding: 1rem; /* */
+            display: none;
+ /* */
+            position: fixed;
+ /* */
+            z-index: 2000;
+ /* */
+            left: 0; top: 0; width: 100%;
+ height: 100%; /* */
+            background-color: rgba(0,0,0,0.6);
+ /* */
+            justify-content: center;
+ /* */
+            align-items: center;
+ /* */
+            padding: 1rem;
+ /* */
         }
-        .modal-container.active { display: flex; } /* */
+        .modal-container.active { display: flex;
+ } /* */
         .modal-content {
-            background-color: #fefefe; /* */
+            background-color: #fefefe;
+ /* */
             padding: 0; 
-            border-radius: 10px; /* */
-            width: 100%; /* */
-            max-width: 500px; /* */
-            max-height: 85vh; /* */
-            display: flex; /* */
-            flex-direction: column; /* */
-            overflow: hidden; /* */
+            border-radius: 10px;
+ /* */
+            width: 100%;
+ /* */
+            max-width: 500px;
+ /* */
+            max-height: 85vh;
+ /* */
+            display: flex;
+ /* */
+            flex-direction: column;
+ /* */
+            overflow: hidden;
+ /* */
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+ }
         .modal-header {
-            display: flex; /* */
-            justify-content: space-between; /* */
-            align-items: center; /* */
+            display: flex;
+ /* */
+            justify-content: space-between;
+ /* */
+            align-items: center;
+ /* */
             padding: 1rem 1.5rem;
-            flex-shrink: 0; /* */
-            background-color: var(--primary); /* */
-            color: white; /* */
+            flex-shrink: 0;
+ /* */
+            background-color: var(--primary);
+ /* */
+            color: white;
+ /* */
             border-bottom: none;
-            border-radius: 10px 10px 0 0; /* */
+            border-radius: 10px 10px 0 0;
+ /* */
         }
         .modal-header h2 { 
-            margin-bottom: 0; /* */
+            margin-bottom: 0;
+ /* */
             color: white;
             font-size: 1.25rem;
-        }
+ }
         .modal-close-btn { 
-            font-size: 1.5rem; 
-            background: none; /* */
-            border: none; /* */
+            font-size: 1.5rem;
+ background: none; /* */
+            border: none;
+ /* */
             color: white;
             opacity: 0.8;
             line-height: 1;
-        }
+ }
         .modal-close-btn:hover {
             opacity: 1;
-        }
+ }
         
         .modal-body {
-            overflow-y: auto; /* */
-            flex: 1; /* */
-            min-height: 0; /* */
-            -webkit-overflow-scrolling: touch; /* */
-            padding: 1.5rem; /* */
+            overflow-y: auto;
+ /* */
+            flex: 1;
+ /* */
+            min-height: 0;
+ /* */
+            -webkit-overflow-scrolling: touch;
+ /* */
+            padding: 1.5rem;
+ /* */
         }
         
-        .modal-body .form-label { font-weight: 600; font-size: 0.9rem; } /* */
+        .modal-body .form-label { font-weight: 600;
+ font-size: 0.9rem; } /* */
         
         .modal-footer {
-            margin-top: 0; /* */
-            padding: 1rem 1.5rem; /* */
-            border-top: 1px solid #eee; /* */
-            display: flex; /* */
-            justify-content: flex-end; /* */
-            gap: 1rem; /* */
-            flex-shrink: 0; /* */
+            margin-top: 0;
+ /* */
+            padding: 1rem 1.5rem;
+ /* */
+            border-top: 1px solid #eee;
+ /* */
+            display: flex;
+ /* */
+            justify-content: flex-end;
+ /* */
+            gap: 1rem;
+ /* */
+            flex-shrink: 0;
+ /* */
             background-color: #f9f9f9;
             border-radius: 0 0 10px 10px;
-        }
+ }
         
-        .modal-footer .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); } /* */
-        .modal-footer .btn-secondary { background-color: var(--secondary-color); border-color: var(--secondary-color); } /* */
-        .modal-footer .btn-danger { background-color: var(--danger-color); border-color: var(--danger-color); } /* */
+        .modal-footer .btn-primary { background-color: var(--primary-color);
+ border-color: var(--primary-color); } /* */
+        .modal-footer .btn-secondary { background-color: var(--secondary-color); border-color: var(--secondary-color);
+ } /* */
+        .modal-footer .btn-danger { background-color: var(--danger-color); border-color: var(--danger-color);
+ } /* */
         
         /* == Ficha de Visualização (CRM) == */
-        .record-details { line-height: 1.6; } /* */
+        .record-details { line-height: 1.6;
+ } /* */
         .record-details h3 {
-            font-size: 1.1rem; /* */
-            color: var(--secondary-color); /* */
-            border-bottom: 2px solid var(--primary-color); /* */
-            padding-bottom: 5px; /* */
-            margin-top: 1rem; /* */
-            margin-bottom: 0.5rem; /* */
+            font-size: 1.1rem;
+ /* */
+            color: var(--secondary-color);
+ /* */
+            border-bottom: 2px solid var(--primary-color);
+ /* */
+            padding-bottom: 5px;
+ /* */
+            margin-top: 1rem;
+ /* */
+            margin-bottom: 0.5rem;
+ /* */
         }
         .record-details p {
-            margin-bottom: 0.5rem; /* */
-            word-break: break-word; /* */
+            margin-bottom: 0.5rem;
+ /* */
+            word-break: break-word;
+ /* */
         }
-        .record-details strong { color: #333; } /* */
+        .record-details strong { color: #333;
+ } /* */
         .record-details a {
-            color: var(--primary-color); /* */
-            font-weight: 600; /* */
-            word-break: break-all; /* */
+            color: var(--primary-color);
+ /* */
+            font-weight: 600;
+ /* */
+            word-break: break-all;
+ /* */
             text-decoration: none;
-        }
-        .record-details a:hover { text-decoration: underline; }
+ }
+        .record-details a:hover { text-decoration: underline;
+ }
 
         /* == Painel de Configurações (CRM) == */
         .settings-card {
-            background-color: var(--surface-color); /* */
-            padding: 1.5rem; /* */
-            border-radius: 8px; /* */
-            box-shadow: var(--shadow); /* */
+            background-color: var(--surface-color);
+ /* */
+            padding: 1.5rem;
+ /* */
+            border-radius: 8px;
+ /* */
+            box-shadow: var(--shadow);
+ /* */
         }
-        .settings-card h3 { margin-bottom: 1rem; } /* */
-        .settings-card p { font-size: 0.9rem; color: var(--text-light); }
+        .settings-card h3 { margin-bottom: 1rem;
+ } /* */
+        .settings-card p { font-size: 0.9rem; color: var(--text-light);
+ }
         .settings-card label {
-            display: block; /* */
-            margin-top: 1rem; /* */
-            margin-bottom: 0.5rem; /* */
-            font-weight: 600; /* */
+            display: block;
+ /* */
+            margin-top: 1rem;
+ /* */
+            margin-bottom: 0.5rem;
+ /* */
+            font-weight: 600;
+ /* */
         }
         
         /* == Agenda-Calendário (CRM) == */
         #calendar-container {
-            background-color: var(--surface-color); /* */
-            padding: 1rem; border-radius: 8px; box-shadow: var(--shadow); /* */
+            background-color: var(--surface-color);
+ /* */
+            padding: 1rem; border-radius: 8px; box-shadow: var(--shadow);
+ /* */
         }
-        #calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; } /* */
+        #calendar-header { display: flex;
+ justify-content: space-between; align-items: center; margin-bottom: 1rem; } /* */
         #calendar-header button { 
-            background: none; /* */
-            border: 1px solid #ccc; /* */
-            border-radius: 5px; /* */
-            cursor: pointer; /* */
-            padding: 0.5rem 1rem; /* */
+            background: none;
+ /* */
+            border: 1px solid #ccc;
+ /* */
+            border-radius: 5px;
+ /* */
+            cursor: pointer;
+ /* */
+            padding: 0.5rem 1rem;
+ /* */
         }
-        #calendar-header button:hover { background-color: #f4f4f4; }
-        #month-year { font-size: 1.2rem; font-weight: 600; color: var(--secondary-color); } /* */
-        #calendar-grid, #weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; } /* */
-        #weekdays div { font-weight: bold; padding: 0.5rem 0; font-size: 0.8rem; color: var(--secondary-color); } /* */
+        #calendar-header button:hover { background-color: #f4f4f4;
+ }
+        #month-year { font-size: 1.2rem; font-weight: 600; color: var(--secondary-color);
+ } /* */
+        #calendar-grid, #weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center;
+ } /* */
+        #weekdays div { font-weight: bold; padding: 0.5rem 0; font-size: 0.8rem;
+ color: var(--secondary-color); } /* */
         .calendar-day {
-            border: 1px solid #eee; /* */
-            min-height: 80px; padding: 5px; /* */
-            display: flex; flex-direction: column; justify-content: flex-start; /* */
-            align-items: center; /* */
-            cursor: pointer; transition: background-color 0.3s; position: relative; /* */
+            border: 1px solid #eee;
+ /* */
+            min-height: 80px; padding: 5px;
+ /* */
+            display: flex; flex-direction: column; justify-content: flex-start;
+ /* */
+            align-items: center;
+ /* */
+            cursor: pointer; transition: background-color 0.3s; position: relative;
+ /* */
         }
-        .calendar-day:hover { background-color: #f9f9f9; } /* */
-        .day-number { font-weight: bold; font-size: 0.8rem; margin-bottom: 5px; } /* */
-        .calendar-day.other-month { opacity: 0.4; pointer-events: none; } /* */
+        .calendar-day:hover { background-color: #f9f9f9;
+ } /* */
+        .day-number { font-weight: bold; font-size: 0.8rem; margin-bottom: 5px;
+ } /* */
+        .calendar-day.other-month { opacity: 0.4; pointer-events: none;
+ } /* */
         .calendar-day.today .day-number {
-            background-color: var(--primary-color); /* */
-            color: var(--secondary-color); /* */
-            border-radius: 50%; width: 24px; height: 24px; /* */
-            display: flex; justify-content: center; align-items: center; /* */
+            background-color: var(--primary-color);
+ /* */
+            color: var(--secondary-color);
+ /* */
+            border-radius: 50%; width: 24px; height: 24px;
+ /* */
+            display: flex; justify-content: center; align-items: center;
+ /* */
         }
         .event-count {
-            position: absolute; /* */
-            bottom: 5px; /* */
-            right: 5px; /* */
-            background-color: var(--secondary-color); /* */
-            color: white; /* */
-            font-size: 0.7rem; /* */
-            font-weight: bold; /* */
-            border-radius: 50%; /* */
-            width: 18px; /* */
-            height: 18px; /* */
-            display: flex; /* */
-            justify-content: center; /* */
-            align-items: center; /* */
-            line-height: 1; /* */
+            position: absolute;
+ /* */
+            bottom: 5px;
+ /* */
+            right: 5px;
+ /* */
+            background-color: var(--secondary-color);
+ /* */
+            color: white;
+ /* */
+            font-size: 0.7rem;
+ /* */
+            font-weight: bold;
+ /* */
+            border-radius: 50%;
+ /* */
+            width: 18px;
+ /* */
+            height: 18px;
+ /* */
+            display: flex;
+ /* */
+            justify-content: center;
+ /* */
+            align-items: center;
+ /* */
+            line-height: 1;
+ /* */
         }
         .event-count.many {
-             background-color: var(--warning-color); /* */
-             color: var(--secondary-color); /* */
+             background-color: var(--warning-color);
+ /* */
+             color: var(--secondary-color);
+ /* */
         }
 
         .day-events-list .event-item {
-            background-color: #fff; /* */
-            border-left: 5px solid var(--secondary-color); /* */
-            padding: 1rem; margin-bottom: 1rem; border-radius: 5px; /* */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* */
+            background-color: #fff;
+ /* */
+            border-left: 5px solid var(--secondary-color);
+ /* */
+            padding: 1rem; margin-bottom: 1rem; border-radius: 5px;
+ /* */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+ /* */
         }
-        .day-events-list .event-item h4 { font-size: 1rem; margin-bottom: 0.3rem;} /* */
-        .day-events-list .event-item p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;} /* */
+        .day-events-list .event-item h4 { font-size: 1rem;
+ margin-bottom: 0.3rem;} /* */
+        .day-events-list .event-item p { font-size: 0.9rem; opacity: 0.9;
+ margin-bottom: 0.5rem;} /* */
         
         .day-events-list .event-item.completed {
-            border-left-color: var(--success-color); /* */
-            opacity: 0.7; /* */
+            border-left-color: var(--success-color);
+ /* */
+            opacity: 0.7;
+ /* */
         }
         .day-events-list .event-item.completed h4 {
-            text-decoration: line-through; /* */
+            text-decoration: line-through;
+ /* */
         }
-        .list-item-actions .complete-btn { color: var(--success-color); } /* */
-        .list-item-actions .reopen-btn { color: var(--warning-color); } /* */
+        .list-item-actions .complete-btn { color: var(--success-color);
+ } /* */
+        .list-item-actions .reopen-btn { color: var(--warning-color);
+ } /* */
         
         /* == Galeria de Imagens (CRM) == */
         #image-gallery-modal {
-            position: fixed; /* */
-            top: 0; left: 0; width: 100%; height: 100%; /* */
-            background: rgba(0,0,0,0.85); z-index: 3000; /* */
-            display: none; flex-direction: column; justify-content: center; align-items: center; /* */
+            position: fixed;
+ /* */
+            top: 0; left: 0; width: 100%;
+ height: 100%; /* */
+            background: rgba(0,0,0,0.85); z-index: 3000;
+ /* */
+            display: none; flex-direction: column; justify-content: center;
+ align-items: center; /* */
         }
-        #image-gallery-modal.active { display: flex; } /* */
-        #gallery-image-container { position: relative; width: 100%; height: 80%; } /* */
-        #gallery-image-container img { width: 100%; height: 100%; object-fit: contain; } /* */
+        #image-gallery-modal.active { display: flex;
+ } /* */
+        #gallery-image-container { position: relative; width: 100%; height: 80%;
+ } /* */
+        #gallery-image-container img { width: 100%; height: 100%; object-fit: contain;
+ } /* */
         .gallery-nav {
-            position: absolute; /* */
-            top: 50%; transform: translateY(-50%); /* */
-            background: rgba(0,0,0,0.5); color: white; border: none; /* */
-            font-size: 2.5rem; cursor: pointer; padding: 0 1rem; /* */
+            position: absolute;
+ /* */
+            top: 50%; transform: translateY(-50%);
+ /* */
+            background: rgba(0,0,0,0.5); color: white; border: none;
+ /* */
+            font-size: 2.5rem; cursor: pointer; padding: 0 1rem;
+ /* */
         }
-        #gallery-prev { left: 10px; } /* */
-        #gallery-next { right: 10px; } /* */
+        #gallery-prev { left: 10px;
+ } /* */
+        #gallery-next { right: 10px;
+ } /* */
         .gallery-tool {
-            position: absolute; /* */
-            top: 15px; /* */
-            background: rgba(0,0,0,0.5); color: white; border: none; /* */
-            font-size: 1.5rem; cursor: pointer; padding: 0.5rem; border-radius: 5px; /* */
+            position: absolute;
+ /* */
+            top: 15px;
+ /* */
+            background: rgba(0,0,0,0.5); color: white; border: none;
+ /* */
+            font-size: 1.5rem; cursor: pointer; padding: 0.5rem;
+ border-radius: 5px; /* */
         }
-        #gallery-close { right: 15px; } /* */
-        #gallery-counter { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; /* */
-            background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px;} /* */
+        #gallery-close { right: 15px;
+ } /* */
+        #gallery-counter { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+ color: white; /* */
+            background: rgba(0,0,0,0.5); padding: 5px 10px;
+ border-radius: 5px;} /* */
 
     </style>
 </head>
@@ -692,40 +1041,48 @@
 
         <div class="nav-menu-wrapper">
             <nav class="nav-menu">
-                <div class="nav-item">
+              
+   <div class="nav-item">
                     <a class="nav-link active" data-panel="dashboard" data-title="Dashboard">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
-                </div>
+   
+               </div>
                 <div class="nav-item">
                     <a class="nav-link" data-panel="clients" data-title="Clientes">
                         <i class="fas fa-users"></i>
-                        <span>Clientes</span>
+                     
+    <span>Clientes</span>
                     </a>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link" data-panel="properties" data-title="Imóveis">
-                        <i class="fas fa-building"></i>
+                     
+    <i class="fas fa-building"></i>
                         <span>Imóveis</span>
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link" data-panel="agenda" data-title="Agenda">
+                  
+   <a class="nav-link" data-panel="agenda" data-title="Agenda">
                         <i class="fas fa-calendar-alt"></i>
                         <span>Agenda</span>
                     </a>
                 </div>
-                <div class="nav-item">
+         
+         <div class="nav-item">
                     <a class="nav-link" data-panel="informacoes" data-title="Notas">
                         <i class="fas fa-book"></i>
                         <span>Notas</span>
-                    </a>
+                   
+  </a>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link" data-panel="settings" data-title="Configurações">
                         <i class="fas fa-cog"></i>
-                        <span>Config.</span>
+                 
+         <span>Config.</span>
                     </a>
                 </div>
             </nav>
@@ -735,7 +1092,8 @@
     <main class="main-content">
         
         <button class="sidebar-toggle" id="sidebarToggle">
-            <i class="fas fa-bars"></i>
+          
+   <i class="fas fa-bars"></i>
         </button>
 
         <header class="main-header">
@@ -746,29 +1104,36 @@
             <div class="content-header">
                 <h2 style="display: none;">Dashboard</h2> </div>
             <div class="content-panel-body">
-                <div id="dashboard-content" class="dashboard-grid">
+  
+               <div id="dashboard-content" class="dashboard-grid">
                     <div class="stat-card">
                         <i class="fas fa-users stat-icon"></i>
                         <div>
-                            <h3>Total de Clientes</h3>
+            
+                 <h3>Total de Clientes</h3>
                             <p class="stat-value" id="stat-total-clients">0</p>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-building stat-icon" style="color:var(--success-color); background-color:#eafaf1;"></i>
+        
+             <div class="stat-card">
+                        <i class="fas fa-building stat-icon" style="color:var(--success-color);
+ background-color:#eafaf1;"></i>
                         <div>
                             <h3>Total de Imóveis</h3>
                             <p class="stat-value" id="stat-total-properties">0</p>
-                        </div>
+                
+         </div>
                     </div>
                     <div class="list-card">
                         <h3>Próximos Compromissos</h3>
                         <ul id="stat-upcoming-events">
+ 
                             <li>Nenhum compromisso hoje.</li>
                         </ul>
                     </div>
                 </div>
-            </div>
+           
+  </div>
         </div>
 
         <div id="panel-clients" class="content-panel">
@@ -776,7 +1141,8 @@
                 <h2 style="display: none;">Clientes</h2>
                 <button id="add-client-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Cliente</button>
             </div>
-            <div class="content-panel-body"> <input type="text" id="client-search" class="search-bar form-control mb-3" placeholder="Buscar cliente por nome ou contato...">
+            <div class="content-panel-body"> <input 
+ type="text" id="client-search" class="search-bar form-control mb-3" placeholder="Buscar cliente por nome ou contato...">
                 <div id="clients-list-container">
                     </div>
             </div>
@@ -784,12 +1150,14 @@
 
         <div id="panel-properties" class="content-panel">
             <div class="content-header">
-                <h2 style="display: none;">Imóveis</h2>
+          
+       <h2 style="display: none;">Imóveis</h2>
                 <button id="add-property-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Imóvel</button>
             </div>
             <div class="content-panel-body"> <input type="text" id="property-search" class="search-bar form-control mb-3" placeholder="Buscar imóvel por nome ou localização...">
                 <div id="properties-list-container">
-                    </div>
+               
+      </div>
             </div>
         </div>
 
@@ -797,17 +1165,20 @@
             <div class="content-header">
                  <h2 style="display: none;">Agenda</h2>
                 <button id="add-event-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Compromisso</button>
-            </div>
+          
+   </div>
              <div class="content-panel-body"> <div id="calendar-container">
                     <div id="calendar-header">
                         <button id="prev-month-btn"><i class="fas fa-chevron-left"></i></button>
                         <h3 id="month-year"></h3>
-                        <button id="next-month-btn"><i class="fas fa-chevron-right"></i></button>
+         
+                 <button id="next-month-btn"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div id="weekdays"></div>
                     <div id="calendar-grid"></div>
                 </div>
-            </div>
+    
+         </div>
         </div>
 
         <div id="panel-informacoes" class="content-panel">
@@ -815,7 +1186,8 @@
                 <h2 style="display: none;">Notas</h2>
                 <button id="add-info-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Nova Nota</button>
             </div>
-            <div class="content-panel-body"> <input type="text" id="info-search" class="search-bar form-control mb-3" placeholder="Buscar nota por título ou conteúdo...">
+        
+     <div class="content-panel-body"> <input type="text" id="info-search" class="search-bar form-control mb-3" placeholder="Buscar nota por título ou conteúdo...">
                 <div id="info-list-container">
                     </div>
             </div>
@@ -823,19 +1195,24 @@
 
         <div id="panel-settings" class="content-panel">
              <div class="content-header">
-                <h2 style="display: none;">Configurações</h2>
+  
+               <h2 style="display: none;">Configurações</h2>
             </div>
             <div class="content-panel-body"> <div class="settings-card">
                     <h3>Gerenciamento de Dados</h3>
-                    <p>Use para fazer backup ou restaurar dados do seu CRM (compatível com a versão de desktop).</p>
+                    <p>Use para fazer backup ou restaurar dados do seu CRM (compatível com a versão de 
+ desktop).</p>
                     <hr style="margin: 1rem 0;">
                     <button id="export-backup-btn" class="btn btn-secondary w-100 mb-2">Exportar Backup Completo (JSON)</button>
+					<button id="export-for-meucrm4-btn" class="btn btn-info w-100 mb-2" style="background-color: var(--info); border-color: var(--info);">Exportar P/ MeuCRM4 (Desktop)</button>
                     <hr style="margin: 1rem 0;">
                     <label for="import-backup" class="form-label">Importar Backup (JSON):</label>
-                    <input type="file" id="import-backup" class="form-control" accept=".json" style="width: 100%;">
+  
+                   <input type="file" id="import-backup" class="form-control" accept=".json" style="width: 100%;">
                     <button id="import-backup-btn" class="btn btn-secondary w-100" style="margin-top: 0.5rem;">Importar Backup</button>
                     <hr style="margin: 1rem 0;">
-                    <button id="clear-system-btn" class="btn btn-danger w-100">Limpar Todo o Sistema</button>
+                    <button id="clear-system-btn" class="btn btn-danger w-100">Limpar Todo 
+ o Sistema</button>
                 </div>
             </div>
         </div>
@@ -846,7 +1223,8 @@
         <div class="modal-header">
             <h2 id="modal-title"></h2>
             <button id="modal-close-btn" class="modal-close-btn">×</button>
-        </div>
+   
+      </div>
         <div id="modal-body">
             </div>
         <div class="modal-footer">
@@ -859,7 +1237,8 @@
 <div id="image-gallery-modal">
     <div id="gallery-image-container">
         <img id="gallery-current-image" src="" alt="Imagem do Imóvel">
-        <button id="gallery-prev" class="gallery-nav"><i class="fas fa-chevron-left"></i></button>
+    
+     <button id="gallery-prev" class="gallery-nav"><i class="fas fa-chevron-left"></i></button>
         <button id="gallery-next" class="gallery-nav"><i class="fas fa-chevron-right"></i></button>
         <button id="gallery-close" class="gallery-tool" title="Fechar"><i class="fas fa-times"></i></button>
         <div id="gallery-counter"></div>
@@ -878,18 +1257,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // BANCO DE DADOS (INDEXEDDB COM DEXIE.JS)
     // ==========================================
-    const dexieDb = new Dexie('CRMLuxoDatabase'); /* */
+    const dexieDb = new Dexie('CRMLuxoDatabase');
+ /* */
     dexieDb.version(1).stores({ /* */
         dataStore: 'id' // ID fixo: 1 /* */
     });
-    // ==========================================
+ // ==========================================
     // ELEMENTOS DO DOM
     // ==========================================
-    const headerTitle = document.getElementById('main-header-title'); 
-    const modalContainer = document.getElementById('modal-container'); /* */
-    const modalTitle = document.getElementById('modal-title'); /* */
+    const headerTitle = document.getElementById('main-header-title');
+ const modalContainer = document.getElementById('modal-container'); /* */
+    const modalTitle = document.getElementById('modal-title');
+ /* */
     const modalBody = document.getElementById('modal-body'); /* */
-    const modalSaveBtn = document.getElementById('modal-save-btn'); /* */
+    const modalSaveBtn = document.getElementById('modal-save-btn');
+ /* */
     const modalFooter = document.querySelector('.modal-footer'); /* */
     const addButtons = { // Adaptado dos FABs
         'clients': document.getElementById('add-client-btn'),
@@ -897,14 +1279,16 @@ document.addEventListener('DOMContentLoaded', () => {
         'agenda': document.getElementById('add-event-btn'),
         'informacoes': document.getElementById('add-info-btn')
     };
-    
-    let currentEditingId = null; /* */
-    let currentEntityType = ''; /* */
-    let currentCalendarDate = new Date(); /* */
+ let currentEditingId = null; /* */
+    let currentEntityType = '';
+ /* */
+    let currentCalendarDate = new Date();
+ /* */
     // ==========================================
     // ESTADO INICIAL E MANIPULAÇÃO DE DADOS
     // ==========================================
-    let db = {}; /* */
+    let db = {};
+ /* */
     const defaultDb = { /* */
         settings: { brokerName: 'Nome do Corretor', brokerCreci: 'CRECI: 00000', brokerPhone: '5582999998888', logoUrl: 'https://via.placeholder.com/150x50.png?text=Sua+Logo', goals: { leads: 50, revenue: 50000, }, defaultCommission: 5, }, /* */
         funnelStages: [ { id: 1, name: 'Lead', probability: 5 }, ], /* */
@@ -912,78 +1296,113 @@ document.addEventListener('DOMContentLoaded', () => {
         clients: [], properties: [], events: [], usefulLinks: [], contracts: [], /* */
         financialRecords: [], performanceSnapshots: [], dutyReports: [], knowledgeBase: [], /* */
     };
-
-    const saveData = async () => { /* */
+ const saveData = async () => { /* */
         try {
-            await dexieDb.dataStore.put({ id: 1, data: db }); /* */
-            console.log("Dados salvos no IndexedDB"); /* */
+            await dexieDb.dataStore.put({ id: 1, data: db });
+ /* */
+            console.log("Dados salvos no IndexedDB");
+ /* */
         } catch (error) {
-            console.error("Falha ao salvar os dados no IndexedDB:", error); /* */
-            alert("Ocorreu um erro crítico ao tentar salvar os dados."); /* */
+            console.error("Falha ao salvar os dados no IndexedDB:", error);
+ /* */
+            alert("Ocorreu um erro crítico ao tentar salvar os dados.");
+ /* */
         }
     };
-
-    const ensureDbCompatibility = (targetDb) => {
-        if (!targetDb.clients) targetDb.clients = []; /* */
-        if (!targetDb.properties) targetDb.properties = []; /* */
-        if (!targetDb.events) targetDb.events = []; /* */
-        if (!targetDb.knowledgeBase) targetDb.knowledgeBase = []; /* */
-        if (!targetDb.settings) targetDb.settings = defaultDb.settings; /* */
-        if (!targetDb.funnelStages) targetDb.funnelStages = defaultDb.funnelStages; /* */
-        if (!targetDb.amenities) targetDb.amenities = defaultDb.amenities; /* */
-        if (!targetDb.usefulLinks) targetDb.usefulLinks = []; /* */
-        if (!targetDb.contracts) targetDb.contracts = []; /* */
-        if (!targetDb.financialRecords) targetDb.financialRecords = []; /* */
-        if (!targetDb.performanceSnapshots) targetDb.performanceSnapshots = []; /* */
-        if (!targetDb.dutyReports) targetDb.dutyReports = []; /* */
-        targetDb.clients.forEach(c => { if (c.lastContact === undefined) c.lastContact = null; }); /* */
+ const ensureDbCompatibility = (targetDb) => {
+        if (!targetDb.clients) targetDb.clients = [];
+ /* */
+        if (!targetDb.properties) targetDb.properties = [];
+ /* */
+        if (!targetDb.events) targetDb.events = [];
+ /* */
+        if (!targetDb.knowledgeBase) targetDb.knowledgeBase = [];
+ /* */
+        if (!targetDb.settings) targetDb.settings = defaultDb.settings;
+ /* */
+        if (!targetDb.funnelStages) targetDb.funnelStages = defaultDb.funnelStages;
+ /* */
+        if (!targetDb.amenities) targetDb.amenities = defaultDb.amenities;
+ /* */
+        if (!targetDb.usefulLinks) targetDb.usefulLinks = [];
+ /* */
+        if (!targetDb.contracts) targetDb.contracts = [];
+ /* */
+        if (!targetDb.financialRecords) targetDb.financialRecords = [];
+ /* */
+        if (!targetDb.performanceSnapshots) targetDb.performanceSnapshots = [];
+ /* */
+        if (!targetDb.dutyReports) targetDb.dutyReports = [];
+ /* */
+        targetDb.clients.forEach(c => { if (c.lastContact === undefined) c.lastContact = null; });
+ /* */
         targetDb.properties.forEach(p => {  /* */
             if (p.locationLink === undefined) p.locationLink = null; /* */
             if (p.videoLink === undefined) p.videoLink = null; /* */
             if (p.images === undefined) p.images = []; 
             if (p.mainImageIndex === undefined) p.mainImageIndex = -1; 
-            if (p.amenities === undefined) p.amenities = []; 
+        
+     if (p.amenities === undefined) p.amenities = []; 
         });
-        targetDb.events.forEach(e => { if (e.completed === undefined) e.completed = false; }); /* */
-        targetDb.knowledgeBase.forEach(n => { if (n.images === undefined) n.images = []; if(n.videos === undefined) n.videos = []; }); 
-        targetDb.financialRecords?.forEach(record => {
+ targetDb.events.forEach(e => { if (e.completed === undefined) e.completed = false; });
+ /* */
+        targetDb.knowledgeBase.forEach(n => { if (n.images === undefined) n.images = []; if(n.videos === undefined) n.videos = []; });
+ targetDb.financialRecords?.forEach(record => {
              if (!record.payments) { record.payments = generatePaymentsArray(record); }
         });
-    };
+ };
 
     const loadData = async () => { /* */
-        const storedData = await dexieDb.dataStore.get(1); /* */
+        const storedData = await dexieDb.dataStore.get(1);
+ /* */
         if (storedData && storedData.data) { /* */
-            console.log("Dados carregados do IndexedDB."); /* */
-            db = storedData.data; /* */
+            console.log("Dados carregados do IndexedDB.");
+ /* */
+            db = storedData.data;
+ /* */
             ensureDbCompatibility(db);
-        } else {
-            console.log("Nenhum dado encontrado ou formato inválido. Inicializando com o padrão."); /* */
-            db = JSON.parse(JSON.stringify(defaultDb)); /* */
-            await saveData(); /* */
+ } else {
+            console.log("Nenhum dado encontrado ou formato inválido. Inicializando com o padrão.");
+ /* */
+            db = JSON.parse(JSON.stringify(defaultDb));
+ /* */
+            await saveData();
+ /* */
         }
     };
-
-    // ==========================================
+ // ==========================================
     // FUNÇÕES UTILITÁRIAS
     // ==========================================
-    const formatCurrency = (value) => value ? Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'R$ 0,00'; /* */
+    const formatCurrency = (value) => value ?
+ Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'R$ 0,00';
+ /* */
     const formatDate = (dateString) => { /* */
-        if (!dateString) return ''; /* */
-        try { return new Date(dateString + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }); } /* */
-        catch (e) { return 'Data inválida'; } /* */
+        if (!dateString) return '';
+ /* */
+        try { return new Date(dateString + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+ } /* */
+        catch (e) { return 'Data inválida';
+ } /* */
     };
     const getEmbedUrl = (url) => { /* */
-        if (!url) return null; let videoId; /* */
-        if (url.includes('youtube.com/watch?v=')) { videoId = url.split('v=')[1].split('&')[0]; return `https://www.youtube.com/embed/${videoId}`; } /* */
-        if (url.includes('youtu.be/')) { videoId = url.split('youtu.be/')[1].split('?')[0]; return `https://www.youtube.com/embed/${videoId}`; } /* */
-        if (url.includes('vimeo.com/')) { videoId = url.split('vimeo.com/')[1].split('?')[0]; return `https://player.vimeo.com/video/${videoId}`; } /* */
+        if (!url) return null;
+ let videoId; /* */
+        if (url.includes('youtube.com/watch?v=')) { videoId = url.split('v=')[1].split('&')[0]; return `https://www.youtube.com/embed/${videoId}`;
+ } /* */
+        if (url.includes('youtu.be/')) { videoId = url.split('youtu.be/')[1].split('?')[0]; return `https://www.youtube.com/embed/${videoId}`;
+ } /* */
+        if (url.includes('vimeo.com/')) { videoId = url.split('vimeo.com/')[1].split('?')[0]; return `https://player.vimeo.com/video/${videoId}`;
+ } /* */
         return null; /* */
     };
-    const generatePaymentsArray = (record) => { /* */
-        const payments = []; const startDate = new Date(record.startDate + 'T00:00:00'); const installments = record.recurrence === 'monthly' ? 1200 : (record.totalInstallments || 1); /* */
-        for (let i = 0; i < installments; i++) { const paymentDate = new Date(startDate); paymentDate.setMonth(startDate.getMonth() + i); payments.push({ date: paymentDate.toISOString().slice(0, 10), status: 'pending' }); } return payments; /* */
-    }; /* */
+ const generatePaymentsArray = (record) => { /* */
+        const payments = [];
+ const startDate = new Date(record.startDate + 'T00:00:00'); const installments = record.recurrence === 'monthly' ? 1200 : (record.totalInstallments || 1);
+ /* */
+        for (let i = 0; i < installments; i++) { const paymentDate = new Date(startDate);
+ paymentDate.setMonth(startDate.getMonth() + i); payments.push({ date: paymentDate.toISOString().slice(0, 10), status: 'pending' }); } return payments; /* */
+    };
+ /* */
 
     // ==========================================
     // FUNÇÕES DE LAYOUT (Acadêmico)
@@ -991,32 +1410,42 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sidebarToggle')?.addEventListener('click', () => { /* */
         document.getElementById('sidebar').classList.toggle('open'); /* */
     });
-    const updateMainHeaderTitle = () => { /* */
-        const activePanel = document.querySelector('.content-panel.active'); if (!activePanel) return; const activeNav = document.querySelector(`.nav-link.active[data-panel="${activePanel.id.replace('panel-','')}"`); const titleText = activeNav ? activeNav.dataset.title : 'Dashboard'; if (headerTitle) { headerTitle.textContent = titleText; } /* */
+ const updateMainHeaderTitle = () => { /* */
+        const activePanel = document.querySelector('.content-panel.active');
+ if (!activePanel) return; const activeNav = document.querySelector(`.nav-link.active[data-panel="${activePanel.id.replace('panel-','')}"`); const titleText = activeNav ? activeNav.dataset.title : 'Dashboard';
+ if (headerTitle) { headerTitle.textContent = titleText; } /* */
     };
-
-    // ==========================================
+ // ==========================================
     // NAVEGAÇÃO E RENDERIZAÇÃO GERAL
     // ==========================================
-    const navButtons = document.querySelectorAll('.nav-link[data-panel]'); /* */
+    const navButtons = document.querySelectorAll('.nav-link[data-panel]');
+ /* */
     const panels = document.querySelectorAll('.content-panel'); /* */
     const switchPanel = (panelId, title) => { /* */
-        panels.forEach(p => p.classList.remove('active')); /* */
-        document.getElementById(`panel-${panelId}`)?.classList.add('active'); /* */
-        navButtons.forEach(b => b.classList.remove('active')); /* */
-        document.querySelector(`.nav-link[data-panel="${panelId}"]`)?.classList.add('active'); /* */
-        headerTitle.textContent = title; /* */
+        panels.forEach(p => p.classList.remove('active'));
+ /* */
+        document.getElementById(`panel-${panelId}`)?.classList.add('active');
+ /* */
+        navButtons.forEach(b => b.classList.remove('active'));
+ /* */
+        document.querySelector(`.nav-link[data-panel="${panelId}"]`)?.classList.add('active');
+ /* */
+        headerTitle.textContent = title;
+ /* */
         updateMainHeaderTitle(); 
         const sidebar = document.getElementById('sidebar'); 
-        if (sidebar.classList.contains('open')) { sidebar.classList.remove('open'); }
+        if (sidebar.classList.contains('open')) { sidebar.classList.remove('open');
+ }
         
         switch(panelId) { 
-            case 'dashboard': renderDashboard(); break; 
+            case 'dashboard': renderDashboard();
+ break; 
             case 'clients': renderClientsList(); break; 
             case 'properties': renderPropertiesList(); break; 
             case 'agenda': renderAgendaCalendar(); break; 
             case 'informacoes': renderKnowledgeBaseList(); break; 
-            case 'settings': renderSettings(); break; 
+            case 'settings': renderSettings();
+ break; 
         }
     };
     navButtons.forEach(button => { /* */
@@ -1024,79 +1453,113 @@ document.addEventListener('DOMContentLoaded', () => {
             switchPanel(button.dataset.panel, button.dataset.title); /* */
         });
     });
-    
-    // ==========================================
+ // ==========================================
     // MODAIS
     // ==========================================
     const openModal = (title, bodyHtml, entityType, id = null, showFooter = true) => { /* */
-        modalTitle.textContent = title; /* */
-        modalBody.innerHTML = bodyHtml; /* */
-        currentEditingId = id; /* */
-        currentEntityType = entityType; /* */
-        modalFooter.style.display = showFooter ? 'flex' : 'none'; /* */
-        modalContainer.classList.add('active'); /* */
+        modalTitle.textContent = title;
+ /* */
+        modalBody.innerHTML = bodyHtml;
+ /* */
+        currentEditingId = id;
+ /* */
+        currentEntityType = entityType;
+ /* */
+        modalFooter.style.display = showFooter ? 'flex' : 'none';
+ /* */
+        modalContainer.classList.add('active');
+ /* */
         modalBody.scrollTop = 0; /* */
     };
-    const closeModal = () => { /* */
-        modalContainer.classList.remove('active'); /* */
-        modalTitle.textContent = ''; /* */
-        modalBody.innerHTML = ''; /* */
-        currentEditingId = null; /* */
+ const closeModal = () => { /* */
+        modalContainer.classList.remove('active');
+ /* */
+        modalTitle.textContent = '';
+ /* */
+        modalBody.innerHTML = '';
+ /* */
+        currentEditingId = null;
+ /* */
         currentEntityType = ''; /* */
     };
-    document.getElementById('modal-close-btn').addEventListener('click', closeModal); /* */
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+ /* */
     document.getElementById('modal-cancel-btn').addEventListener('click', closeModal); /* */
     
     // ==========================================
     // MÓDULOS: DASHBOARD, CLIENTES, IMÓVEIS, AGENDA, NOTAS
     // ==========================================
     const renderDashboard = () => { /* */
-        document.getElementById('stat-total-clients').textContent = db.clients.length; /* */
-        document.getElementById('stat-total-properties').textContent = db.properties.length; /* */
-        const eventsList = document.getElementById('stat-upcoming-events'); /* */
-        eventsList.innerHTML = ''; /* */
-        const today = new Date(); /* */
-        today.setHours(0,0,0,0); /* */
+        document.getElementById('stat-total-clients').textContent = db.clients.length;
+ /* */
+        document.getElementById('stat-total-properties').textContent = db.properties.length;
+ /* */
+        const eventsList = document.getElementById('stat-upcoming-events');
+ /* */
+        eventsList.innerHTML = '';
+ /* */
+        const today = new Date();
+ /* */
+        today.setHours(0,0,0,0);
+ /* */
         const upcomingEvents = db.events.filter(e => { /* */
             if (!e.date) return false; const eventDate = new Date(e.date + 'T00:00:00'); /* */
             return eventDate >= today && !e.completed; /* */
-        }).sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0, 5); /* */
-        if (upcomingEvents.length === 0) { eventsList.innerHTML = '<li>Nenhum compromisso futuro.</li>'; return; } /* */
-        upcomingEvents.forEach(event => { eventsList.innerHTML += `<li>${formatDate(event.date)} ${event.time ? `<span class="event-time">${event.time}</span>` : ''} - ${event.title}</li>`; }); /* */
+        }).sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0, 5);
+ /* */
+        if (upcomingEvents.length === 0) { eventsList.innerHTML = '<li>Nenhum compromisso futuro.</li>'; return;
+ } /* */
+        upcomingEvents.forEach(event => { eventsList.innerHTML += `<li>${formatDate(event.date)} ${event.time ? `<span class="event-time">${event.time}</span>` : ''} - ${event.title}</li>`; });
+ /* */
     }; /* */
     const getClientFormHtml = (client = {}) => { /* */
-        const funnelOptions = db.funnelStages.map(stage => `<option value="${stage.id}" ${client.stageId == stage.id ? 'selected' : ''}>${stage.name}</option>`).join(''); /* */
-        return ` <div class="mb-3"><label for="client-name" class="form-label">Nome Completo</label><input type="text" id="client-name" class="form-control" value="${client.name || ''}"></div> <div class="mb-3"><label for="client-phone" class="form-label">Contato (WhatsApp)</label><input type="tel" id="client-phone" class="form-control" value="${client.phone || ''}"></div><div class="mb-3"><label for="client-email" class="form-label">E-mail</label><input type="email" id="client-email" class="form-control" value="${client.email || ''}"></div><div class="mb-3"><label for="client-income" class="form-label">Renda (R$)</label><input type="number" id="client-income" class="form-control" value="${client.income || ''}"></div><div class="mb-3"><label for="client-stageId" class="form-label">Etapa do Funil</label><select id="client-stageId" class="form-select">${funnelOptions}</select> </div><div class="mb-3"><label for="client-notes" class="form-label">Observações</label><textarea id="client-notes" class="form-control" rows="3">${client.notes || ''}</textarea></div>`; /* */
+        const funnelOptions = db.funnelStages.map(stage => `<option value="${stage.id}" ${client.stageId == stage.id ? 'selected' : ''}>${stage.name}</option>`).join('');
+ /* */
+        return ` <div class="mb-3"><label for="client-name" class="form-label">Nome Completo</label><input type="text" id="client-name" class="form-control" value="${client.name || ''}"></div> <div class="mb-3"><label for="client-phone" class="form-label">Contato (WhatsApp)</label><input type="tel" id="client-phone" class="form-control" value="${client.phone || ''}"></div><div class="mb-3"><label for="client-email" class="form-label">E-mail</label><input type="email" id="client-email" class="form-control" value="${client.email || ''}"></div><div class="mb-3"><label for="client-income" class="form-label">Renda (R$)</label><input type="number" id="client-income" class="form-control" value="${client.income || ''}"></div><div class="mb-3"><label for="client-stageId" class="form-label">Etapa do Funil</label><select id="client-stageId" class="form-select">${funnelOptions}</select> </div><div class="mb-3"><label for="client-notes" class="form-label">Observações</label><textarea id="client-notes" class="form-control" rows="3">${client.notes ||
+ ''}</textarea></div>`; /* */
     }; /* */
     const getClientDetailsHtml = (client) => { /* */
-        const stage = db.funnelStages.find(s => s.id === client.stageId); /* */
-        const property = db.properties.find(p => p.id == client.propertyId); /* */
-        const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum contato registrado'; /* */
-        return ` <div class="record-details"><h3>Dados Pessoais</h3><p><strong>Nome:</strong> ${client.name || 'Não informado'}</p><p><strong>Contato:</strong> ${client.phone ? `<a href="https://wa.me/${client.phone.replace(/\D/g, '')}">${client.phone}</a>` : 'Não informado'}</p><p><strong>Email:</strong> ${client.email || 'Não informado'}</p><p><strong>CPF:</strong> ${client.cpf || 'Não informado'}</p><p><strong>Nascimento:</strong> ${formatDate(client.birthdate)}</p><p><strong>Último Contato:</strong> ${lastContactStr}</p> <h3>Dados de Interesse</h3><p><strong>Renda:</strong> ${formatCurrency(client.income)}</p> <p><strong>Origem:</strong> ${client.leadSource || 'Não informada'}</p><p><strong>Imóvel de Interesse:</strong> ${property ? property.name : 'Não selecionado'}</p><p><strong>Etapa do Funil:</strong> ${stage ? stage.name : 'Não definida'}</p> <h3>Observações</h3><p>${client.notes ? client.notes.replace(/\n/g, '<br>') : 'Nenhuma observação.'}</p></div>`; /* */
+        const stage = db.funnelStages.find(s => s.id === client.stageId);
+ /* */
+        const property = db.properties.find(p => p.id == client.propertyId);
+ /* */
+        const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum contato registrado';
+ /* */
+        return ` <div class="record-details"><h3>Dados Pessoais</h3><p><strong>Nome:</strong> ${client.name || 'Não informado'}</p><p><strong>Contato:</strong> ${client.phone ?
+ `<a href="https://wa.me/${client.phone.replace(/\D/g, '')}">${client.phone}</a>` : 'Não informado'}</p><p><strong>Email:</strong> ${client.email || 'Não informado'}</p><p><strong>CPF:</strong> ${client.cpf ||
+ 'Não informado'}</p><p><strong>Nascimento:</strong> ${formatDate(client.birthdate)}</p><p><strong>Último Contato:</strong> ${lastContactStr}</p> <h3>Dados de Interesse</h3><p><strong>Renda:</strong> ${formatCurrency(client.income)}</p> <p><strong>Origem:</strong> ${client.leadSource || 'Não informada'}</p><p><strong>Imóvel de Interesse:</strong> ${property ?
+ property.name : 'Não selecionado'}</p><p><strong>Etapa do Funil:</strong> ${stage ? stage.name : 'Não definida'}</p> <h3>Observações</h3><p>${client.notes ? client.notes.replace(/\n/g, '<br>') : 'Nenhuma observação.'}</p></div>`;
+ /* */
     }; /* */
-    addButtons['clients'].addEventListener('click', () => { openModal('Cadastrar Novo Cliente', getClientFormHtml(), 'client'); }); /* */
+    addButtons['clients'].addEventListener('click', () => { openModal('Cadastrar Novo Cliente', getClientFormHtml(), 'client'); });
+ /* */
     
     // ** FUNÇÃO RENDERCLIENTSLIST MODIFICADA **
     const renderClientsList = (filter = '') => { 
-        const container = document.getElementById('clients-list-container'); container.innerHTML = ''; 
-        const filteredClients = db.clients.filter(c => (c.name || '').toLowerCase().includes(filter.toLowerCase()) || (c.phone || '').includes(filter)).sort((a,b) => (a.name || '').localeCompare(b.name || '')); 
-        if (filteredClients.length === 0) { container.innerHTML = '<p>Nenhum cliente encontrado.</p>'; return; } 
+        const container = document.getElementById('clients-list-container');
+ container.innerHTML = ''; 
+        const filteredClients = db.clients.filter(c => (c.name || '').toLowerCase().includes(filter.toLowerCase()) || (c.phone || '').includes(filter)).sort((a,b) => (a.name || '').localeCompare(b.name || ''));
+ if (filteredClients.length === 0) { container.innerHTML = '<p>Nenhum cliente encontrado.</p>'; return;
+ } 
         filteredClients.forEach(client => { 
             const lastContactStr = client.lastContact ? formatDate(client.lastContact) : 'Nenhum'; 
             container.innerHTML += `
                 <div class="list-item"> 
                     <div class="list-item-content">
-                        <h4>${client.name}</h4>
+               
+         <h4>${client.name}</h4>
                         <p>${client.phone || 'Sem contato'} | Últ. Contato: ${lastContactStr}</p>
                     </div> 
                     <div class="list-item-actions">
-                        <button title="WhatsApp" class="whatsapp-btn" data-id="${client.id}"><i class="fab fa-whatsapp"></i></button> 
+                  
+       <button title="WhatsApp" class="whatsapp-btn" data-id="${client.id}"><i class="fab fa-whatsapp"></i></button> 
                         <button title="Visualizar" class="view-btn" data-id="${client.id}"><i class="fas fa-eye"></i></button>
                         <button title="Editar" class="edit-btn" data-id="${client.id}"><i class="fas fa-edit"></i></button>
                         <button title="Excluir" class="delete-btn" data-id="${client.id}"><i class="fas fa-trash"></i></button>
+ 
                     </div>
-                </div>`; 
-        }); 
+                </div>`;
+ }); 
     }; 
     
     document.getElementById('client-search').addEventListener('input', (e) => renderClientsList(e.target.value)); /* */
@@ -1108,7 +1571,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = button.dataset.id; 
         const isWhatsapp = button.classList.contains('whatsapp-btn'); // Novo
         const isView = button.classList.contains('view-btn'); 
-        const isEdit = button.classList.contains('edit-btn'); 
+        const isEdit = 
+ button.classList.contains('edit-btn'); 
         const isDelete = button.classList.contains('delete-btn'); 
         const client = db.clients.find(c => c.id == id); 
         if (!client) return; 
@@ -1116,158 +1580,400 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isWhatsapp) { // Novo Bloco
             const phone = (client.phone || '').replace(/\D/g, '');
             if (phone) {
-                const url = `https://wa.me/${phone}`;
+               
+  const url = `https://wa.me/${phone}`;
                 window.open(url, '_blank');
                 // Atualiza último contato
                 client.lastContact = new Date().toISOString().slice(0, 10);
                 saveData();
-                renderClientsList(document.getElementById('client-search').value); // Re-renderiza a lista
+ renderClientsList(document.getElementById('client-search').value); // Re-renderiza a lista
             } else {
                 alert('Este cliente não possui um número de telefone cadastrado.');
-            }
+ }
         } else if (isView) { 
-            openModal(`Ficha: ${client.name.split(' ')[0]}`, getClientDetailsHtml(client), 'view', null, false); 
-        } else if (isEdit) { 
-            openModal('Editar Cliente', getClientFormHtml(client), 'client', id); 
-        } else if (isDelete) { 
+            openModal(`Ficha: ${client.name.split(' ')[0]}`, getClientDetailsHtml(client), 'view', null, false);
+ } else if (isEdit) { 
+            openModal('Editar Cliente', getClientFormHtml(client), 'client', id);
+ } else if (isDelete) { 
             if (confirm(`Deseja realmente excluir o cliente ${client.name}?`)) { 
-                db.clients = db.clients.filter(c => c.id != id); 
-                saveData(); 
+                db.clients = db.clients.filter(c => c.id != id);
+ saveData(); 
                 renderClientsList(document.getElementById('client-search').value); 
             } 
         } 
-    }); 
-    
-    const handleShareProperty = (prop) => { /* */
-        const title = prop.name; let text = `*${prop.name}*\n\n`; text += `*Localização:* ${prop.location || 'Não informado'}\n`; text += `*Valor:* ${formatCurrency(prop.listPrice)}\n\n`; let description = prop.description || 'Nenhuma descrição.'; if (description.length > 200) { description = description.substring(0, 200) + '...'; } text += `${description}\n\n`; if (prop.locationLink) { text += `*Veja no mapa:* ${prop.locationLink}\n`; } if (prop.videoLink) { text += `*Veja o vídeo:* ${prop.videoLink}\n`; } /* */
-        if (navigator.share) { navigator.share({ title: title, text: text, }).then(() => { console.log('Imóvel compartilhado com sucesso.'); }).catch((error) => { console.error('Erro ao compartilhar:', error); }); } /* */
-        else { navigator.clipboard.writeText(text).then(() => { alert('API de compartilhamento não disponível. A ficha do imóvel foi copiada para a área de transferência.'); }).catch(err => { alert('Falha ao copiar ficha.'); }); } /* */
+    });
+ const handleShareProperty = (prop) => { /* */
+        const title = prop.name;
+ let text = `*${prop.name}*\n\n`; text += `*Localização:* ${prop.location || 'Não informado'}\n`; text += `*Valor:* ${formatCurrency(prop.listPrice)}\n\n`; let description = prop.description ||
+ 'Nenhuma descrição.'; if (description.length > 200) { description = description.substring(0, 200) + '...'; } text += `${description}\n\n`;
+ if (prop.locationLink) { text += `*Veja no mapa:* ${prop.locationLink}\n`; } if (prop.videoLink) { text += `*Veja o vídeo:* ${prop.videoLink}\n`;
+ } /* */
+        if (navigator.share) { navigator.share({ title: title, text: text, }).then(() => { console.log('Imóvel compartilhado com sucesso.'); }).catch((error) => { console.error('Erro ao compartilhar:', error); });
+ } /* */
+        else { navigator.clipboard.writeText(text).then(() => { alert('API de compartilhamento não disponível. A ficha do imóvel foi copiada para a área de transferência.'); }).catch(err => { alert('Falha ao copiar ficha.'); });
+ } /* */
     }; /* */
     const getPropertyFormHtml = (prop = {}) => { /* */
-        return ` <div class="mb-3"><label for="prop-name" class="form-label">Nome do Imóvel/Empreendimento</label><input type="text" id="prop-name" class="form-control" value="${prop.name || ''}"></div><div class="mb-3"><label for="prop-location" class="form-label">Localização</label><input type="text" id="prop-location" class="form-control" value="${prop.location || ''}"></div> <div class="mb-3"><label for="prop-list-price" class="form-label">Valor de Tabela (R$)</label><input type="number" id="prop-list-price" class="form-control" value="${prop.listPrice || ''}"></div> <div class="mb-3"><label for="prop-delivery-date" class="form-label">Data de Entrega</label><input type="date" id="prop-delivery-date" class="form-control" value="${prop.deliveryDate || ''}"></div><div class="mb-3"><label for="prop-location-link" class="form-label">Link da Localização (Google Maps)</label><input type="url" id="prop-location-link" class="form-control" value="${prop.locationLink || ''}" placeholder="https://maps.app.goo.gl/..."></div><div class="mb-3"><label for="prop-video-link" class="form-label">Link do Vídeo (Youtube, Vimeo)</label><input type="url" id="prop-video-link" class="form-control" value="${prop.videoLink || ''}" placeholder="https://www.youtube.com/watch?v=..."></div><div class="mb-3"><label for="prop-description" class="form-label">Descrição Textual</label><textarea id="prop-description" class="form-control" rows="3">${prop.description || ''}</textarea></div> `; /* */
+        return ` <div class="mb-3"><label for="prop-name" class="form-label">Nome do Imóvel/Empreendimento</label><input type="text" id="prop-name" class="form-control" value="${prop.name || ''}"></div><div class="mb-3"><label for="prop-location" class="form-label">Localização</label><input type="text" id="prop-location" class="form-control" value="${prop.location || ''}"></div> <div class="mb-3"><label for="prop-list-price" class="form-label">Valor de Tabela (R$)</label><input type="number" id="prop-list-price" class="form-control" value="${prop.listPrice || ''}"></div> <div class="mb-3"><label for="prop-delivery-date" class="form-label">Data de Entrega</label><input type="date" id="prop-delivery-date" class="form-control" value="${prop.deliveryDate || ''}"></div><div class="mb-3"><label for="prop-location-link" class="form-label">Link da Localização (Google Maps)</label><input type="url" id="prop-location-link" class="form-control" value="${prop.locationLink ||
+ ''}" placeholder="https://maps.app.goo.gl/..."></div><div class="mb-3"><label for="prop-video-link" class="form-label">Link do Vídeo (Youtube, Vimeo)</label><input type="url" id="prop-video-link" class="form-control" value="${prop.videoLink ||
+ ''}" placeholder="https://www.youtube.com/watch?v=..."></div><div class="mb-3"><label for="prop-description" class="form-label">Descrição Textual</label><textarea id="prop-description" class="form-control" rows="3">${prop.description || ''}</textarea></div> `; /* */
     }; /* */
     const getPropertyDetailsHtml = (prop) => { /* */
         const hasImages = prop.images && prop.images.length > 0; const videoEmbedUrl = getEmbedUrl(prop.videoLink); /* */
         const amenitiesHtml = (prop.amenities && prop.amenities.length > 0) ? `<ul>${prop.amenities.map(name => `<li>${name}</li>`).join('')}</ul>` : '<p>Nenhum diferencial cadastrado.</p>'; /* */
-        return ` <div class="record-details"> <h3>${prop.name}</h3><p><strong>Localização:</strong> ${prop.location || 'Não informada'}</p> ${prop.locationLink ? `<p><strong>Link do Mapa:</strong> <a href="${prop.locationLink}" target="_blank">Abrir no Mapa</a></p>` : ''} <p><strong>Valor:</strong> ${formatCurrency(prop.listPrice)}</p><p><strong>Entrega:</strong> ${formatDate(prop.deliveryDate)}</p> ${hasImages ? `<p><a href="#" class="view-gallery-link" data-id="${prop.id}"><strong><i class="fas fa-camera"></i> Ver Galeria de Fotos (${prop.images.length})</strong></a></p>` : '<p><i class="fas fa-camera-slash"></i> Sem fotos</p>'} <h3>Descrição</h3><p>${prop.description ? prop.description.replace(/\n/g, '<br>') : 'Nenhuma descrição.'}</p> <h3>Diferenciais</h3> ${amenitiesHtml} ${videoEmbedUrl ? `<h3>Vídeo</h3><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin-top: 1rem; border-radius: 8px;"><iframe src="${videoEmbedUrl}" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>` : ''} </div>`; /* */
+        return ` <div class="record-details"> <h3>${prop.name}</h3><p><strong>Localização:</strong> ${prop.location || 'Não informada'}</p> ${prop.locationLink ? `<p><strong>Link do Mapa:</strong> <a href="${prop.locationLink}" 
+ target="_blank">Abrir no Mapa</a></p>` : ''} <p><strong>Valor:</strong> ${formatCurrency(prop.listPrice)}</p><p><strong>Entrega:</strong> ${formatDate(prop.deliveryDate)}</p> ${hasImages ?
+ `<p><a href="#" class="view-gallery-link" data-id="${prop.id}"><strong><i class="fas fa-camera"></i> Ver Galeria de Fotos (${prop.images.length})</strong></a></p>` : '<p><i class="fas fa-camera-slash"></i> Sem fotos</p>'} <h3>Descrição</h3><p>${prop.description ?
+ prop.description.replace(/\n/g, '<br>') : 'Nenhuma descrição.'}</p> <h3>Diferenciais</h3> ${amenitiesHtml} ${videoEmbedUrl ? `<h3>Vídeo</h3><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin-top: 1rem; border-radius: 8px;"><iframe src="${videoEmbedUrl}" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>` : ''} </div>`;
+ /* */
     }; /* */
-    addButtons['properties'].addEventListener('click', () => { openModal('Cadastrar Novo Imóvel', getPropertyFormHtml(), 'property'); }); /* */
+    addButtons['properties'].addEventListener('click', () => { openModal('Cadastrar Novo Imóvel', getPropertyFormHtml(), 'property'); });
+ /* */
     const renderPropertiesList = (filter = '') => { /* */
-        const container = document.getElementById('properties-list-container'); container.innerHTML = ''; /* */
-        const filtered = db.properties.filter(p => (p.name || '').toLowerCase().includes(filter.toLowerCase()) || (p.location || '').toLowerCase().includes(filter.toLowerCase())).sort((a,b) => (a.name || '').localeCompare(b.name || '')); /* */
-        if (filtered.length === 0) { container.innerHTML = '<p>Nenhum imóvel encontrado.</p>'; return; } /* */
-        filtered.forEach(prop => { const hasImages = prop.images && prop.images.length > 0; container.innerHTML += `<div class="list-item"> <div class="list-item-content"><h4>${prop.name}</h4><p>${prop.location || 'Sem localização'} | ${formatCurrency(prop.listPrice)}</p></div> <div class="list-item-actions"> ${hasImages ? `<button title="Fotos" class="gallery-btn" data-id="${prop.id}"><i class="fas fa-camera"></i></button>` : ''}<button title="Compartilhar" class="share-btn" data-id="${prop.id}"><i class="fas fa-share-alt"></i></button> <button title="Visualizar" class="view-btn" data-id="${prop.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${prop.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${prop.id}"><i class="fas fa-trash"></i></button> </div></div>`; }); /* */
+        const container = document.getElementById('properties-list-container');
+ container.innerHTML = ''; /* */
+        const filtered = db.properties.filter(p => (p.name || '').toLowerCase().includes(filter.toLowerCase()) || (p.location || '').toLowerCase().includes(filter.toLowerCase())).sort((a,b) => (a.name || '').localeCompare(b.name || ''));
+ /* */
+        if (filtered.length === 0) { container.innerHTML = '<p>Nenhum imóvel encontrado.</p>'; return;
+ } /* */
+        filtered.forEach(prop => { const hasImages = prop.images && prop.images.length > 0; container.innerHTML += `<div class="list-item"> <div class="list-item-content"><h4>${prop.name}</h4><p>${prop.location || 'Sem localização'} | ${formatCurrency(prop.listPrice)}</p></div> <div class="list-item-actions"> ${hasImages ? `<button title="Fotos" class="gallery-btn" data-id="${prop.id}"><i class="fas fa-camera"></i></button>` : ''}<button title="Compartilhar" class="share-btn" data-id="${prop.id}"><i class="fas fa-share-alt"></i></button> <button title="Visualizar" class="view-btn" data-id="${prop.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${prop.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${prop.id}"><i class="fas fa-trash"></i></button> </div></div>`; });
+ /* */
     }; /* */
-    document.getElementById('property-search').addEventListener('input', e => renderPropertiesList(e.target.value)); /* */
+    document.getElementById('property-search').addEventListener('input', e => renderPropertiesList(e.target.value));
+ /* */
     document.getElementById('properties-list-container').addEventListener('click', e => { /* */
         const button = e.target.closest('button'); if (!button) return; const id = button.dataset.id; const isGallery = button.classList.contains('gallery-btn'); const isShare = button.classList.contains('share-btn'); const isView = button.classList.contains('view-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); const prop = db.properties.find(p => p.id == id); if (!prop) return; /* */
         if (isGallery) { openImageGallery({ entity: 'property', id: id }); } /* */
         else if (isShare) { handleShareProperty(prop); } /* */
-        else if (isView) { openModal(`Ficha: ${prop.name}`, getPropertyDetailsHtml(prop), 'view', null, false); } /* */
+     
+    else if (isView) { openModal(`Ficha: ${prop.name}`, getPropertyDetailsHtml(prop), 'view', null, false); } /* */
         else if (isEdit) { openModal('Editar Imóvel', getPropertyFormHtml(prop), 'property', id); } /* */
-        else if (isDelete) { if (confirm(`Deseja realmente excluir o imóvel ${prop.name}?`)) { db.properties = db.properties.filter(p => p.id != id); saveData(); renderPropertiesList(document.getElementById('property-search').value); } } /* */
-    }); /* */
+        else if (isDelete) { if (confirm(`Deseja realmente excluir o imóvel ${prop.name}?`)) { db.properties = db.properties.filter(p => p.id != id);
+ saveData(); renderPropertiesList(document.getElementById('property-search').value); } } /* */
+    });
+ /* */
     modalBody.addEventListener('click', e => { /* */
         const link = e.target.closest('.view-gallery-link'); if (link) { e.preventDefault(); const id = link.dataset.id; openImageGallery({ entity: 'property', id: id }); } /* */
-    }); /* */
+    });
+ /* */
 
     const getEventFormHtml = (event = {}, date = '') => { /* */
-        const today = new Date().toISOString().slice(0, 10); /* */
-        return ` <div class="mb-3"><label for="event-title" class="form-label">Título</label><input type="text" id="event-title" class="form-control" value="${event.title || ''}"></div><div class="mb-3"><label for="event-date" class="form-label">Data</label><input type="date" id="event-date" class="form-control" value="${event.date || date || today}"></div><div class="mb-3"><label for="event-time" class="form-label">Hora</label><input type="time" id="event-time" class="form-control" value="${event.time || ''}"></div><div class="mb-3"><label for="event-description" class="form-label">Descrição</label><textarea id="event-description" class="form-control" rows="3">${event.description || ''}</textarea></div>`; /* */
+        const today = new Date().toISOString().slice(0, 10);
+ /* */
+        return ` <div class="mb-3"><label for="event-title" class="form-label">Título</label><input type="text" id="event-title" class="form-control" value="${event.title || ''}"></div><div class="mb-3"><label for="event-date" class="form-label">Data</label><input type="date" id="event-date" class="form-control" value="${event.date || date || today}"></div><div class="mb-3"><label for="event-time" class="form-label">Hora</label><input type="time" id="event-time" class="form-control" value="${event.time || ''}"></div><div class="mb-3"><label for="event-description" class="form-label">Descrição</label><textarea id="event-description" class="form-control" rows="3">${event.description ||
+ ''}</textarea></div>`; /* */
     }; /* */
-    addButtons['agenda'].addEventListener('click', () => { openModal('Novo Compromisso', getEventFormHtml(), 'event'); }); /* */
+    addButtons['agenda'].addEventListener('click', () => { openModal('Novo Compromisso', getEventFormHtml(), 'event'); });
+ /* */
     const getEventsForDate = (targetDate) => { /* */
-        const targetDateStr = targetDate.toISOString().slice(0, 10); /* */
-        return db.events.filter(event => event.date === targetDateStr); /* */
+        const targetDateStr = targetDate.toISOString().slice(0, 10);
+ /* */
+        return db.events.filter(event => event.date === targetDateStr);
+ /* */
     };
     const renderAgendaCalendar = () => { /* */
-        const grid = document.getElementById('calendar-grid'); const monthYearEl = document.getElementById('month-year'); const weekdaysEl = document.getElementById('weekdays'); /* */
-        grid.innerHTML = ''; weekdaysEl.innerHTML = ''; /* */
-        const month = currentCalendarDate.getMonth(); const year = currentCalendarDate.getFullYear(); /* */
-        monthYearEl.textContent = new Date(year, month).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }); /* */
-        ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].forEach(day => weekdaysEl.innerHTML += `<div>${day}</div>`); /* */
-        const firstDayOfMonth = new Date(year, month, 1).getDay(); const daysInMonth = new Date(year, month + 1, 0).getDate(); const today = new Date(); /* */
-        for (let i = 0; i < firstDayOfMonth; i++) { grid.innerHTML += `<div class="calendar-day other-month"></div>`; } /* */
+        const grid = document.getElementById('calendar-grid');
+ const monthYearEl = document.getElementById('month-year'); const weekdaysEl = document.getElementById('weekdays'); /* */
+        grid.innerHTML = '';
+ weekdaysEl.innerHTML = ''; /* */
+        const month = currentCalendarDate.getMonth(); const year = currentCalendarDate.getFullYear();
+ /* */
+        monthYearEl.textContent = new Date(year, month).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+ /* */
+        ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].forEach(day => weekdaysEl.innerHTML += `<div>${day}</div>`);
+ /* */
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+ const daysInMonth = new Date(year, month + 1, 0).getDate(); const today = new Date();
+ /* */
+        for (let i = 0; i < firstDayOfMonth; i++) { grid.innerHTML += `<div class="calendar-day other-month"></div>`;
+ } /* */
         for (let day = 1; day <= daysInMonth; day++) { /* */
-            const date = new Date(year, month, day); const dateString = date.toISOString().slice(0, 10); const isToday = date.toDateString() === today.toDateString(); /* */
-            const dayDiv = document.createElement('div'); dayDiv.className = 'calendar-day'; if(isToday) dayDiv.classList.add('today'); dayDiv.dataset.date = dateString; /* */
-            dayDiv.innerHTML = `<div class="day-number">${day}</div>`; /* */
-            const eventsOnThisDay = getEventsForDate(date); const eventCount = eventsOnThisDay.length; /* */
-            if (eventCount > 0) { const countSpan = document.createElement('span'); countSpan.className = 'event-count'; if (eventCount <= 2) { countSpan.textContent = eventCount === 1 ? '①' : '②'; } else { countSpan.textContent = '③+'; countSpan.classList.add('many'); } dayDiv.appendChild(countSpan); } /* */
-            grid.appendChild(dayDiv); /* */
+            const date = new Date(year, month, day);
+ const dateString = date.toISOString().slice(0, 10); const isToday = date.toDateString() === today.toDateString();
+ /* */
+            const dayDiv = document.createElement('div'); dayDiv.className = 'calendar-day';
+ if(isToday) dayDiv.classList.add('today'); dayDiv.dataset.date = dateString; /* */
+            dayDiv.innerHTML = `<div class="day-number">${day}</div>`;
+ /* */
+            const eventsOnThisDay = getEventsForDate(date);
+ const eventCount = eventsOnThisDay.length; /* */
+            if (eventCount > 0) { const countSpan = document.createElement('span');
+ countSpan.className = 'event-count'; if (eventCount <= 2) { countSpan.textContent = eventCount === 1 ? '①' : '②';
+ } else { countSpan.textContent = '③+'; countSpan.classList.add('many'); } dayDiv.appendChild(countSpan); } /* */
+            grid.appendChild(dayDiv);
+ /* */
         } /* */
-        const totalCells = firstDayOfMonth + daysInMonth; const remainingCells = (7 - (totalCells % 7)) % 7; /* */
-        for (let i = 0; i < remainingCells; i++) { grid.innerHTML += `<div class="calendar-day other-month"></div>`; } /* */
+        const totalCells = firstDayOfMonth + daysInMonth;
+ const remainingCells = (7 - (totalCells % 7)) % 7;
+ /* */
+        for (let i = 0; i < remainingCells; i++) { grid.innerHTML += `<div class="calendar-day other-month"></div>`;
+ } /* */
     }; /* */
-    document.getElementById('prev-month-btn').addEventListener('click', () => { currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1); renderAgendaCalendar(); }); /* */
-    document.getElementById('next-month-btn').addEventListener('click', () => { currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1); renderAgendaCalendar(); }); /* */
+    document.getElementById('prev-month-btn').addEventListener('click', () => { currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1); renderAgendaCalendar(); });
+ /* */
+    document.getElementById('next-month-btn').addEventListener('click', () => { currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1); renderAgendaCalendar(); });
+ /* */
     document.getElementById('calendar-grid').addEventListener('click', e => { /* */
         const dayElement = e.target.closest('.calendar-day'); if (!dayElement || dayElement.classList.contains('other-month')) return; const date = dayElement.dataset.date; const eventsOnDay = getEventsForDate(new Date(date + 'T00:00:00')); /* */
         if (eventsOnDay.length > 0) { openDayEventsModal(date, eventsOnDay); } else { openModal('Novo Compromisso', getEventFormHtml({}, date), 'event'); } /* */
-    }); /* */
+    });
+ /* */
     const openDayEventsModal = (date, events) => { /* */
-        let content = '<div class="day-events-list">'; content += '<h3>Compromissos</h3>'; events.sort((a,b) => (a.time || '').localeCompare(b.time || '')); if (events.length === 0) { content += '<p>Nenhum evento para este dia.</p>'; } /* */
-        events.forEach(event => { const client = db.clients.find(c => c.id == event.clientId); const completeButtonHtml = event.completed ? `<button title="Reabrir" class="reopen-btn" data-id="${event.id}"><i class="fas fa-undo"></i></button>` : `<button title="Concluir" class="complete-btn" data-id="${event.id}"><i class="fas fa-check"></i></button>`; content += `<div class="event-item ${event.completed ? 'completed' : ''}" data-id="${event.id}"><h4>${event.title} ${event.time ? `(${event.time})` : ''}</h4><p>${event.description || 'Sem descrição.'}</p>${client ? `<p><strong>Cliente:</strong> ${client.name}</p>` : ''} <div class="list-item-actions" style="justify-content: flex-end; margin-top: 10px;">${completeButtonHtml} <button title="Editar" class="edit-btn" data-id="${event.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${event.id}"><i class="fas fa-trash"></i></button></div> </div>`; }); /* */
-        content += '</div>'; openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false); /* */
+        let content = '<div class="day-events-list">';
+ content += '<h3>Compromissos</h3>'; events.sort((a,b) => (a.time || '').localeCompare(b.time || ''));
+ if (events.length === 0) { content += '<p>Nenhum evento para este dia.</p>';
+ } /* */
+        events.forEach(event => { const client = db.clients.find(c => c.id == event.clientId); const completeButtonHtml = event.completed ? `<button title="Reabrir" class="reopen-btn" data-id="${event.id}"><i class="fas fa-undo"></i></button>` : `<button title="Concluir" class="complete-btn" data-id="${event.id}"><i class="fas fa-check"></i></button>`; content += `<div class="event-item ${event.completed ? 'completed' : ''}" data-id="${event.id}"><h4>${event.title} ${event.time ? `(${event.time})` : ''}</h4><p>${event.description || 'Sem descrição.'}</p>${client ? `<p><strong>Cliente:</strong> ${client.name}</p>` : ''} <div class="list-item-actions" style="justify-content: flex-end; margin-top: 10px;">${completeButtonHtml} <button title="Editar" class="edit-btn" data-id="${event.id}"><i class="fas fa-edit"></i></button><button title="Excluir" class="delete-btn" data-id="${event.id}"><i class="fas fa-trash"></i></button></div> </div>`; });
+ /* */
+        content += '</div>'; openModal(`Eventos de ${formatDate(date)}`, content, 'day-view', null, false);
+ /* */
     }; /* */
     modalBody.addEventListener('click', e => { /* */
         if(currentEntityType !== 'day-view') return; const button = e.target.closest('button'); if (!button) return; const eventItem = button.closest('.event-item'); if(!eventItem) return; const id = eventItem.dataset.id; const event = db.events.find(ev => ev.id == id); if (!event) return; /* */
         const isComplete = button.classList.contains('complete-btn'); const isReopen = button.classList.contains('reopen-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); /* */
-        if (isComplete || isReopen) { event.completed = isComplete; saveData(); const date = new Date(event.date + 'T00:00:00'); const eventsOnDay = getEventsForDate(date); openDayEventsModal(event.date, eventsOnDay); } /* */
+        if (isComplete || isReopen) { event.completed = isComplete; saveData(); const 
+ date = new Date(event.date + 'T00:00:00'); const eventsOnDay = getEventsForDate(date); openDayEventsModal(event.date, eventsOnDay); } /* */
         else if (isEdit) { closeModal(); openModal('Editar Compromisso', getEventFormHtml(event), 'event', id); } /* */
-        else if (isDelete) { if (confirm('Deseja excluir este compromisso?')) { db.events = db.events.filter(ev => ev.id != id); saveData(); const date = new Date(event.date + 'T00:00:00'); const eventsOnDay = getEventsForDate(date); if (eventsOnDay.length > 0) { openDayEventsModal(event.date, eventsOnDay); } else { closeModal(); } renderAgendaCalendar(); } } /* */
-    }); /* */
+        else if (isDelete) { if (confirm('Deseja excluir este compromisso?')) { db.events = db.events.filter(ev => ev.id != id);
+ saveData(); const date = new Date(event.date + 'T00:00:00'); const eventsOnDay = getEventsForDate(date); if (eventsOnDay.length > 0) { openDayEventsModal(event.date, eventsOnDay);
+ } else { closeModal(); } renderAgendaCalendar(); } } /* */
+    });
+ /* */
 
     const handleShareNote = (info) => { /* */
-        if (navigator.share) { navigator.share({ title: info.title, text: info.content, }).then(() => { console.log('Nota compartilhada com sucesso.'); }).catch((error) => { console.error('Erro ao compartilhar:', error); }); } /* */
-        else { navigator.clipboard.writeText(`*${info.title}*\n\n${info.content}`).then(() => { alert('API de compartilhamento não disponível. A nota foi copiada para a área de transferência.'); }).catch(err => { alert('Falha ao copiar nota.'); }); } /* */
+        if (navigator.share) { navigator.share({ title: info.title, text: info.content, }).then(() => { console.log('Nota compartilhada com sucesso.'); }).catch((error) => { console.error('Erro ao compartilhar:', error); });
+ } /* */
+        else { navigator.clipboard.writeText(`*${info.title}*\n\n${info.content}`).then(() => { alert('API de compartilhamento não disponível. A nota foi copiada para a área de transferência.'); }).catch(err => { alert('Falha ao copiar nota.'); });
+ } /* */
     }; /* */
     const getKnowledgeBaseFormHtml = (info = {}) => { /* */
-        return ` <div class="mb-3"><label for="info-title" class="form-label">Título</label><input type="text" id="info-title" class="form-control" value="${info.title || ''}"> </div><div class="mb-3"><label for="info-content" class="form-label">Conteúdo</label><textarea id="info-content" class="form-control" rows="10">${info.content || ''}</textarea></div>`; /* */
+        return ` <div class="mb-3"><label for="info-title" class="form-label">Título</label><input type="text" id="info-title" class="form-control" value="${info.title || ''}"> </div><div class="mb-3"><label for="info-content" class="form-label">Conteúdo</label><textarea id="info-content" class="form-control" rows="10">${info.content ||
+ ''}</textarea></div>`; /* */
     }; /* */
-    addButtons['informacoes'].addEventListener('click', () => { openModal('Adicionar Nova Nota', getKnowledgeBaseFormHtml(), 'knowledgeBase'); }); /* */
+    addButtons['informacoes'].addEventListener('click', () => { openModal('Adicionar Nova Nota', getKnowledgeBaseFormHtml(), 'knowledgeBase'); });
+ /* */
     const renderKnowledgeBaseList = (filter = '') => { /* */
-        const container = document.getElementById('info-list-container'); container.innerHTML = ''; /* */
-        const lowerFilter = filter.toLowerCase(); const filteredInfo = db.knowledgeBase.filter(info => (info.title || '').toLowerCase().includes(lowerFilter) || (info.content || '').toLowerCase().includes(lowerFilter)).sort((a,b) => (a.title || '').localeCompare(b.title || '')); /* */
-        if (filteredInfo.length === 0) { container.innerHTML = '<p>Nenhuma nota encontrada.</p>'; return; } /* */
-        filteredInfo.forEach(info => { container.innerHTML += `<div class="list-item"><div class="list-item-content"> <h4>${info.title}</h4><p>${(info.content || '').substring(0, 80)}...</p></div><div class="list-item-actions"> <button title="Compartilhar" class="share-btn" data-id="${info.id}"><i class="fas fa-share-alt"></i></button><button title="Visualizar" class="view-btn" data-id="${info.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${info.id}"><i class="fas fa-edit"></i></button> <button title="Excluir" class="delete-btn" data-id="${info.id}"><i class="fas fa-trash"></i></button></div></div>`; }); /* */
+        const container = document.getElementById('info-list-container');
+ container.innerHTML = ''; /* */
+        const lowerFilter = filter.toLowerCase();
+ const filteredInfo = db.knowledgeBase.filter(info => (info.title || '').toLowerCase().includes(lowerFilter) || (info.content || '').toLowerCase().includes(lowerFilter)).sort((a,b) => (a.title || '').localeCompare(b.title || ''));
+ /* */
+        if (filteredInfo.length === 0) { container.innerHTML = '<p>Nenhuma nota encontrada.</p>'; return;
+ } /* */
+        filteredInfo.forEach(info => { container.innerHTML += `<div class="list-item"><div class="list-item-content"> <h4>${info.title}</h4><p>${(info.content || '').substring(0, 80)}...</p></div><div class="list-item-actions"> <button title="Compartilhar" class="share-btn" data-id="${info.id}"><i class="fas fa-share-alt"></i></button><button title="Visualizar" class="view-btn" data-id="${info.id}"><i class="fas fa-eye"></i></button><button title="Editar" class="edit-btn" data-id="${info.id}"><i class="fas fa-edit"></i></button> <button title="Excluir" class="delete-btn" data-id="${info.id}"><i class="fas fa-trash"></i></button></div></div>`; });
+ /* */
     }; /* */
-    document.getElementById('info-search').addEventListener('input', e => { renderKnowledgeBaseList(e.target.value); }); /* */
+    document.getElementById('info-search').addEventListener('input', e => { renderKnowledgeBaseList(e.target.value); });
+ /* */
     document.getElementById('info-list-container').addEventListener('click', e => { /* */
         const button = e.target.closest('button'); if (!button) return; const id = button.dataset.id; const isShare = button.classList.contains('share-btn'); const isView = button.classList.contains('view-btn'); const isEdit = button.classList.contains('edit-btn'); const isDelete = button.classList.contains('delete-btn'); const info = db.knowledgeBase.find(i => i.id == id); if (!info) return; /* */
         if (isShare) { handleShareNote(info); } /* */
-        else if (isView) { const viewHtml = `<div class="record-details"><p>${info.content ? info.content.replace(/\n/g, '<br>') : 'Nenhum conteúdo.'}</p> </div>`; openModal(info.title, viewHtml, 'view', null, false); } /* */
+        else if (isView) { const viewHtml = `<div class="record-details"><p>${info.content ? info.content.replace(/\n/g, '<br>') : 'Nenhum conteúdo.'}</p> </div>`; openModal(info.title, viewHtml, 'view', null, false); 
+ } /* */
         else if (isEdit) { openModal('Editar Nota', getKnowledgeBaseFormHtml(info), 'knowledgeBase', id); } /* */
-        else if (isDelete) { if (confirm('Deseja realmente excluir esta nota?')) { db.knowledgeBase = db.knowledgeBase.filter(i => i.id != id); saveData(); renderKnowledgeBaseList(document.getElementById('info-search').value); } } /* */
-    }); /* */
+        else if (isDelete) { if (confirm('Deseja realmente excluir esta nota?')) { db.knowledgeBase = db.knowledgeBase.filter(i => i.id != id);
+ saveData(); renderKnowledgeBaseList(document.getElementById('info-search').value); } } /* */
+    });
+ /* */
     
     // ==========================================
     // MÓDULO: CONFIGURAÇÕES
     // ==========================================
-    const renderSettings = () => {}; /* */
+    const renderSettings = () => {};
+ /* */
     document.getElementById('clear-system-btn').addEventListener('click', () => { /* */
         if (confirm('ATENÇÃO! Isso apagará TODOS os dados do sistema permanentemente. Deseja continuar?')) { dexieDb.delete().then(() => { alert("Banco de dados apagado com sucesso."); location.reload(); }).catch((err) => { console.error("Não foi possível apagar o banco de dados", err); alert("Ocorreu um erro ao tentar limpar o sistema."); }); } /* */
-    }); /* */
+    });
+ /* */
     document.getElementById('export-backup-btn').addEventListener('click', () => { /* */
         const dataStr = JSON.stringify(db, null, 2); const blob = new Blob([dataStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `backup_crm_v2_${new Date().toISOString().slice(0,10)}.json`; a.click(); URL.revokeObjectURL(url); /* */
-    }); /* */
-    document.getElementById('import-backup-btn').addEventListener('click', () => { document.getElementById('import-backup').click(); }); /* */
+    });
+ /* */
+
+	// NOVO: Listener para exportação compatível com MeuCRM4
+	document.getElementById('export-for-meucrm4-btn').addEventListener('click', () => {
+		// 1. Cria uma cópia profunda para não modificar o 'db' atual
+		const exportDb = JSON.parse(JSON.stringify(db));
+
+		// 2. Mapeia 'clients' para a estrutura do MeuCRM4 (adicionando campos nulos)
+		exportDb.clients = exportDb.clients.map(c => ({
+			id: c.id,
+			name: c.name,
+			phone: c.phone,
+			email: c.email,
+			cpf: null, // Campo não existe no crmmobile
+			birthdate: null, // Campo não existe no crmmobile
+			income: c.income,
+			propertyValue: 0, // Campo não existe no crmmobile
+			commission: null, // Campo não existe no crmmobile
+			stageId: c.stageId,
+			leadSource: null, // Campo não existe no crmmobile
+			propertyId: null, // Campo não existe no crmmobile
+			notes: c.notes,
+			lastContact: c.lastContact
+		}));
+
+		// 3. Mapeia 'properties' para a estrutura do MeuCRM4
+		exportDb.properties = exportDb.properties.map(p => ({
+			id: p.id,
+			name: p.name,
+			location: p.location,
+			listPrice: p.listPrice,
+			evalPrice: 0, // Campo não existe no crmmobile
+			deliveryDate: p.deliveryDate,
+			link: p.locationLink, // Mapeia locationLink -> link
+			videoLink: p.videoLink,
+			description: p.description,
+			images: p.images || [],
+			mainImageIndex: p.mainImageIndex || -1,
+			amenities: p.amenities || []
+			// O campo 'locationLink' original do crmmobile será ignorado pelo MeuCRM4
+		}));
+
+		// 4. Mapeia 'events' para a estrutura do MeuCRM4
+		exportDb.events = exportDb.events.map(e => ({
+			id: e.id,
+			title: e.title,
+			clientId: null, // Campo não existe no crmmobile
+			date: e.date,
+			time: e.time,
+			description: e.description,
+			recurrence: 'none', // Campo não existe no crmmobile
+			endDate: null, // Campo não existe no crmmobile
+			completed: e.completed
+		}));
+
+		// 5. Garante que as chaves de dados do MeuCRM4 existam
+		if (!exportDb.usefulLinks) exportDb.usefulLinks = [];
+		if (!exportDb.contracts) exportDb.contracts = [];
+		if (!exportDb.financialRecords) exportDb.financialRecords = [];
+		if (!exportDb.performanceSnapshots) exportDb.performanceSnapshots = [];
+		if (!exportDb.dutyReports) exportDb.dutyReports = [];
+		
+		// 6. Gera o arquivo de backup
+		const dataStr = JSON.stringify(exportDb, null, 2);
+		const blob = new Blob([dataStr], { type: 'application/json' });
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = `backup_crmmobile_para_meucrm4_${new Date().toISOString().slice(0,10)}.json`;
+		a.click();
+		URL.revokeObjectURL(url);
+	});
+
+    document.getElementById('import-backup-btn').addEventListener('click', () => { document.getElementById('import-backup').click(); });
+ /* */
     document.getElementById('import-backup').addEventListener('change', e => { /* */
         const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); /* */
-        reader.onload = (event) => { /* */
-            try { const importedDb = JSON.parse(event.target.result); /* */
-                if (!importedDb || typeof importedDb !== 'object' || !importedDb.settings || !Array.isArray(importedDb.clients)) { throw new Error("Formato de backup inválido."); }
-                if (confirm('Isso substituirá todos os dados atuais. Deseja continuar?')) { /* */
-                    db = importedDb; /* Substituição direta */
-                    ensureDbCompatibility(db); /* Garante compatibilidade */
-                    saveData().then(() => { alert('Backup importado com sucesso! O aplicativo será recarregado.'); location.reload(); /* */ }).catch(saveErr => { console.error("Erro ao salvar dados importados:", saveErr); alert('Erro ao salvar os dados importados.'); });
-                }
-            } catch (err) { console.error("Erro ao importar backup:", err); alert(`Erro ao ler o arquivo de backup: ${err.message}. Verifique se o arquivo é um JSON válido exportado pelo CRM.`); /* */ 
-            } finally { e.target.value = ''; }
-        };
-        reader.onerror = () => { alert('Erro ao tentar ler o arquivo selecionado.'); e.target.value = ''; };
+        
+		reader.onload = (event) => {
+			try {
+				const importedDb = JSON.parse(event.target.result);
+				
+				// Validação básica
+				if (!importedDb || typeof importedDb !== 'object' || !Array.isArray(importedDb.clients)) {
+					throw new Error("Formato de backup inválido. O arquivo não parece ser um backup do CRM.");
+				}
+
+				// Detecção: O MeuCRM4 tem 'evalPrice' em 'properties', o crmmobile não.
+				// O MeuCRM4 também tem 'cpf' em 'clients'.
+				const isMeuCRM4Backup = (importedDb.properties && importedDb.properties.length > 0 && importedDb.properties[0].evalPrice !== undefined) || 
+									  (importedDb.clients && importedDb.clients.length > 0 && importedDb.clients[0].cpf !== undefined);
+
+				if (confirm('Isso substituirá todos os dados atuais por este backup. Deseja continuar?')) {
+					
+					if (isMeuCRM4Backup) {
+						// MODO DE IMPORTAÇÃO: MEUCRM4 (Desktop)
+						console.log("Detectado backup do MeuCRM4. Iniciando mapeamento...");
+						
+						// 1. Começa com a estrutura padrão do crmmobile
+						const newDb = JSON.parse(JSON.stringify(defaultDb));
+						
+						// 2. Mapeia dados compatíveis
+						if (importedDb.settings) newDb.settings = importedDb.settings;
+						if (importedDb.funnelStages) newDb.funnelStages = importedDb.funnelStages;
+						if (importedDb.amenities) newDb.amenities = importedDb.amenities;
+						if (importedDb.knowledgeBase) newDb.knowledgeBase = importedDb.knowledgeBase;
+						
+						// 3. Mapeia Clientes (trazendo apenas campos compatíveis)
+						newDb.clients = importedDb.clients.map(c => ({
+							id: c.id,
+							name: c.name,
+							phone: c.phone,
+							email: c.email,
+							income: c.income,
+							stageId: c.stageId,
+							notes: c.notes,
+							lastContact: c.lastContact || null
+							// Campos do MeuCRM4 (cpf, birthdate, propertyId, etc) são ignorados
+						}));
+						
+						// 4. Mapeia Imóveis (mapeando 'link' para 'locationLink')
+						newDb.properties = importedDb.properties.map(p => ({
+							id: p.id,
+							name: p.name,
+							location: p.location,
+							listPrice: p.listPrice,
+							deliveryDate: p.deliveryDate,
+							locationLink: p.link, // Mapeamento principal!
+							videoLink: p.videoLink,
+							description: p.description,
+							images: p.images || [],
+							mainImageIndex: p.mainImageIndex || -1,
+							amenities: p.amenities || []
+							// Campo 'evalPrice' do MeuCRM4 é ignorado
+						}));
+
+						// 5. Mapeia Eventos (trazendo apenas campos compatíveis)
+						newDb.events = importedDb.events.map(e => ({
+							id: e.id,
+							title: e.title,
+							date: e.date,
+							time: e.time,
+							description: e.description,
+							completed: e.completed || false
+							// Campos do MeuCRM4 (clientId, recurrence, etc) são ignorados
+						}));
+
+						// 6. Mapeia chaves que são compatíveis 1-para-1 (mesmo que crmmobile não as use)
+						// Isso garante que um export futuro 'v2' mantenha os dados
+						if (importedDb.usefulLinks) newDb.usefulLinks = importedDb.usefulLinks;
+						if (importedDb.contracts) newDb.contracts = importedDb.contracts;
+						if (importedDb.financialRecords) newDb.financialRecords = importedDb.financialRecords;
+						if (importedDb.performanceSnapshots) newDb.performanceSnapshots = importedDb.performanceSnapshots;
+						if (importedDb.dutyReports) newDb.dutyReports = importedDb.dutyReports;
+						
+						db = newDb; // Substitui o DB pelo DB *mapeado*
+
+					} else {
+						// MODO DE IMPORTAÇÃO: CRMMOBILE (v2)
+						console.log("Detectado backup do CRMMobile (v2). Importação direta.");
+						db = importedDb; // Substituição direta
+						ensureDbCompatibility(db); // Garante compatibilidade
+					}
+					
+					// 7. Salva e recarrega
+					saveData().then(() => {
+						alert('Backup importado com sucesso! O aplicativo será recarregado.');
+						location.reload();
+					}).catch(saveErr => {
+						console.error("Erro ao salvar dados importados:", saveErr);
+						alert('Erro ao salvar os dados importados.');
+					});
+				}
+			} catch (err) {
+				console.error("Erro ao importar backup:", err);
+				alert(`Erro ao ler o arquivo de backup: ${err.message}. Verifique se o arquivo é um JSON válido.`);
+			} finally {
+				e.target.value = '';
+			}
+		};
+
+        reader.onerror = () => { alert('Erro ao tentar ler o arquivo selecionado.');
+ e.target.value = ''; };
         reader.readAsText(file); /* */
-    }); /* */
+    });
+ /* */
     
     // ==========================================
     // LÓGICA DE SALVAMENTO DO MODAL
@@ -1276,48 +1982,83 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentData = {}; let index = -1; let listToUpdate = null; /* */
         if (currentEditingId) { /* */
              switch(currentEntityType) { /* */
-                case 'client': index = db.clients.findIndex(c => c.id == currentEditingId); if (index > -1) currentData = db.clients[index]; break; /* */
+                case 
+ 'client': index = db.clients.findIndex(c => c.id == currentEditingId); if (index > -1) currentData = db.clients[index]; break; /* */
                 case 'property': index = db.properties.findIndex(p => p.id == currentEditingId); if (index > -1) currentData = db.properties[index]; break; /* */
                 case 'event': index = db.events.findIndex(e => e.id == currentEditingId); if (index > -1) currentData = db.events[index]; break; /* */
-                case 'knowledgeBase': index = db.knowledgeBase.findIndex(i => i.id == currentEditingId); if (index > -1) currentData = db.knowledgeBase[index]; break; /* */
+               
+  case 'knowledgeBase': index = db.knowledgeBase.findIndex(i => i.id == currentEditingId); if (index > -1) currentData = db.knowledgeBase[index]; break;
+ /* */
             }
         }
-        if (currentEntityType === 'client') { const clientData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), name: document.getElementById('client-name').value, phone: document.getElementById('client-phone').value, email: document.getElementById('client-email').value, income: parseFloat(document.getElementById('client-income').value) || 0, stageId: parseInt(document.getElementById('client-stageId').value), notes: document.getElementById('client-notes').value, }; if(index > -1) db.clients[index] = clientData; else db.clients.push(clientData); listToUpdate = 'clients'; } /* */
-        if (currentEntityType === 'property') { const propData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), name: document.getElementById('prop-name').value, location: document.getElementById('prop-location').value, listPrice: parseFloat(document.getElementById('prop-list-price').value) || 0, deliveryDate: document.getElementById('prop-delivery-date').value, locationLink: document.getElementById('prop-location-link').value, videoLink: document.getElementById('prop-video-link').value, description: document.getElementById('prop-description').value, }; if(index > -1) db.properties[index] = propData; else db.properties.push(propData); listToUpdate = 'properties'; } /* */
-        if (currentEntityType === 'event') { const eventData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), title: document.getElementById('event-title').value, date: document.getElementById('event-date').value, time: document.getElementById('event-time').value, description: document.getElementById('event-description').value, completed: currentData.completed || false }; if(index > -1) db.events[index] = eventData; else db.events.push(eventData); listToUpdate = 'agenda'; } /* */
-        if (currentEntityType === 'knowledgeBase') { const infoData = { ...currentData, id: currentEditingId || Date.now() + Math.random(), title: document.getElementById('info-title').value.trim(), content: document.getElementById('info-content').value.trim(), }; if (!infoData.title) { alert('O título é obrigatório.'); return; } if (index > -1) db.knowledgeBase[index] = infoData; else db.knowledgeBase.push(infoData); listToUpdate = 'informacoes'; } /* */
-        await saveData(); closeModal(); /* */
-        if (listToUpdate) { const activeNav = document.querySelector(`.nav-link[data-panel="${listToUpdate}"]`); switchPanel(listToUpdate, activeNav.dataset.title); } /* */
+        if (currentEntityType === 'client') { const clientData = { ...currentData, id: currentEditingId ||
+ Date.now() + Math.random(), name: document.getElementById('client-name').value, phone: document.getElementById('client-phone').value, email: document.getElementById('client-email').value, income: parseFloat(document.getElementById('client-income').value) || 0, stageId: parseInt(document.getElementById('client-stageId').value), notes: document.getElementById('client-notes').value, };
+ if(index > -1) db.clients[index] = clientData; else db.clients.push(clientData); listToUpdate = 'clients';
+ } /* */
+        if (currentEntityType === 'property') { const propData = { ...currentData, id: currentEditingId ||
+ Date.now() + Math.random(), name: document.getElementById('prop-name').value, location: document.getElementById('prop-location').value, listPrice: parseFloat(document.getElementById('prop-list-price').value) || 0, deliveryDate: document.getElementById('prop-delivery-date').value, locationLink: document.getElementById('prop-location-link').value, videoLink: document.getElementById('prop-video-link').value, description: document.getElementById('prop-description').value, };
+ if(index > -1) db.properties[index] = propData; else db.properties.push(propData); listToUpdate = 'properties';
+ } /* */
+        if (currentEntityType === 'event') { const eventData = { ...currentData, id: currentEditingId ||
+ Date.now() + Math.random(), title: document.getElementById('event-title').value, date: document.getElementById('event-date').value, time: document.getElementById('event-time').value, description: document.getElementById('event-description').value, completed: currentData.completed || false };
+ if(index > -1) db.events[index] = eventData; else db.events.push(eventData); listToUpdate = 'agenda';
+ } /* */
+        if (currentEntityType === 'knowledgeBase') { const infoData = { ...currentData, id: currentEditingId ||
+ Date.now() + Math.random(), title: document.getElementById('info-title').value.trim(), content: document.getElementById('info-content').value.trim(), }; if (!infoData.title) { alert('O título é obrigatório.'); return;
+ } if (index > -1) db.knowledgeBase[index] = infoData; else db.knowledgeBase.push(infoData); listToUpdate = 'informacoes';
+ } /* */
+        await saveData(); closeModal();
+ /* */
+        if (listToUpdate) { const activeNav = document.querySelector(`.nav-link[data-panel="${listToUpdate}"]`); switchPanel(listToUpdate, activeNav.dataset.title);
+ } /* */
     }); /* */
     
     // =========================================================
     // GALERIA DE IMAGENS
     // =========================================================
-    const galleryModal = document.getElementById('image-gallery-modal'); /* */
+    const galleryModal = document.getElementById('image-gallery-modal');
+ /* */
     const galleryImage = document.getElementById('gallery-current-image'); /* */
-    const galleryContainer = document.getElementById('gallery-image-container'); /* */
+    const galleryContainer = document.getElementById('gallery-image-container');
+ /* */
     const galleryCounter = document.getElementById('gallery-counter'); /* */
-    let currentImageIndex = 0; let currentImages = []; /* */
+    let currentImageIndex = 0;
+ let currentImages = []; /* */
     const openImageGallery = (options) => { /* */
-        let imagesToShow = []; let startIndex = options.startIndex || 0; /* */
-        if (options.entity === 'property') { const property = db.properties.find(p => p.id == options.id); if (property && property.images && property.images.length > 0) { imagesToShow = property.images; } } /* */
-         else if (options.entity === 'note') { const note = db.knowledgeBase.find(n => n.id == options.id); if (note && note.images && note.images.length > 0) { imagesToShow = note.images; } } 
-        if (imagesToShow.length === 0) return; /* */
-        currentImages = imagesToShow; currentImageIndex = startIndex; updateGalleryView(); galleryModal.classList.add('active'); /* */
+        let imagesToShow = [];
+ let startIndex = options.startIndex || 0; /* */
+        if (options.entity === 'property') { const property = db.properties.find(p => p.id == options.id);
+ if (property && property.images && property.images.length > 0) { imagesToShow = property.images;
+ } } /* */
+         else if (options.entity === 'note') { const note = db.knowledgeBase.find(n => n.id == options.id);
+ if (note && note.images && note.images.length > 0) { imagesToShow = note.images;
+ } } 
+        if (imagesToShow.length === 0) return;
+ /* */
+        currentImages = imagesToShow; currentImageIndex = startIndex; updateGalleryView(); galleryModal.classList.add('active');
+ /* */
     };
-    const updateGalleryView = () => { galleryImage.src = currentImages[currentImageIndex]; galleryCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`; }; /* */
-    const changeImage = (direction) => { currentImageIndex += direction; if (currentImageIndex >= currentImages.length) { currentImageIndex = 0; } if (currentImageIndex < 0) { currentImageIndex = currentImages.length - 1; } updateGalleryView(); }; /* */
-    document.getElementById('gallery-next').addEventListener('click', () => changeImage(1)); /* */
+    const updateGalleryView = () => { galleryImage.src = currentImages[currentImageIndex];
+ galleryCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`; }; /* */
+    const changeImage = (direction) => { currentImageIndex += direction;
+ if (currentImageIndex >= currentImages.length) { currentImageIndex = 0; } if (currentImageIndex < 0) { currentImageIndex = currentImages.length - 1;
+ } updateGalleryView(); }; /* */
+    document.getElementById('gallery-next').addEventListener('click', () => changeImage(1));
+ /* */
     document.getElementById('gallery-prev').addEventListener('click', () => changeImage(-1)); /* */
-    document.getElementById('gallery-close').addEventListener('click', () => galleryModal.classList.remove('active')); /* */
+    document.getElementById('gallery-close').addEventListener('click', () => galleryModal.classList.remove('active'));
+ /* */
     
     // ==========================================
     // INICIALIZAÇÃO DO SISTEMA
     // ==========================================
     const init = async () => { /* */
-        await loadData(); /* */
-        // updateHeader(); // Se houver função para atualizar header
-        switchPanel('dashboard', 'Dashboard'); // Inicia no Dashboard /* */
+        await loadData();
+ /* */
+        // updateHeader();
+ // Se houver função para atualizar header
+        switchPanel('dashboard', 'Dashboard');
+ // Inicia no Dashboard /* */
     };
     init(); /* */
 });
